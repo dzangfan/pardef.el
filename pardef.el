@@ -24,7 +24,15 @@
 
 ;;; Code:
 
-(require 'cl)
+(require 'cl-lib)
+
+(defconst pardef--single-parameter-regexp
+  (string-join '("^\\s-*\\(\\w+\\)"     ; parameter name
+                 "\\(:\\s-*[^=]+\\|\\)" ; parameter type
+                 "\\(=\\s-*.+\\|\\)$")  ; parameter default value
+               "\\s-*")
+  "Regexp which used to parse a single python parameter
+specifier.  See `pardef--parse-python-parameter'")
 
 (defun pardef--split-python-defun (definition)
   "Splitting python's function `DEFINITION' into list.
@@ -38,41 +46,87 @@ name, parameter list and return specification respectively."
           (when (string-match after-parlist-regex definition)
             (let* ((return-spec (match-string-no-properties 1 definition))
                    (parlist-end (match-beginning 0))
-                   (parlist (substring-no-properties definition parlist-begin parlist-end)))
+                   (parlist (substring-no-properties definition parlist-begin
+                                                     parlist-end)))
               (list fun-name parlist return-spec)))))))
 
+(defun pardef--adjust-par-stack (stack cc openers closers)
+  (cond ((and stack (char-equal cc (aref closers (cdar stack))))
+         (cdr stack))
+        ((string-match (regexp-opt-charset (list cc)) openers)
+         (let ((rezidx (match-beginning 0)))
+           (cons (cons (aref closers rezidx) rezidx)
+                 stack)))
+        (t stack)))
 
-(defconst pardef--python-par-alist '((?\( . ?\))
-                                     (?\[ . ?\])
-                                     (?\{ . ?\})))
+(defun pardef--find-next-outside-par
+    (source char start &optional openers closers)
+  " Find next `CHAR' in `SOURCE' outside any parentheses.  
+The definition of 'parentheses' is in alist `PARALIST', which is
+a ALIST consists of opening and closing."
+  (setq openers (or openers (string ?\( ?\[ ?\{ ?\" ?\'))
+        closers (or closers (string ?\) ?\] ?\} ?\" ?\')))
+  (cl-do* ((stack nil)
+           (idx start (+ 1 idx)))
+      ((>= idx (length source)) nil)
+    (if (and (null stack) (char-equal char (aref source idx)))
+        (cl-return idx)
+      (setq stack (pardef--adjust-par-stack stack (aref source idx)
+                                            openers closers)))))
 
-(defun pardef--parse-pyparlist-find-next-comma (parlist &optional start)
-  (do ((idx start (+ 1 start))
-       (len (length parlist))
-       (par-stack 0)
-       (par-char nil)
-       (c (substring-no-properties idx (+ idx 1))
-          (substring-no-properties idx (+ idx 1))))
-      ((>= idx len) nil)
-    (cond ((and (zerop par-stack) (char-equal ?, c)) (return idx))
-          (t ;;; TODO COMPLETE ME
-           ))))
-
+(defun pardef--parse-python-parameter (parelt)
+  "Parsing a single python-style parameter specifier.
+If success to parsing, function returns a list has three
+elements: parameter's name, parameter's type and parameter's
+default value. Otherwise a string which is indicating a error
+will be throwed with tag `pardef--parsing-par-err'."
+  (if (not (string-match pardef--single-parameter-regexp parelt))
+      (throw 'pardef--parsing-par-err
+             (format "Unable to parse parameter %s" parelt))
+    (let ((name (match-string 1 parelt))
+          (type (match-string 2 parelt))
+          (value (match-string 3 parelt)))
+      (when (string-empty-p name)
+        (throw 'pardef--parsing-par-err
+               (format "Unable to parse parameter's name in '%s'" parelt)))
+      (cond ((string-match "^\\s-*:\\s-*\\([[:graph:]].*?\\)\\s-*$" type)
+             (setq type (match-string 1 type)))
+            ((string-match "^\\s-*$" type) (setq type ""))
+            (t (throw 'pardef--parsing-par-err
+                      (format "Unable to parse type specifier '%s'" type))))
+      (cond ((string-match "^\\s-*=\\s-*\\([[:graph:]].*?\\)\\s-*$" value)
+             (setq value (match-string 1 value)))
+            ((string-match "^\\s-*$" value) (setq value ""))
+            (t (throw 'pardef--parsing-par-err
+                      (format "Unable to parse default value '%s'" value))))
+      (list name type value))))
 
 (defun pardef--parse-python-parlist (parlist)
   "Parsing python-style function's parameter list(`PARLIST').
 Returns the result as a list, whose each element is a list has 3
-elements, each component corresponds name, default value and
-type.  First element(i.e. name) will be a non-empty string, but
-both type and value can be empty.
-If `PARLIST' is empty or only contains white-space, empty
-list(i.e. nil) will be returned.  As a result, we use STRING to
-indicate a parse error: if invocation returns a string, it's mean
-there is something wrong, and the STRING contains a short message
-about the reason."
-  )
-
-
+elements, each component corresponds name, type and default
+value.  First element(i.e. name) will be a non-empty string, but
+both type and value can be empty.  If `PARLIST' is empty or only
+contains white-space, empty list(i.e. nil) will be returned.  As
+a result, we use STRING to indicate a parse error: if invocation
+returns a string, it's mean there is something wrong, and the
+STRING contains a short message about the reason."
+  (catch 'pardef--parsing-par-err       ; See `pardef--parse-python-parameter'
+    (let ((rezseq nil)
+          (commap 0)
+          (commac (pardef--find-next-outside-par parlist ?\, 0)))
+      (let ((forward!
+             (lambda ()
+               (let* ((par (substring-no-properties parlist commap commac))
+                      (parserez (pardef--parse-python-parameter par)))
+                 (push parserez rezseq)
+                 (when commac
+                   (setq commap (+ 1 commac)
+                         commac (pardef--find-next-outside-par
+                                 parlist ?\, commap)))))))
+        (while commac (funcall forward!))
+        (funcall forward!))
+      (nreverse rezseq))))
 
 (provide 'pardef)
 ;;; pardef.el ends here
