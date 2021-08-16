@@ -247,21 +247,26 @@ Returns a list of strings, each string is a unindented line."
                        (pardef--render-param-after alist)            
                        new-line
                        (pardef--render-rest alist))
-               (length pardef-docstring-style))))
+               0 (length pardef-docstring-style))))
 
 (defun pardef-gen (renderer)
   "Generate docstring for python-style defun.
-Place your cursor on the line which contains keyword `def', then
-call this function with a particular `RENDERER'. Note that this
-function is not `INTERACTIVE', so you should wrap it in `LAMBDA'
-or use `PARDEF-MAKE-GEN' in key binding. `RENDERER' should be a
-function accepts a `ALIST' as parameter, and returns a specifier
-which `PARDER-GEN' can use to generate docstring. In particular,
-`RENDERER' will receive a `ALIST' has following fields:
+
+To generate docstring for a function, place cursor on the line
+contains keyword `def', then call this function with a particular
+`RENDERER'. Note that this function is not `interactive', so you
+should wrap it in `lambda' or use `pardef-make-gen' in key
+binding.
+
+`RENDERER' is a callback who can produce or update a docstring by
+a parsed function definition. It should be a function accepts a
+`ALIST' as parameter, and returns a specifier which `pardef-gen'
+can use to generate docstring. In particular, `RENDERER' will
+receive a `ALIST' has following fields:
 
   `name'   Function's name, as a non-empty string.
   `return' Function's return type, is a string and may be empty.
-  `params' Parameter list of function, is a list of list.
+  `params' Parameter list, a list of list in lisp data.
 
 Parameter list is represented by list which consists of fix form:
 
@@ -269,41 +274,42 @@ Parameter list is represented by list which consists of fix form:
 
 Both param-type and param-default-value may be empty. You can use
 `cl-multiple-value-bind' to destructuralize them.
-`RENDERER' should return a list has two elements, first one is a
-list of string, whose each element is a single line of
+
+`RENDERER' should return a list has three elements, first one is
+a list of string, whose each element specifies a single line of
 docstring. You don't need consider the absolute indentation of
-them, but local indent is acceptable. For example, part of the 
+them, and local indent is acceptable. For example, part of the
 list may like
 
 '(\":param length:\"
   \"  The length of the rectangle.\")
 
-The other return value is offset of cursor. You can use this
-value specify where the cursor will be located after docstring is
-inserted. It's a relative offset from the beginning of your
-docstring, and similarly, don't need to consider the absolute
+Both of the rest return values are non-negative integer represent
+row index and column index, used to specify location of cursor
+after docstring is inserted into buffer. Both of them are based
+on zero, and similarly, don't need to consider the absolute
 indent. Consider that we want to generate following docstring:
 
 --- DOCSTRING ---
 '''This is my favorite function.
-You should call |it carefully.
+You should call it carefully.
+                ^
 '''
 ---    END    ---
-(Character | means cursor)
+(Character '^' means cursor)
 
 Then we should return
 
-(list '(\"'''This is my favorite function.\"
-        ;0         10        20        30
-        \"You should call it carefully.\"
-        ;       40       49
+(list '(\"'''This is my favorite function.\" ; 0
+        \"You should call it carefully.\"    ; 1
+        ; 0               16
         \"'''\")
-      49)
+      1
+      16)
 
 Finally, you can use custom variable `pardef-docstring-style' as
-docstring's quotes. If docstring already exists, `PARDEF-GEN'
-will update it automatically.
-"
+docstring's quotes. If docstring already exists, `pardef-gen'
+will update it automatically."
   (cl-multiple-value-bind (line first-lino last-lino)
       (pardef-python-current-line)
     (if (not (string-match "^\\s-*\\(def\\)" line))
@@ -316,15 +322,22 @@ will update it automatically.
         (let* ((definition (substring-no-properties line defi-begin defi-end))
                (parez (pardef-parse-python-defun definition)))
           (when (stringp parez) (pardef--user-error "%s" parez))
-          (cl-multiple-value-bind (lines offset) (funcall renderer parez)
+          (cl-multiple-value-bind (lines row col) (funcall renderer parez)
+            (unless (and (< row (length lines))
+                         (< col (length (nth row lines))))
+              (pardef--user-error
+               "Renderer returned invalid location (%d, %d)" row col))
             (beginning-of-line)
             (forward-char (+ defi-end (* 2 (- last-lino first-lino 1))))
             (newline-and-indent)
-            (let* ((indent (make-string (current-indentation) ?\ ))
+            (let* ((indent-level (current-indentation))
+                   (indent (make-string indent-level ?\ ))
                    (docstring (string-join lines (concat "\n" indent))))
               (save-excursion
                 (insert docstring))
-              (forward-char (length pardef-docstring-style)))))))))
+              (beginning-of-line)
+              (forward-line row)
+              (forward-char (+ indent-level col)))))))))
 
 (defun pardef-make-gen (renderer)
   (lambda () (interactive)
