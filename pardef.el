@@ -26,9 +26,20 @@
 
 (require 'cl-lib)
 
+(defgroup pardef nil
+  "Python defun's docstring generator."
+  :group 'programming
+  :group 'python)
+
+(defcustom pardef-docstring-style "'''"
+  "Python docstring's style, use single quotes or double quotes."
+  :group 'pardef
+  :type '(radio (const :tag "Single quotes" "'''")
+                (const :tag "Double quotes" "\"\"\"")))
+
 (defconst pardef--single-parameter-regexp
-  (string-join '("^\\s-*\\(\\*\\{0,2\\}\\w+\\)" ; parameter name
-                 "\\(:\\s-*[^=]+\\|\\)"        ; parameter type
+  (string-join '("^\\s-*\\(\\*\\{0,2\\}[a-zA-Z_]+\\)" ; parameter name
+                 "\\(:\\s-*[^=]+\\|\\)"         ; parameter type
                  "\\(=\\s-*.+\\|\\)$")  ; parameter default value
                "\\s-*")
   "Regexp which used to parse a single python parameter
@@ -41,9 +52,9 @@ elements are bound to function's name, parameter list and
 return-specification respectively. Otherwise, namely fail to
 parse, function will raise an exception with tag
 `pardef--unable-to-split'."
-  (let ((before-parlist-regex "^def\\s-+\\(\\w+\\)\\s-*(")
+  (let ((before-parlist-regex "^def\\s-+\\([a-zA-Z_]+\\)\\s-*(")
         (after-parlist-regex ")\\s-*\\(->[^:]+:\\|:\\)$")
-        (exception-msg (format "Unable to parse python-def %s" definition)))
+        (exception-msg (format "Unable to parse python-defun %s" definition)))
     (unless (string-match before-parlist-regex definition)
       (throw 'pardef--unable-to-split exception-msg))
     (let ((fun-name (match-string-no-properties 1 definition))
@@ -203,6 +214,121 @@ doesn't use backslash, then return (list <current-line> x (+ x 1))"
         (push line* lines)
         (forward-line)))))
 
+(defun pardef--user-error (format &rest args)
+  (user-error (concat "[PARDEF] " format) args))
+
+(defmacro pardef--user-error (format &rest args)
+  (let ((tagged-format (concat "[PARDEF] " format)))
+    `(user-error ,tagged-format ,@args)))
+
+(defun pardef--render-brief (alist)
+  (list (format "%s[TODO] Document %s"
+                pardef-docstring-style
+                (assoc-default 'name alist))))
+
+(defun pardef--render-param-before (alist) nil)
+(defun pardef--render-param-after (alist)
+  (list (format "  :returns: %s" (assoc-default 'return alist))))
+
+(defun pardef--render-param-list (alist)
+  (let ((cvt-param (lambda (param) (format "  :param %s:" (car param)))))
+    (mapcar cvt-param (assoc-default 'params alist))))
+
+(defun pardef--render-rest (alist) (list "" pardef-docstring-style))
+
+(defun pardef-simple-renderer (alist)
+  "Rendering `ALIST' into python-style docstring.
+Returns a list of strings, each string is a unindented line."
+  (let ((new-line (list "")))
+    (cl-values (append (pardef--render-brief alist)
+                       new-line
+                       (pardef--render-param-before alist)
+                       (pardef--render-param-list alist)
+                       (pardef--render-param-after alist)            
+                       new-line
+                       (pardef--render-rest alist))
+               (length pardef-docstring-style))))
+
+(defun pardef-gen (renderer)
+  "Generate docstring for python-style defun.
+Place your cursor on the line which contains keyword `def', then
+call this function with a particular `RENDERER'. Note that this
+function is not `INTERACTIVE', so you should wrap it in `LAMBDA'
+or use `PARDEF-MAKE-GEN' in key binding. `RENDERER' should be a
+function accepts a `ALIST' as parameter, and returns a specifier
+which `PARDER-GEN' can use to generate docstring. In particular,
+`RENDERER' will receive a `ALIST' has following fields:
+
+  `name'   Function's name, as a non-empty string.
+  `return' Function's return type, is a string and may be empty.
+  `params' Parameter list of function, is a list of list.
+
+Parameter list is represented by list which consists of fix form:
+
+  (list <param-name> <param-type> <param-default-value>)
+
+Both param-type and param-default-value may be empty. You can use
+`cl-multiple-value-bind' to destructuralize them.
+`RENDERER' should return a list has two elements, first one is a
+list of string, whose each element is a single line of
+docstring. You don't need consider the absolute indentation of
+them, but local indent is acceptable. For example, part of the 
+list may like
+
+'(\":param length:\"
+  \"  The length of the rectangle.\")
+
+The other return value is offset of cursor. You can use this
+value specify where the cursor will be located after docstring is
+inserted. It's a relative offset from the beginning of your
+docstring, and similarly, don't need to consider the absolute
+indent. Consider that we want to generate following docstring:
+
+--- DOCSTRING ---
+'''This is my favorite function.
+You should call |it carefully.
+'''
+---    END    ---
+(Character | means cursor)
+
+Then we should return
+
+(list '(\"'''This is my favorite function.\"
+        ;0         10        20        30
+        \"You should call it carefully.\"
+        ;       40       49
+        \"'''\")
+      49)
+
+Finally, you can use custom variable `pardef-docstring-style' as
+docstring's quotes. If docstring already exists, `PARDEF-GEN'
+will update it automatically.
+"
+  (cl-multiple-value-bind (line first-lino last-lino)
+      (pardef-python-current-line)
+    (if (not (string-match "^\\s-*\\(def\\)" line))
+        (pardef--user-error "Unable to parse Current line as a python defun")
+      (let* ((defi-begin (match-beginning 1))
+             (defi-end (pardef--find-next-outside-par line ?\: defi-begin)))
+        (when (null defi-end)
+          (pardef--user-error "Can't find this def's end(i.e. character ':')"))
+        (cl-incf defi-end)
+        (let* ((definition (substring-no-properties line defi-begin defi-end))
+               (parez (pardef-parse-python-defun definition)))
+          (when (stringp parez) (pardef--user-error "%s" parez))
+          (cl-multiple-value-bind (lines offset) (funcall renderer parez)
+            (beginning-of-line)
+            (forward-char (+ defi-end (* 2 (- last-lino first-lino 1))))
+            (newline-and-indent)
+            (let* ((indent (make-string (current-indentation) ?\ ))
+                   (docstring (string-join lines (concat "\n" indent))))
+              (save-excursion
+                (insert docstring))
+              (forward-char (length pardef-docstring-style)))))))))
+
+(defun pardef-make-gen (renderer)
+  (lambda () (interactive)
+    (pardef-gen renderer)))
 
 (provide 'pardef)
 ;;; pardef.el ends here
