@@ -4,6 +4,7 @@
 
 ;; Author: Lifoz <li-fn@outlook.com>
 ;; Keywords: convenience, generator, Python, docstring
+;; Package-Requires: ((dash "2.19.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,6 +26,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'dash)
 
 (defgroup pardef nil
   "Python defun's docstring generator."
@@ -185,8 +187,6 @@ reason of failure will be returned."
               (cons 'params (pardef--parse-python-parlist parlist))
               (cons 'return (pardef--trim-python-defun-retype ret)))))))
 
-
-
 (defun pardef--line-at-point ()
   (buffer-substring-no-properties (line-beginning-position)
                                   (line-end-position)))
@@ -214,40 +214,40 @@ doesn't use backslash, then return (list <current-line> x (+ x 1))"
         (push line* lines)
         (forward-line)))))
 
-(defun pardef--user-error (format &rest args)
-  (user-error (concat "[PARDEF] " format) args))
+(defun pardef--load-docstring ()
+  "Try to load docstring after current point.
+This function assume that there is a correct function definition,
+and current point is after the terminate notation (:). In
+particular, when this function is called, the buffer looks like:
+
+--- BUFFER ---
+def __init__(self):
+                   ^
+---   END  ---
+(Character (^) means current point)
+
+Both of single-quotes-style and double-quotes-style are
+accept. If docstring is found, multiple values formed (<content>
+<begin-point> <end-point>) will be returned, content is a list of
+string, each element is a line of docstring and prefix indent has
+been trimmed. Otherwise, namely no docstring is found, function
+returns nil."
+  (save-excursion
+    (skip-chars-forward "\n[:space:]")
+    (when (looking-at "'''\\|\"\"\"")
+      (let ((begin (point))
+            (indent (current-indentation))
+            (quotes (match-string-no-properties 0)))
+        (forward-char (length quotes))
+        (re-search-forward quotes)
+        (let* ((docstring (buffer-substring-no-properties begin (point)))
+               (indent-regexp (format "\n[ ]\\{,%d\\}" indent))
+               (lines (split-string docstring indent-regexp)))
+          (cl-values lines begin (point)))))))
 
 (defmacro pardef--user-error (format &rest args)
   (let ((tagged-format (concat "[PARDEF] " format)))
     `(user-error ,tagged-format ,@args)))
-
-(defun pardef--render-brief (alist)
-  (list (format "%s[TODO] Document %s"
-                pardef-docstring-style
-                (assoc-default 'name alist))))
-
-(defun pardef--render-param-before (alist) nil)
-(defun pardef--render-param-after (alist)
-  (list (format "  :returns: %s" (assoc-default 'return alist))))
-
-(defun pardef--render-param-list (alist)
-  (let ((cvt-param (lambda (param) (format "  :param %s:" (car param)))))
-    (mapcar cvt-param (assoc-default 'params alist))))
-
-(defun pardef--render-rest (alist) (list "" pardef-docstring-style))
-
-(defun pardef-simple-renderer (alist)
-  "Rendering `ALIST' into python-style docstring.
-Returns a list of strings, each string is a unindented line."
-  (let ((new-line (list "")))
-    (cl-values (append (pardef--render-brief alist)
-                       new-line
-                       (pardef--render-param-before alist)
-                       (pardef--render-param-list alist)
-                       (pardef--render-param-after alist)            
-                       new-line
-                       (pardef--render-rest alist))
-               0 (length pardef-docstring-style))))
 
 (defun pardef-gen (renderer)
   "Generate docstring for python-style defun.
@@ -312,7 +312,7 @@ docstring's quotes. If docstring already exists, `pardef-gen'
 will update it automatically."
   (cl-multiple-value-bind (line first-lino last-lino)
       (pardef-python-current-line)
-    (if (not (string-match "^\\s-*\\(def\\)" line))
+    (if (not (string-match "^\\s-*\\(def\\)" line)) ; `def' must in current line
         (pardef--user-error "Unable to parse Current line as a python defun")
       (let* ((defi-begin (match-beginning 1))
              (defi-end (pardef--find-next-outside-par line ?\: defi-begin)))
@@ -322,26 +322,110 @@ will update it automatically."
         (let* ((definition (substring-no-properties line defi-begin defi-end))
                (parez (pardef-parse-python-defun definition)))
           (when (stringp parez) (pardef--user-error "%s" parez))
-          (cl-multiple-value-bind (lines row col) (funcall renderer parez)
-            (unless (and (< row (length lines))
-                         (< col (length (nth row lines))))
-              (pardef--user-error
-               "Renderer returned invalid location (%d, %d)" row col))
-            (beginning-of-line)
-            (forward-char (+ defi-end (* 2 (- last-lino first-lino 1))))
-            (newline-and-indent)
-            (let* ((indent-level (current-indentation))
-                   (indent (make-string indent-level ?\ ))
-                   (docstring (string-join lines (concat "\n" indent))))
-              (save-excursion
-                (insert docstring))
-              (beginning-of-line)
-              (forward-line row)
-              (forward-char (+ indent-level col)))))))))
+          (beginning-of-line)
+          (forward-char (+ defi-end (* 2 (- last-lino first-lino 1))))
+          ;; Now cursor is following colon
+          (let ((curdoc (pardef--load-docstring)))
+            (cl-multiple-value-bind (lines row col)
+                (funcall renderer parez (and curdoc (cl-first curdoc)))
+              (unless (and (< row (length lines))
+                           (< col (length (nth row lines))))
+                (pardef--user-error
+                 "Renderer returned invalid location (%d, %d)" row col))
+              (when curdoc (delete-region (point) (cl-third curdoc)))
+              (newline-and-indent)
+              (let* ((indent-level (current-indentation))
+                     (indent (make-string indent-level ?\ ))
+                     (docstring (string-join lines (concat "\n" indent))))
+                (save-excursion
+                  (insert docstring))
+                (beginning-of-line)
+                (forward-line row)
+                (forward-char (+ indent-level col))))))))))
 
 (defun pardef-make-gen (renderer)
+  "Create a generator function with `RENDERER'.
+Creating a non-parameter function which will call
+(pardef-gen `RENDERER') `interactive'-ly. It can be used to
+define key bindings in your init.el:
+
+  (define-key xx-mode-map (kbd ..) (pardef-make-gen `RENDERER'))
+
+See `pardef-gen' for more details."
   (lambda () (interactive)
     (pardef-gen renderer)))
+
+
+(defun pardef--render-brief (alist)
+  (list (format "%s[TODO] Document %s"
+                pardef-docstring-style
+                (assoc-default 'name alist))))
+
+(defun pardef--render-param-before (alist) nil)
+(defun pardef--render-param-after (alist)
+  (list (format "  :returns: %s" (assoc-default 'return alist))))
+
+(defun pardef--render-param-list (alist)
+  (let ((cvt-param (lambda (param) (format "  :param %s:" (car param)))))
+    (mapcar cvt-param (assoc-default 'params alist))))
+
+(defun pardef--render-rest (alist) (list "" pardef-docstring-style))
+
+(defun pardef-util-split-docstring-blocks (docstring)
+  "Split `DOCSTRING' by blank line.
+`DOCSTRING' should be a list of string which represent lines of
+text, and it will be split into sublists bounded by blank lines."
+  (--split-when (string-blank-p it) docstring))
+
+(defun pardef--sru-info-cons (line)
+  (when (string-match "^  :param \\([A-Za-z0-9_]+\\):\\(.*\\)" line)
+    (cons (match-string-no-properties 1 line)
+          (match-string-no-properties 2 line))))
+
+(defun pardef--sru-make-paramline (param-spec doc-alist)
+  (let* ((name (car param-spec))
+         (doc (or (assoc-default name doc-alist 'string-equal)
+                  (string))))
+    (format "  :param %s:%s" name doc)))
+
+(defun pardef--simple-renderer-update-param (alist blocks)
+  (let* ((param-block (cl-second blocks))
+         (doc-alist (mapcar #'pardef--sru-info-cons param-block))
+         (doc-alist (-remove #'null doc-alist))
+         (paralines (--map (pardef--sru-make-paramline it doc-alist)
+                           (assoc-default 'params alist)))
+         (returns (pardef--render-param-after alist)))
+    (->> (-replace-at 1 (append paralines returns) blocks)
+         (-interpose (string))
+         (-flatten))))
+
+(defun pardef--simple-renderer-update (alist docstring)
+  (let ((blocks (pardef-util-split-docstring-blocks docstring)))
+    (cl-values (if (< (length blocks) 2)
+                   (append (or blocks (string))
+                           (string)
+                           (pardef--render-param-before alist)
+                           (pardef--render-param-list alist)
+                           (pardef--render-param-after alist)
+                           (string)
+                           (pardef--render-rest alist))
+                 (pardef--simple-renderer-update-param alist blocks))
+               0 (length pardef-docstring-style))))
+
+(defun pardef-simple-renderer (alist docstring)
+  "Rendering `ALIST' into python-style docstring.
+Returns a list of strings, each string is a unindented line."
+  (if docstring
+      (pardef--simple-renderer-update alist docstring)
+    (let ((new-line (list "")))
+      (cl-values (append (pardef--render-brief alist)
+                         new-line
+                         (pardef--render-param-before alist)
+                         (pardef--render-param-list alist)
+                         (pardef--render-param-after alist)            
+                         new-line
+                         (pardef--render-rest alist))
+                 0 (length pardef-docstring-style)))))
 
 (provide 'pardef)
 ;;; pardef.el ends here
