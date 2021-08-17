@@ -49,7 +49,7 @@ specifier.  See `pardef--parse-python-parameter'")
   "Splitting python's function `DEFINITION' into list.
 Returned a list has three elements if succeed in parsing,
 elements are bound to function's name, parameter list and
-return-specification respectively. Otherwise, namely fail to
+return-specification respectively.  Otherwise, namely fail to
 parse, function will raise an exception with tag
 `pardef--unable-to-split'."
   (let ((before-parlist-regex "^def\\s-+\\([a-zA-Z_]+\\)\\s-*(")
@@ -78,7 +78,7 @@ parse, function will raise an exception with tag
 
 (defun pardef--find-next-outside-par
     (source char start &optional openers closers)
-  "Find next `CHAR' in `SOURCE' outside any parentheses.  
+  "Find next `CHAR' in `SOURCE' outside any parentheses.
 The definition of 'parentheses' is in alist `PARALIST', which is
 a ALIST consists of opening and closing."
   (setq openers (or openers (string ?\( ?\[ ?\{ ?\" ?\'))
@@ -101,10 +101,10 @@ a ALIST consists of opening and closing."
   
 
 (defun pardef--parse-python-parameter (parelt)
-  "Parsing a single python-style parameter specifier.
+  "Parsing a single python-style parameter specifier `PARELT'.
 If success to parsing, function returns a list has three
 elements: parameter's name, parameter's type and parameter's
-default value. Otherwise a string which is indicating a error
+default value.  Otherwise a string which is indicating a error
 will be throwed with tag `pardef--parsing-par-err'."
   (cl-multiple-value-bind (name type value)
       (pardef--parse-python-parameter-split-regex parelt)
@@ -131,7 +131,7 @@ value.  First element(i.e. name) will be a non-empty string, but
 both type and value can be empty.  If `PARLIST' is empty or only
 contains white-space, empty list(i.e. nil) will be returned.  If
 `PARLIST' has illegal form, or contains some features are
-unsupporting currently, function will raise a exception contains
+unsupported currently, function will raise a exception contains
 a short message which indicates the reason of failure with tag
 `pardef--parsing-par-err'"
   (let ((rezseq nil)
@@ -159,7 +159,7 @@ a short message which indicates the reason of failure with tag
 
 (defun pardef-parse-python-defun (definition)
   "Parsing python-style function `DEFINITION'.
-Spliting and extracting `DEFINITION' to a `alist', which has field
+Splitting and extracting `DEFINITION' to a `alist', which has field
 
   - `name'   A non-empty string represent function's name.
   - `params' List represent Function's parameters.
@@ -173,9 +173,9 @@ form:
 
 And in these three components, only `param-name' always has
 positive length, both `param-type' and `param-default-value' may
-be empty if doesn't provide in `DEFINITION'.  
+be empty if doesn't provide in `DEFINITION'.
 If `DEFINITION' are illegal formed or contains any features which
-are unsupporting now, a string contains a short message about the
+are unsupported now, a string contains a short message about the
 reason of failure will be returned."
   (catch 'pardef--unable-to-split
     (catch 'pardef--parsing-par-err
@@ -194,9 +194,9 @@ reason of failure will be returned."
 (defun pardef-python-current-line ()
   "Get line at point in current buffer as a string.
 This function accepts using backslash at end of line to continue
-this line to next. It's return three value: text of current
-line(backslashs are trimmed), line number of the first line and
-the last line. For example, if current line number is x and
+this line to next.  It's return three value: text of current
+line(backslashes are trimmed), line number of the first line and
+the last line.  For example, if current line number is x and
 doesn't use backslash, then return (list <current-line> x (+ x 1))"
   (save-excursion
     (cl-do ((lines nil)
@@ -213,9 +213,6 @@ doesn't use backslash, then return (list <current-line> x (+ x 1))"
                       line)))
         (push line* lines)
         (forward-line)))))
-
-(defun pardef--user-error (format &rest args)
-  (user-error (concat "[PARDEF] " format) args))
 
 (defmacro pardef--user-error (format &rest args)
   (let ((tagged-format (concat "[PARDEF] " format)))
@@ -244,7 +241,7 @@ Returns a list of strings, each string is a unindented line."
                        new-line
                        (pardef--render-param-before alist)
                        (pardef--render-param-list alist)
-                       (pardef--render-param-after alist)            
+                       (pardef--render-param-after alist)
                        new-line
                        (pardef--render-rest alist))
                0 (length pardef-docstring-style))))
@@ -254,31 +251,31 @@ Returns a list of strings, each string is a unindented line."
 
 To generate docstring for a function, place cursor on the line
 contains keyword `def', then call this function with a particular
-`RENDERER'. Note that this function is not `interactive', so you
+`RENDERER'.  Note that this function is not `interactive', so you
 should wrap it in `lambda' or use `pardef-make-gen' in key
 binding.
 
 `RENDERER' is a callback who can produce or update a docstring by
-a parsed function definition. It should be a function accepts a
+a parsed function definition.  It should be a function accepts a
 `ALIST' as parameter, and returns a specifier which `pardef-gen'
-can use to generate docstring. In particular, `RENDERER' will
+can use to generate docstring.  In particular, `RENDERER' will
 receive a `ALIST' has following fields:
 
   `name'   Function's name, as a non-empty string.
   `return' Function's return type, is a string and may be empty.
-  `params' Parameter list, a list of list in lisp data.
+  `params' Parameter list, a list of list in Lisp data.
 
 Parameter list is represented by list which consists of fix form:
 
   (list <param-name> <param-type> <param-default-value>)
 
-Both param-type and param-default-value may be empty. You can use
+Both param-type and param-default-value may be empty.  You can use
 `cl-multiple-value-bind' to destructuralize them.
 
 `RENDERER' should return a list has three elements, first one is
 a list of string, whose each element specifies a single line of
-docstring. You don't need consider the absolute indentation of
-them, and local indent is acceptable. For example, part of the
+docstring.  You don't need consider the absolute indentation of
+them, and local indent is acceptable.  For example, part of the
 list may like
 
 '(\":param length:\"
@@ -286,9 +283,9 @@ list may like
 
 Both of the rest return values are non-negative integer represent
 row index and column index, used to specify location of cursor
-after docstring is inserted into buffer. Both of them are based
+after docstring is inserted into buffer.  Both of them are based
 on zero, and similarly, don't need to consider the absolute
-indent. Consider that we want to generate following docstring:
+indent.  Consider that we want to generate following docstring:
 
 --- DOCSTRING ---
 '''This is my favorite function.
