@@ -40,7 +40,7 @@
                 (const :tag "Double quotes" "\"\"\"")))
 
 (defconst pardef--single-parameter-regexp
-  (string-join '("^\\s-*\\(\\*\\{0,2\\}[a-zA-Z_]+\\)" ; parameter name
+  (string-join '("^\\s-*\\(\\*\\{0,2\\}[a-zA-Z0-9_]+\\)" ; parameter name
                  "\\(:\\s-*[^=]+\\|\\)"         ; parameter type
                  "\\(=\\s-*.+\\|\\)$")  ; parameter default value
                "\\s-*")
@@ -54,7 +54,7 @@ elements are bound to function's name, parameter list and
 return-specification respectively.  Otherwise, namely fail to
 parse, function will raise an exception with tag
 `pardef--unable-to-split'."
-  (let ((before-parlist-regex "^def\\s-+\\([a-zA-Z_]+\\)\\s-*(")
+  (let ((before-parlist-regex "^def\\s-+\\([a-zA-Z0-9_]+\\)\\s-*(")
         (after-parlist-regex ")\\s-*\\(->[^:]+:\\|:\\)$")
         (exception-msg (format "Unable to parse python-defun %s" definition)))
     (unless (string-match before-parlist-regex definition)
@@ -136,22 +136,23 @@ contains white-space, empty list(i.e. nil) will be returned.  If
 unsupported currently, function will raise a exception contains
 a short message which indicates the reason of failure with tag
 `pardef--parsing-par-err'"
-  (let ((rezseq nil)
-        (commap 0)
-        (commac (pardef--find-next-outside-par parlist ?\, 0)))
-    (let ((forward!
-           (lambda ()
-             (let ((par (substring-no-properties parlist commap commac)))
-               (unless (string-match "^\\s-*\\(?:\\*\\|/\\)\\s-*$" par)
-                 (let ((parserez (pardef--parse-python-parameter par)))
-                   (push parserez rezseq)))
-               (when commac
-                 (setq commap (+ 1 commac)
-                       commac (pardef--find-next-outside-par
-                               parlist ?\, commap)))))))
-      (while commac (funcall forward!))
-      (funcall forward!))
-    (nreverse rezseq)))
+  (unless (string-match "^\\s-*$" parlist)
+    (let ((rezseq nil)
+          (commap 0)
+          (commac (pardef--find-next-outside-par parlist ?\, 0)))
+      (let ((forward!
+             (lambda ()
+               (let ((par (substring-no-properties parlist commap commac)))
+                 (unless (string-match "^\\s-*\\(?:\\*\\|/\\)\\s-*$" par)
+                   (let ((parserez (pardef--parse-python-parameter par)))
+                     (push parserez rezseq)))
+                 (when commac
+                   (setq commap (+ 1 commac)
+                         commac (pardef--find-next-outside-par
+                                 parlist ?\, commap)))))))
+        (while commac (funcall forward!))
+        (funcall forward!))
+      (nreverse rezseq))))
 
 (defun pardef--trim-python-defun-retype (ret)
   "Trim `RET'-'s prefix (->)."
@@ -159,7 +160,7 @@ a short message which indicates the reason of failure with tag
       (or (match-string-no-properties 1 ret) "")
     (user-error "[PARDEF] Internal error raised when parsing %s" ret)))
 
-(defun pardef-parse-python-defun (definition)
+(defun pardef-load-python-defun (definition)
   "Parsing python-style function `DEFINITION'.
 Splitting and extracting `DEFINITION' to a `alist', which has field
 
@@ -320,7 +321,7 @@ will update it automatically."
           (pardef--user-error "Can't find this def's end(i.e. character ':')"))
         (cl-incf defi-end)
         (let* ((definition (substring-no-properties line defi-begin defi-end))
-               (parez (pardef-parse-python-defun definition)))
+               (parez (pardef-load-python-defun definition)))
           (when (stringp parez) (pardef--user-error "%s" parez))
           (beginning-of-line)
           (forward-char (+ defi-end (* 2 (- last-lino first-lino 1))))
