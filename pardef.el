@@ -66,13 +66,23 @@ return (and type) specifiers, and it become operative when
   :group 'pardef
   :type 'integer)
 
+(defcustom pardef-renderer-sphinx-add-defaults t
+  " Whether or not add a ', defaults to xx' for parameters who
+has default values."
+  :group 'pardef
+  :type 'boolean)
+
 (defconst pardef--ignored-param-field-regexp
   "^\\s-*\\(?:\\*\\|/\\|self\\)\\s-*$"
   "Regexp used to filter ignorable parameter fields.")
 
+(defconst pardef--python-parameter-name
+  "\\*\\{0,2\\}[a-zA-Z0-9_]+"
+  "Parameter's identifier, includes *args and **args")
+
 (defconst pardef--single-parameter-regexp
-  (string-join '("^\\s-*\\(\\*\\{0,2\\}[a-zA-Z0-9_]+\\)" ; parameter name
-                 "\\(:\\s-*[^=]+\\|\\)"         ; parameter type
+  (string-join `(,(format "^\\s-*\\(%s\\)" pardef--python-parameter-name)
+                 "\\(:\\s-*[^=]+\\|\\)" ; parameter type
                  "\\(=\\s-*.+\\|\\)$")  ; parameter default value
                "\\s-*")
   "Regexp which used to parse a single python parameter
@@ -404,7 +414,8 @@ text, and it will be split into sublists bounded by blank lines."
 
 (defconst pardef--rsph-destructing-regexp
   (string-join `("^\\s-*"
-                 "\\([a-zA-Z0-9_]+\\)\\(\\|\\s-+[a-zA-Z0-9_]+\\)"
+                 ,(format "\\([a-zA-Z0-9_]+\\)\\(\\|\\s-+%s\\)"
+                          pardef--python-parameter-name)
                  "\\(.*\\)$")
                (string ?\:))
   "Parameter specifier line's regexp.
@@ -426,7 +437,7 @@ for more details.")
 `pardef-load-python-defun', both of `DOC-ALIST' and `TYPE-ALIST'
 is alist and has form:
 
-  ((\"function_name\": . \"user document content\")
+  ((\"function_name\": . (\"user document content\"))
   ...)
 
 Lines of parameter specifier will be returned, however, note that
@@ -436,15 +447,25 @@ by `-flatten' before used."
          (lambda (param-spec)
            (let ((result nil))
              (cl-multiple-value-bind (name type value) param-spec
-               (let ((doc (or (assoc-default name doc-alist 'string-equal)
-                              (format " [ParamDescription]%s"
-                                      (if (string-blank-p value) ""
-                                        (format ", defaults to %s" value))))))
-                 (push (pardef--rsph-format ":param %s:%s" name doc) result))
+               (let* ((nodefault (not pardef-renderer-sphinx-add-defaults))
+                      (doc (or (assoc-default name doc-alist 'string-equal)
+                               (format " [ParamDescription]%s"
+                                       (if (or nodefault (string-blank-p value))
+                                           (string)
+                                         (format ", defaults to %s" value)))))
+                      (doc (if (listp doc) doc (list doc)))
+                      (rest (cl-rest doc))
+                      (first (pardef--rsph-format
+                              ":param %s:%s" name (cl-first doc))))
+                 (push (cons first rest) result))
                (unless (string-blank-p type)
-                 (let ((doc (or (assoc-default name type-alist 'string-equal)
-                                (format " %s" type))))
-                   (push (pardef--rsph-format ":type %s:%s" name doc) result)))
+                 (let* ((default (format " %s" type))
+                        (doc (or (assoc-default name type-alist 'string-equal)
+                                 (list (string))))
+                        (rest (cl-rest doc))
+                        (first (pardef--rsph-format
+                                ":type %s: %s%s" name type (cl-first doc))))
+                   (push (cons first rest) result)))
                (nreverse result))))))
     (mapcar build-param-line (assoc-default 'params param-alist))))
 
@@ -456,13 +477,21 @@ arguments. Special key for only `DOC-ALIST' is \"return\", which
 used to specify documentation of return value. `RAISES-LIST' is a
 list of lines which are between param-specifiers and
 return-specifiers. It will be insert between that two directly."
-  (-flatten (list (pardef--rsph-create-params alist nil nil)
+  (-flatten (list (pardef--rsph-create-params alist doc-alist type-alist)
                   raises-list
-                  (let ((doc (or (assoc-default "return" doc-alist 'string=)
-                                 " [ReturnDescription]")))
-                    (pardef--rsph-format ":return:%s" doc))
-                  (let ((rtype (assoc-default 'return alist)))
-                    (when rtype (pardef--rsph-format ":rtype: %s" rtype))))))
+                  (let* ((doc (or (assoc-default "return" doc-alist 'string=)
+                                  '(" [ReturnDescription]")))
+                         (rest (cl-rest doc))
+                         (first (cl-first doc)))
+                    (cons (pardef--rsph-format ":return:%s" first) rest))
+                  (let* ((rtype (assoc-default 'return alist))
+                         (doc (or (assoc-default "return" type-alist 'string=)
+                                  '("")))
+                         (rest (cl-rest doc))
+                         (first (cl-first doc)))
+                    (unless (string-blank-p rtype)
+                      (cons (pardef--rsph-format ":rtype: %s%s" rtype first)
+                            rest))))))
 
 (defun pardef--rsph-create (alist)
   (let ((blank-line (string)))
@@ -532,13 +561,14 @@ See `pardef--rsph-destruct-line' for more details."
         (cons (concat spec first-rest)
               rest-rest))))
 
-;;; TODO Redefine me
-(defun pardef--rsph-collect-docs (specs-block)
+(defun pardef--rsph-collect-docs (compiled)
   "Collect existed documents from `SPECS-BLOCK'.
 Returns multiple value DOC-ALIST and TYPE-ALIST and both of them
 are formed like:
 
-  ((\"param-name\" . \"param-doc\"))
+  ((\"param-name\" . (\"param-doc\")))
+
+Each <param-doc> are a single line.
 
 DOC-ALIST collects items have tag:
   - :param x:
@@ -546,80 +576,58 @@ DOC-ALIST collects items have tag:
 TYPE-ALIST collects items have tag:
   - :type x:
   - :rtype:
-Every documents for type must prefixed with (,)
-
-Note that param-doc may be multiline.  If `SPECS-BLOCK' cannot be
-parse, `NIL' will be returned."
+Every documents for type must prefixed with (,)"
   (let ((doc-alist nil)
-        (type-alist nil)
-        (prev-name nil)
-        (prev-docons nil))
-    (cl-dolist (line specs-block)
-      (let* ((indent (pardef-util-indent-of line))
-             (commit (lambda ()
-                       (let ((current-lines (cdr prev-docons))
-                             (vind pardef-renderer-sphinx-list-indent)
-                             (content (substring-no-properties line vind)))
-                         (setcdr prev-docons
-                                 (cons content prev-docons))))))
-        (when (< indent pardef-renderer-sphinx-list-indent) (cl-return))
-        (let ((destructed-line (pardef--rsph-destruct-line line)))
-          (if (null destructed-line)
-              (cond ((null prev-docons) (cl-return))
-                    ((= indent pardef-renderer-sphinx-list-indent) (cl-return))
-                    (t (funcall commit)))
-            (if (> indent pardef-renderer-sphinx-list-indent)
-                (funcall commit)
-              (let ((prev-type (car prev-docons))
-                    (prev-lines (nreverse (cdr prev-docons))))
-                (unless (eq 'pass prev-docons)
-                  (if (eq 'doc prev-type)
-                      (push (cons prev-name prev-lines) doc-alist)
-                    (push (cons prev-name prev-lines))))
-                (cl-multiple-value-bind (type name doc) destructed-line
-                  (cond ((string-equal type "param")
-                         (when (string-blank-p name)
-                           (cl-return))
-                         (setq prev-name name
-                               prev-docons (cons 'doc (list doc))))
-                        ((string-equal type "type")
-                         (setq prev-name name
-                               prev-docons (cons nil (list doc))))
-                        ((string-equal type "return")
-                         (setq prev-name "return"
-                               prev-docons (cons 'doc (list doc))))
-                        ((string-match-p "^raises|rtype$" type)
-                         (setq prev-docons 'pass))
-                        (t (cl-return))))))))))))
+        (type-alist nil))
+    (dolist (destructed compiled (cl-values doc-alist type-alist))
+      (unless (null destructed)
+        (cl-multiple-value-bind (type name rest) destructed
+          (cond ((string= "param" type) (push (cons name rest) doc-alist))
+                ((string= "return" type) (push (cons "return" rest) doc-alist))
+                ((not (member type '("type" "rtype"))))
+                (t (let ((first (cl-first rest))
+                         (rest (cl-rest rest))
+                         (name (if (string= "type" type) name "return")))
+                     (-if-let (i (pardef--find-next-outside-par first ?\, 0))
+                         (let ((first* (substring-no-properties first i)))
+                           (push (cons name (cons first* rest)) type-alist))
+                       (push (cons name rest) type-alist))))))))))
 
 (defun pardef--rsph-collect-raises (compiled-lines)
   "Collects lines from `COMPILED-LINES' which don't have type in
 `pardef--rsph-keywords'."
   (let ((raises nil))
-    (dolist (lines grouped-lines (nreverse raises))
-      (unless (and lines (string-match-p pardef--rsph-keywords (car lines)))
-        (push lines raises)))))
+    (dolist (lines compiled-lines)
+      (when lines
+        (unless (string-match-p pardef--rsph-keywords (car lines))
+          (push lines raises))))
+    (mapcar #'pardef--rsph-rebuild-line (nreverse raises))))
 
-;;; TODO fixme
 (defun pardef--rsph-update (alist docstring)
   (let ((blocks (pardef-util-split-docstring-blocks docstring)))
     (cl-case (length blocks)
       (0 (pardef--rsph-create alist))
       (1 (-flatten (list blocks
                          (pardef--rsph-create-params-and-return alist () ()))))
-      (t (let* ((params (cl-second blocks))
+      (t (let* ((ignored-regexp "^\\s-*\\(?:'''\\|\"\"\"\\)\\s-*$")
+                (params (--remove (string-match-p ignored-regexp it)
+                                  (cl-second blocks)))
                 (grouped-lines (pardef--rsph-group-lines params))
-                (compiled (mapcar #'pardef--rsph-destruct-line grouped-lines))
-                (raises (pardef--rsph-collect-raises compiled))
-                (docs (pardef--rsph-collect-docs compiled))
-                (modifier (if (and docs (car compiled))
-                              #'-replace-at #'-insert-at))
-                (docs (or docs (cl-values nil nil))))
-           (cl-multiple-value-bind (da ta) docs
-             (--> (pardef--rsph-create-params-and-return alist da ta raises)
-                  (funcall modifier 1 it blocks)
-                  (-interpose (string) it)
-                  -flatten)))))))
+                (compiled (mapcar #'pardef--rsph-destruct-line grouped-lines)))
+           (-when-let* ((first (cl-first compiled))
+                        (nilidx (-find-index #'null compiled)))
+             (pardef--user-error "Unable to parse: %s"
+                                 (string-join (nth nilidx grouped-lines) "\n")))
+           (let ((raises (pardef--rsph-collect-raises compiled))
+                 (docs (pardef--rsph-collect-docs compiled))
+                 (modifier (if (car compiled) #'-replace-at #'-insert-at)))
+             (cl-multiple-value-bind (da ta) docs
+               (--> (pardef--rsph-create-params-and-return alist da ta raises)
+                    (funcall modifier 1 it blocks)
+                    (-interpose (string) it)
+                    -flatten
+                    (append it (when (= 2 (length blocks))
+                                 (list pardef-docstring-style)))))))))))
 
 (defun pardef-renderer-sphinx (alist docstring)
   "Simple renderer base on Sphinx document format.
