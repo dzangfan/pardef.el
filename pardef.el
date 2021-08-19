@@ -88,7 +88,6 @@ has default values."
   "Regexp which used to parse a single python parameter
 specifier.  See `pardef--parse-python-parameter'")
 
-
 (defun pardef--split-python-defun (definition)
   "Splitting python's function `DEFINITION' into list.
 Returned a list has three elements if succeed in parsing,
@@ -113,12 +112,20 @@ parse, function will raise an exception with tag
 
 
 (defun pardef--adjust-par-stack (stack cc openers closers)
-  (cond ((and stack (char-equal cc (aref closers (cdar stack))))
+  "Adjust stack to maintains balance of `OPENERS' and `CLOSERS'.
+
+Stack is a list, but you may not modify it manually.  `OPENERS'
+and `CLOSERS' are matched parentheses, such as () [] '' etc. and
+both of them are string, whose index a corresponds in match to
+another.  You can scan a string and pass a originally nil list to
+this function, and reset stack to its return value. You can be
+sure that any `OPENERS' in your source string are matched to
+`CLOSERS' if stack is still nil any time."
+  (cond ((and stack (char-equal cc (aref closers (car stack))))
          (cdr stack))
         ((string-match (regexp-opt-charset (list cc)) openers)
          (let ((rezidx (match-beginning 0)))
-           (cons (cons (aref closers rezidx) rezidx)
-                 stack)))
+           (cons rezidx stack)))
         (t stack)))
 
 
@@ -237,33 +244,75 @@ reason of failure will be returned."
               (cons 'return (pardef--trim-python-defun-retype ret)))))))
 
 
-(defun pardef--line-at-point ()
-  (buffer-substring-no-properties (line-beginning-position)
-                                  (line-end-position)))
-
-
 (defun pardef-load-python-line ()
   "Get line at point in current buffer as a string.
-This function accepts using backslash at end of line to continue
-this line to next.  It's return three value: text of current
-line(backslashes are trimmed), line number of the first line and
-the last line.  For example, if current line number is x and
-doesn't use backslash, then return (list <current-line> x (+ x 1))"
+This function read a python-style line at point.  In detail, all following code blocks it's a single python line:
+
+def f(x):
+
+def g(x: int) \\
+  -> Tuple[int, int]:
+
+def h(x     # www!
+,     y):
+
+It's return four value. 
+
+  (line-content begin-line-number end-line-number ignored-count)
+
+LINE-CONTENT is text of current python line.  Although a python
+line may be number of normal line, this function returns a single
+string, which is trimmed backslash and newline at end of line,
+and inline comment lead by hash.
+
+BEGIN-LINE-NUMBER and END-LINE-NUMBER are line numbers of the
+first line and the last line.  For example, if current line
+number is x and doesn't use backslash, then returns
+
+  (x (+ x 1))
+
+Finally, IGNORED-COUNT means the number of chars that ignored
+when concat lines into single."
   (save-excursion
-    (cl-do ((lines nil)
-            (first-lino (line-number-at-pos))
-            (last-lino (line-number-at-pos) (line-number-at-pos))
-            (prev-char ?\\ last-char)
-            (last-char (char-before (line-end-position))
-                       (char-before (line-end-position))))
-        ((not (char-equal ?\\ prev-char))
-         (cl-values (string-join (nreverse lines)) first-lino last-lino))
-      (let* ((line (pardef--line-at-point))
-             (line* (if (string-match "\\\\$" line)
-                        (substring-no-properties line 0 (match-beginning 0))
-                      line)))
-        (push line* lines)
-        (forward-line)))))
+    (let* ((lines nil)
+           (stack nil)
+           (continue t)
+           (ignored-count 0)
+           (first-lino (line-number-at-pos))
+           (last-lino (line-number-at-pos))
+           (openers (string ?\( ?\[ ?\{))
+           (closers (string ?\) ?\] ?\}))
+           (is-balance (lambda (string)
+                         (dotimes (i (length string))
+                           (setq stack (pardef--adjust-par-stack
+                                        stack (aref string i)
+                                        openers closers)))
+                         (null stack))))
+      (while continue
+        (let ((curl (buffer-substring-no-properties
+                        (line-beginning-position) (line-end-position))))
+          (if (string-match "^\\([^#]*\\)\\(#.*\\)" curl)
+              (let ((content (match-string-no-properties 1 curl))
+                    (comment (match-string-no-properties 2 curl)))
+                (push content lines)
+                (if (funcall is-balance content)
+                    (setq continue nil)
+                  (cl-incf ignored-count (+ 1 (length comment)))))
+            (let ((len (length curl)))
+              (cond ((char-equal ?\\ (aref curl (- len 1)))
+                     (funcall is-balance curl)
+                     (cl-incf ignored-count 2)
+                     (push (substring-no-properties curl 0 (- len 1)) lines))
+                    (t (push curl lines)
+                       (if (funcall is-balance curl)
+                           (setq continue nil)
+                         (cl-incf ignored-count)))))))
+        (forward-line)
+        (setq last-lino (line-number-at-pos))
+        (when (eobp) (setq continue nil)))
+      (-> (nreverse lines)
+          string-join
+          (cl-values first-lino last-lino ignored-count)))))
 
 
 (defun pardef--load-docstring ()
@@ -303,6 +352,14 @@ returns nil."
     `(user-error ,tagged-format ,@args)))
 
 
+;; FIXME
+;; This function assume that there is no more continued line after the
+;; end of defun. So in this case:
+;;
+;;   def fix_u(who): return \
+;;                   who
+;;
+;; `pardef-gen' will fail.
 (defun pardef-gen (renderer)
   "Generate docstring for python-style defun.
 
@@ -364,7 +421,7 @@ Then we should return
 Finally, you can use custom variable `pardef-docstring-style' as
 docstring's quotes. If docstring already exists, `pardef-gen'
 will update it automatically."
-  (cl-multiple-value-bind (line first-lino last-lino)
+  (cl-multiple-value-bind (line first-lino last-lino ignored-count)
       (pardef-load-python-line)
     (if (not (string-match "^\\s-*\\(def\\)" line)) ; `def' must in current line
         (pardef--user-error "Unable to parse Current line as a python defun")
@@ -377,7 +434,7 @@ will update it automatically."
                (parez (pardef-load-python-defun definition)))
           (when (stringp parez) (pardef--user-error "%s" parez))
           (beginning-of-line)
-          (forward-char (+ defi-end (* 2 (- last-lino first-lino 1))))
+          (forward-char (+ defi-end ignored-count))
           (let ((curdoc (pardef--load-docstring)))
             (cl-multiple-value-bind (lines row col)
                 (funcall renderer parez (and curdoc (cl-first curdoc)))
@@ -391,7 +448,9 @@ will update it automatically."
                      (indent (make-string indent-level ?\ ))
                      (docstring (string-join lines (concat "\n" indent))))
                 (save-excursion
-                  (insert docstring))
+                  (insert docstring)
+                  (unless (looking-at "\\s-*$")
+                    (newline-and-indent)))
                 (beginning-of-line)
                 (forward-line row)
                 (forward-char (+ indent-level col))))))))))
@@ -671,9 +730,6 @@ Every documents for type must prefixed with (,)"
                     (--map-first it (concat pardef-docstring-style it) it)
                     (append it (list pardef-docstring-style))))))))))
 
-
-;; (append it (when (= 2 (length blocks))
-;;              (list pardef-docstring-style)))
 
 (defun pardef-renderer-sphinx (alist docstring)
   "Simple renderer base on Sphinx document format.
