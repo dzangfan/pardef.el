@@ -88,6 +88,7 @@ has default values."
   "Regexp which used to parse a single python parameter
 specifier.  See `pardef--parse-python-parameter'")
 
+
 (defun pardef--split-python-defun (definition)
   "Splitting python's function `DEFINITION' into list.
 Returned a list has three elements if succeed in parsing,
@@ -110,6 +111,7 @@ parse, function will raise an exception with tag
                                                parlist-end)))
         (cl-values fun-name parlist return-spec)))))
 
+
 (defun pardef--adjust-par-stack (stack cc openers closers)
   (cond ((and stack (char-equal cc (aref closers (cdar stack))))
          (cdr stack))
@@ -118,6 +120,7 @@ parse, function will raise an exception with tag
            (cons (cons (aref closers rezidx) rezidx)
                  stack)))
         (t stack)))
+
 
 (defun pardef--find-next-outside-par
     (source char start &optional openers closers)
@@ -133,6 +136,7 @@ a ALIST consists of opening and closing."
         (cl-return idx)
       (setq stack (pardef--adjust-par-stack stack (aref source idx)
                                             openers closers)))))
+
 
 (defun pardef--parse-python-parameter-split-regex (parelt)
   (if (not (string-match pardef--single-parameter-regexp parelt))
@@ -166,6 +170,7 @@ will be throwed with tag `pardef--parsing-par-err'."
                     (format "Unable to parse default value '%s'" value))))
     (cl-values name type value)))
 
+
 (defun pardef--parse-python-parlist (parlist)
   "Parsing python-style function's parameter list(`PARLIST').
 Returns the result as a list, whose each element is a list has 3
@@ -195,11 +200,13 @@ a short message which indicates the reason of failure with tag
         (funcall forward!))
       (nreverse rezseq))))
 
+
 (defun pardef--trim-python-defun-retype (ret)
   "Trim `RET'-'s prefix (->)."
   (if (string-match "^\\s-*\\(?:->\\s-*\\(.+\\)\\|\\(\\)\\)\\s-*:\\s-*$" ret)
       (or (match-string-no-properties 1 ret) "")
     (user-error "[PARDEF] Internal error raised when parsing %s" ret)))
+
 
 (defun pardef-load-python-defun (definition)
   "Parsing python-style function `DEFINITION'.
@@ -229,9 +236,11 @@ reason of failure will be returned."
               (cons 'params (pardef--parse-python-parlist parlist))
               (cons 'return (pardef--trim-python-defun-retype ret)))))))
 
+
 (defun pardef--line-at-point ()
   (buffer-substring-no-properties (line-beginning-position)
                                   (line-end-position)))
+
 
 (defun pardef-load-python-line ()
   "Get line at point in current buffer as a string.
@@ -255,6 +264,7 @@ doesn't use backslash, then return (list <current-line> x (+ x 1))"
                       line)))
         (push line* lines)
         (forward-line)))))
+
 
 (defun pardef--load-docstring ()
   "Try to load docstring after current point.
@@ -287,9 +297,11 @@ returns nil."
                (lines (split-string docstring indent-regexp)))
           (cl-values lines begin (point)))))))
 
+
 (defmacro pardef--user-error (format &rest args)
   (let ((tagged-format (concat "[PARDEF] " format)))
     `(user-error ,tagged-format ,@args)))
+
 
 (defun pardef-gen (renderer)
   "Generate docstring for python-style defun.
@@ -366,12 +378,11 @@ will update it automatically."
           (when (stringp parez) (pardef--user-error "%s" parez))
           (beginning-of-line)
           (forward-char (+ defi-end (* 2 (- last-lino first-lino 1))))
-          ;; Now cursor is following colon
           (let ((curdoc (pardef--load-docstring)))
             (cl-multiple-value-bind (lines row col)
                 (funcall renderer parez (and curdoc (cl-first curdoc)))
               (unless (and (< row (length lines))
-                           (< col (length (nth row lines))))
+                           (<= col (length (nth row lines))))
                 (pardef--user-error
                  "Renderer returned invalid location (%d, %d)" row col))
               (when curdoc (delete-region (point) (cl-third curdoc)))
@@ -385,6 +396,7 @@ will update it automatically."
                 (forward-line row)
                 (forward-char (+ indent-level col))))))))))
 
+
 (defun pardef-make-gen (renderer)
   "Create a generator function with `RENDERER'.
 Creating a non-parameter function which will call
@@ -397,16 +409,19 @@ See `pardef-gen' for more details."
   (lambda () (interactive)
     (pardef-gen renderer)))
 
+
 (defun pardef-util-split-docstring-blocks (docstring)
   "Split `DOCSTRING' by blank line.
 `DOCSTRING' should be a list of string which represent lines of
 text, and it will be split into sublists bounded by blank lines."
   (--split-when (string-blank-p it) docstring))
 
+
 (defun pardef-util-indent-of (string)
   "Returns number of space prefixed in `STRING'."
   (if (not (string-match "^\\s-*" string)) 0
     (match-end 0)))
+
 
 ;; A simple renderer, uses Sphinx docstring format.
 ;; See https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
@@ -427,9 +442,11 @@ See `pardef--rsph-destruct-line'.")
 See https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
 for more details.")
 
+
 (defun pardef--rsph-format (string &rest objects)
   (concat (make-string pardef-renderer-sphinx-list-indent ?\ )
           (apply 'format string objects)))
+
 
 (defun pardef--rsph-create-params (param-alist doc-alist type-alist)
   "Creating parameter specifier lines from `PARAM-ALIST'.
@@ -469,8 +486,9 @@ by `-flatten' before used."
                (nreverse result))))))
     (mapcar build-param-line (assoc-default 'params param-alist))))
 
+
 (defun pardef--rsph-create-params-and-return
-    (alist doc-alist type-alist &optional raises-list)
+    (alist &optional doc-alist type-alist raises-list)
   "Combine parameter generate and return generate.
 See `pardef--rsph-create-params' for more details about
 arguments. Special key for only `DOC-ALIST' is \"return\", which
@@ -493,12 +511,14 @@ return-specifiers. It will be insert between that two directly."
                       (cons (pardef--rsph-format ":rtype: %s%s" rtype first)
                             rest))))))
 
+
 (defun pardef--rsph-create (alist)
   (let ((blank-line (string)))
     (-flatten (list (format "%s[Summary]" pardef-docstring-style)
                     blank-line
                     (pardef--rsph-create-params-and-return alist nil nil)
                     pardef-docstring-style))))
+
 
 (defun pardef--rsph-group-lines (param-block)
   "Returns a list of list from `PARAM-BLOCK'.
@@ -519,6 +539,7 @@ directly, will not do any other modify."
               (t (push line prev-lines)))))
     (funcall dump)
     (nreverse result)))
+
 
 (defun pardef--rsph-destruct-line (grouped-line)
   "Returns destructed `GROUPED-LINE'.
@@ -548,6 +569,7 @@ See `pardef--rsph-group-lines' for more details about
                      (cons (or rest-spec (string))
                            (cdr grouped-line))))))))
 
+
 (defun pardef--rsph-rebuild-line (limbs &optional prefix)
   "Rebuild line from `LIMBS' and perfixed with `PREFIX'.
 Returns lines as a list.
@@ -560,6 +582,7 @@ See `pardef--rsph-destruct-line' for more details."
             (rest-rest (cdr rest)))
         (cons (concat spec first-rest)
               rest-rest))))
+
 
 (defun pardef--rsph-collect-docs (compiled)
   "Collect existed documents from `SPECS-BLOCK'.
@@ -593,6 +616,7 @@ Every documents for type must prefixed with (,)"
                            (push (cons name (cons first* rest)) type-alist))
                        (push (cons name rest) type-alist))))))))))
 
+
 (defun pardef--rsph-collect-raises (compiled-lines)
   "Collects lines from `COMPILED-LINES' which don't have type in
 `pardef--rsph-keywords'."
@@ -603,12 +627,30 @@ Every documents for type must prefixed with (,)"
           (push lines raises))))
     (mapcar #'pardef--rsph-rebuild-line (nreverse raises))))
 
+
 (defun pardef--rsph-update (alist docstring)
+  (let ((i 0)
+        (result nil)
+        (z (- (length docstring) 1)))
+    (dolist (line docstring)
+      (push (cond ((= 0 i) (replace-regexp-in-string
+                            "^\\(?:'''\\|\"\"\"\\)" (string) line))
+                  ((= z i) (replace-regexp-in-string
+                            "\\(?:'''\\|\"\"\"\\)$" (string) line))
+                  (t (replace-regexp-in-string pardef-docstring-style ""
+                                               line)))
+            result))
+    (setq docstring (nreverse result)))
   (let ((blocks (pardef-util-split-docstring-blocks docstring)))
     (cl-case (length blocks)
       (0 (pardef--rsph-create alist))
-      (1 (-flatten (list blocks
-                         (pardef--rsph-create-params-and-return alist () ()))))
+      (1 (let* ((first (caar blocks))
+                (rest (cdar blocks)))
+           (--> (cons (concat pardef-docstring-style first) rest)
+                (list it (string)
+                      (pardef--rsph-create-params-and-return alist)
+                      pardef-docstring-style)
+                -flatten)))
       (t (let* ((ignored-regexp "^\\s-*\\(?:'''\\|\"\"\"\\)\\s-*$")
                 (params (--remove (string-match-p ignored-regexp it)
                                   (cl-second blocks)))
@@ -626,8 +668,12 @@ Every documents for type must prefixed with (,)"
                     (funcall modifier 1 it blocks)
                     (-interpose (string) it)
                     -flatten
-                    (append it (when (= 2 (length blocks))
-                                 (list pardef-docstring-style)))))))))))
+                    (--map-first it (concat pardef-docstring-style it) it)
+                    (append it (list pardef-docstring-style))))))))))
+
+
+;; (append it (when (= 2 (length blocks))
+;;              (list pardef-docstring-style)))
 
 (defun pardef-renderer-sphinx (alist docstring)
   "Simple renderer base on Sphinx document format.
@@ -642,6 +688,11 @@ for the Sphinx docstring format."
      (pardef--rsph-update alist docstring))
    ;; Cursor's relative location
    0 (length pardef-docstring-style)))
+
+
+(defun pardef-sphinx ()
+  (interactive)
+  (pardef-gen #'pardef-renderer-sphinx))
 
 (provide 'pardef)
 ;;; pardef.el ends here
