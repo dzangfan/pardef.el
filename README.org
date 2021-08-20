@@ -9,15 +9,20 @@ A Python docstring generator, uses [[https://sphinx-rtd-tutorial.readthedocs.io/
 Install [[file:pardef.el][pardef.el]] and put following code in your init.el:
 
 #+begin_src emacs-lisp
-  (add-to-list 'load-path "path/to/your/pardef.el")
-  (require 'pardef)
+  ;; This package doesn't depend `python-mode', but load after python
+  ;; can speed up your initialization time.
   (with-eval-after-load 'python
+    (add-to-list 'load-path "path/to/your/pardef.el")
+    (require 'pardef)
     (define-key python-mode-map (kbd "M-d M-d") #'pardef-sphinx)
     (define-key python-mode-map (kbd "M-d M-n") #'pardef-do-jump-forward)
     (define-key python-mode-map (kbd "M-d M-p") #'pardef-do-jump-backward)
-    (define-key python-mode-map (kbd "M-d M-f") #'pardef-do-jump-forward-and-kill)
-    (define-key python-mode-map (kbd "M-d M-b") #'pardef-do-jump-backward-and-kill)
-    (define-key python-mode-map (kbd "M-p") #'python-nav-backward-defun)) ; See `python-mode'
+    (define-key python-mode-map (kbd "M-d M-f")
+      #'pardef-do-jump-forward-and-kill)
+    (define-key python-mode-map (kbd "M-d M-b")
+      #'pardef-do-jump-backward-and-kill)
+    (define-key python-mode-map (kbd "M-p")
+      #'python-nav-backward-defun)) ; See `python-mode'
 
   ;; Or `use-package'
   (use-package pardef
@@ -36,10 +41,10 @@ Note that this package depends [[https://github.com/magnars/dash.el][dash]], so 
 
 ** Usage
    
-Moving your cursor(or ~point~, in Emacs) to the line that contains ~def~ keyword, and call function ~pardef-sphinx~ either by command (~M-x~) or by key binding (~M-d M-d~, if you followed our install manual), then you can see a new docstring is generated if there is no docstring originally, or a error message if your function definition contains some feature do not support now, or something horrible if there have existed docstring and conflict with ~pardef~.
+Moving your cursor(or ~point~, in Emacs term) to the line that contains ~def~ keyword, and call function ~pardef-sphinx~ either by command (~M-x~) or by key binding (~M-d M-d~, if you followed our install manual), then you can see a new docstring is generated if there is no docstring originally, or a error message if your function definition contains some feature do not support now, or something horrible if there has an existed docstring and conflicts with ~pardef~.
 
-Furthermore, as the demo in the beginning, you can jump (or jump-and-kill) between placeholders in docstring.  Placeholders has form ~[TAG]~, and ~TAG~ can be customized by ~pardef-do-jumpable-tags~.  You can just use them intuitively.
-   
+Furthermore, as the demo in the beginning, you can jump (or jump-and-kill) between placeholders in docstring.  Placeholders has form ~[TAG]~, and ~TAG~ can be customized by ~pardef-do-jumpable-tags~.  You can use them intuitively.
+
 ** Mechanism
 
 The main command ~pardef~ provided is ~pardef-sphinx~, which can generate and update docstring for Python function.  A typical (or ~pardef~ recognizable) docstring's structure is
@@ -55,11 +60,11 @@ def verify(pwd):
     '''
 #+end_src
 
-Parts are identified by blank line, so your summary part can contain multiline, but cannot contain blank line, other blocks are identified similarly.  In [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html][Sphinx format]], we always consider the first block as a summary and parse literally, and treat the second block as a parameter list (of course, includes return value, return type, exceptions, etc.) block, finally, blocks following these two are rest blocks, they can have number of blocks separated by blank line, and are interpreted literally.
+Parts are identified by blank line, so your summary part can contain multiline, but cannot contain blank line. Other blocks are identified similarly.  In [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html][Sphinx format]], we always consider the first block as a summary and parse literally, and treat the second block as a parameter list (of course, includes return value, return type, exceptions, etc.) block, finally, blocks following these two are rest blocks, they can have number of blocks separated by blank line, and are interpreted literally.
 
-It is significant when ~pardef~ update docstring. It trusts that the second block is a parameter list, so if it's unable to parse the second one, it'll think that there is something wrong and insert a new parameter list instead of update it.
+It is only significant when ~pardef~ update docstring. ~pardef~ trusts that the second block is a parameter list, so if it's unable to parse the second one, it'll think that there is something wrong and insert a new parameter list instead of update it.
 
-The parameter list part also has its structure, refer to [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format][Sphinx format]]:
+Parameter list part also has its structure, refer to [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format][Sphinx format]]:
 
 #+begin_src python
 """[Summary]
@@ -78,7 +83,7 @@ The parameter list part also has its structure, refer to [[https://sphinx-rtd-tu
 
 ** Customization
 
-*** ~pardef-docstring-style~: ''' or """
+*** ~pardef-docstring-style~: ='''= or ="""=
 
 Use double or single quotes as docstring's bound to output.  This value will not affect parsing existed docstring.
 
