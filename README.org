@@ -76,6 +76,85 @@ The parameter list part also has its structure, refer to [[https://sphinx-rtd-tu
 
 ~pardef~ will move unrecognized tags (such as ~raises~) between ~param~ and ~return~ when invoke updating.
 
+** Customization
+
+*** ~pardef-docstring-style~: ''' or """
+
+Use double or single quotes as docstring's bound to output.  This value will not affect parsing existed docstring.
+
+*** ~pardef-sphinx-list-indent~: non-negative integer
+
+Indentations of lines like ~:param x:~, defaults to zero.
+
+#+begin_src python
+def f(x):
+    '''[Summary]
+
+    :param x: [ParamDescription]
+    ^
+    (setq pardef-sphinx-list-indent 0) ;; default
+      :param x: [ParamDescription]
+    ^
+    (setq pardef-sphinx-list-indent 2)
+    '''
+#+end_src
+
+*** ~pardef-sphinx-add-defaults~: Boolean
+
+Whether to generate a ~defaults to xx~ clause for parameter that has default value, defaults to ~t~.
+
+#+begin_src python
+def f(x=None):
+    '''[Summary]
+
+    :param x: [ParamDescription], defaults to None
+    ^
+    (setq pardef-sphinx-add-defaults t)
+    :param x: [ParamDescription]
+    ^
+    (setq pardef-sphinx-add-defaults nil)
+    '''
+#+end_src
+
+Note that this clause WONT be updated if you change the default later, so you need to update this clause manually.
+
+*** ~pardef-sphinx-ignore-*~: Boolean
+
+It means whether to ignore some parameter, and includes three variable:
+
+  - ~pardef-sphinx-ignore-self~
+    Whether to ignore ~self~, defaults to ~t~
+  - ~pardef-sphinx-ignore-rest~
+    Whether to ignore ~*args~, parameter can use arbitrary name, defaults to ~nil~
+  - ~pardef-sphinx-ignore-keyword~
+    Whether to ignore ~**args~, defaults to ~nil~
+
+*** ~pardef-sphinx-default-*~: String
+
+Default value for your docstring's fields. It contains three variable:
+
+  - ~pardef-sphinx-default-summary~: Defaults to ~[Summary]~
+  - ~pardef-sphinx-default-param~: Defaults to ~[ParamDescription]~
+  - ~pardef-sphinx-default-return~: Default to ~[ReturnDescription]~
+
+They correspond with
+
+#+begin_src python
+'''<pardef-sphinx-default-summary>
+
+:param x:<pardef-sphinx-default-param>
+:return:<pardef-sphinx-default-return>
+'''
+#+end_src
+
+You may modify them carefully, since they are connecting with placeholder ~[TAG]~. See next section.
+
+*** ~pardef-do-jumpable-tags~: List of string
+
+Tags that can be searched by function ~pardef-do-jump-*[-and-kill]~, where \* is ~forward~ or ~backward~, You needn't to care them if you use default key binding mentioned in install section.  It defaults to ~ParamDescription~, ~ReturnDescription~ and ~Summary~, so when you invoke ~pardef-do-jump-forward-and-kill~ (or ~M-d M-f~), character sequence ~[ParamDescription]~ may be going to suffer, but ~List[str]~ wont.  You can define your own jump-tag by push new string into it, then ~[YourTag]~ will be significant as a placeholder for ~M-d M-f~.
+
+Finally, do not define tag whose name likes ~str~, ~int~, and so on, otherwise character sequence like ~List[str]~ may suffer from friendly fire.
+
 ** Known Issues
 
 ~pardef~ assume that there is no more continuous line after the line that contains function definition terminate notation ~:~. Specifically, ~pardef~ will not generate a correct docstring for following code:
@@ -103,7 +182,6 @@ def War_and_Peace():
 #+end_src
 
 ~pardef~ will not work if you want to update this docstring: it will insert a new one instead of update the origin.  Following code will work as you are thinking:
-
 
 #+begin_src python
 def War_and_Peace():

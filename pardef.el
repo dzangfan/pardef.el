@@ -90,13 +90,13 @@ return (and type) specifiers, and it become operative when
   :type 'integer)
 
 (defcustom pardef-sphinx-add-defaults t
-  "Whether or not add a ', defaults to xx' for parameters who
+  "Whether to add a ', defaults to xx' for parameters who
 has default values."
   :group 'pardef
   :type 'boolean)
 
 (defcustom pardef-sphinx-ignore-self t
-  "Whether or not ignore parameter exactly named self, defaults
+  "Whether to ignore parameter exactly named self, defaults
 to t. For example, method like
 
   def __init__(self, a, b): ...
@@ -106,14 +106,14 @@ will only generate parameter items for a and b."
   :type 'boolean)
 
 (defcustom pardef-sphinx-ignore-rest nil
-  " Whether or not ignore rest parameter like *args.
+  " Whether to ignore rest parameter like *args.
 Name of rest parameter doesn't limit, but it cannot have neither
 type annotation nor default value."
   :group 'pardef
   :type 'boolean)
 
 (defcustom pardef-sphinx-ignore-keyword nil
-  "Whether or not ignore keyword parameter like **args.
+  "Whether to ignore keyword parameter like **args.
 Name of rest parameter doesn't limit, but it cannot have neither
 type annotation nor default value."
   :group 'pardef
