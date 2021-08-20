@@ -1,15 +1,15 @@
 * pardef
-
+  
 A Python docstring generator, uses [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html][Sphinx docstring format]].
 
 [[file:example/example.gif]]
 
 ** Install
 
-Install this [[file:pardef.el][pardef.el]] and put following code in your init.el:
+Install [[file:pardef.el][pardef.el]] and put following code in your init.el:
 
 #+begin_src emacs-lisp
-  (add-to-list 'load-path "path/2/your/pardef.el")
+  (add-to-list 'load-path "path/to/your/pardef.el")
   (require 'pardef)
   (with-eval-after-load 'python
     (define-key python-mode-map (kbd "M-d M-d") #'pardef-sphinx)
@@ -31,3 +31,88 @@ Install this [[file:pardef.el][pardef.el]] and put following code in your init.e
                 ("M-d M-b" . pardef-do-jump-backward-and-kill)
                 ("M-p" . python-nav-backward-defun))) ; See `python-mode'
 #+end_src
+
+Note that this package depends [[https://github.com/magnars/dash.el][dash]], so ensure ~dash.el~ is in your ~load-path~.
+
+** Usage
+   
+Moving your cursor(or ~point~, in Emacs) to the line that contains ~def~ keyword, and call function ~pardef-sphinx~ either by command (~M-x~) or by key binding (~M-d M-d~, if you followed our install manual), then you can see a new docstring is generated if there is no docstring originally, or a error message if your function definition contains some feature do not support now, or something horrible if there have existed docstring and conflict with ~pardef~.
+
+Furthermore, as the demo in the beginning, you can jump (or jump-and-kill) between placeholders in docstring.  Placeholders has form ~[TAG]~, and ~TAG~ can be customized by ~pardef-do-jumpable-tags~.  You can just use them intuitively.
+   
+** Mechanism
+
+The main command ~pardef~ provided is ~pardef-sphinx~, which can generate and update docstring for Python function.  A typical (or ~pardef~ recognizable) docstring's structure is
+
+#+begin_src python
+def verify(pwd):
+    '''Summary...             <- Summary Part
+
+    :param pwd: Password.     <- Parameter List Part
+    ...
+
+    Detail...                 <- Rest Part
+    '''
+#+end_src
+
+Parts are identified by blank line, so your summary part can contain multiline, but cannot contain blank line, other blocks are identified similarly.  In [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html][Sphinx format]], we always consider the first block as a summary and parse literally, and treat the second block as a parameter list (of course, includes return value, return type, exceptions, etc.) block, finally, blocks following these two are rest blocks, they can have number of blocks separated by blank line, and are interpreted literally.
+
+It is significant when ~pardef~ update docstring. It trusts that the second block is a parameter list, so if it's unable to parse the second one, it'll think that there is something wrong and insert a new parameter list instead of update it.
+
+The parameter list part also has its structure, refer to [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html#the-sphinx-docstring-format][Sphinx format]]:
+
+#+begin_src python
+"""[Summary]
+
+:param [ParamName]: [ParamDescription], defaults to [DefaultParamVal]
+:type [ParamName]: [ParamType](, optional)
+...
+:raises [ErrorType]: [ErrorDescription]
+...
+:return: [ReturnDescription]
+:rtype: [ReturnType]
+"""
+#+end_src
+
+~pardef~ will move unrecognized tags (such as ~raises~) between ~param~ and ~return~ when invoke updating.
+
+** Known Issues
+
+~pardef~ assume that there is no more continuous line after the line that contains function definition terminate notation ~:~. Specifically, ~pardef~ will not generate a correct docstring for following code:
+
+#+begin_src python
+def verify(pwd): return \
+    pwd == "asd123456"
+
+# But these are no problem
+def verify(pwd): return pwd == "asd123456"
+
+def verify(pwd)             \
+    :return pwd == "asd123456"
+#+end_src
+
+In addition, we suggest that do not put your comment in some strange place, for example:
+
+#+begin_src python
+def War_and_Peace():
+    ##  Chapter 3 ##
+    '''[Summary]
+
+    :return:...
+    '''
+#+end_src
+
+~pardef~ will not work if you want to update this docstring: it will insert a new one instead of update the origin.  Following code will work as you are thinking:
+
+
+#+begin_src python
+def War_and_Peace():
+    ## Chapter 3 ##
+    return ...
+#+end_src
+
+~pardef~ will insert a new docstring between function definition and comment.
+
+** License
+
+GPL-3
