@@ -1,3 +1,33 @@
 * pardef
 
 A Python docstring generator, uses [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html][Sphinx docstring format]].
+
+[[file:example/example.gif]]
+
+** Install
+
+Install this [[file:pardef.el][pardef.el]] and put following code in your init.el:
+
+#+begin_src emacs-lisp
+  (add-to-list 'load-path "path/2/your/pardef.el")
+  (require 'pardef)
+  (with-eval-after-load 'python
+    (define-key python-mode-map (kbd "M-d M-d") #'pardef-sphinx)
+    (define-key python-mode-map (kbd "M-d M-n") #'pardef-do-jump-forward)
+    (define-key python-mode-map (kbd "M-d M-p") #'pardef-do-jump-backward)
+    (define-key python-mode-map (kbd "M-d M-f") #'pardef-do-jump-forward-and-kill)
+    (define-key python-mode-map (kbd "M-d M-b") #'pardef-do-jump-backward-and-kill)
+    (define-key python-mode-map (kbd "M-p") #'python-nav-backward-defun)) ; See `python-mode'
+
+  ;; Or `use-package'
+  (use-package pardef
+    :after python
+    :load-path "/path/2/your/pardef.el"
+    :bind (:map python-mode-map
+                ("M-d M-d" . pardef-sphinx)
+                ("M-d M-n" . pardef-do-jump-forward)
+                ("M-d M-p" . pardef-do-jump-backward)
+                ("M-d M-f" . pardef-do-jump-forward-and-kill)
+                ("M-d M-b" . pardef-do-jump-backward-and-kill)
+                ("M-p" . python-nav-backward-defun))) ; See `python-mode'
+#+end_src
