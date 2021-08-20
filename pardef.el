@@ -39,8 +39,8 @@
   :type '(radio (const :tag "Single quotes" "'''")
                 (const :tag "Double quotes" "\"\"\"")))
 
-(defcustom pardef-renderer-sphinx-list-indent 0
-  "Indent of list items in Sphinx-formated documentation.
+(defcustom pardef-sphinx-list-indent 0
+  "Indent of list items in Sphinx-formatted documentation.
 It's used to specify indentations of parameter, return-type, etc.
 For example, it defaults zero, which means no indentations:
 
@@ -66,15 +66,75 @@ return (and type) specifiers, and it become operative when
   :group 'pardef
   :type 'integer)
 
-(defcustom pardef-renderer-sphinx-add-defaults t
-  " Whether or not add a ', defaults to xx' for parameters who
+(defcustom pardef-sphinx-add-defaults t
+  "Whether or not add a ', defaults to xx' for parameters who
 has default values."
   :group 'pardef
   :type 'boolean)
 
-(defconst pardef--ignored-param-field-regexp
-  "^\\s-*\\(?:\\*\\|/\\|self\\)\\s-*$"
-  "Regexp used to filter ignorable parameter fields.")
+(defcustom pardef-sphinx-ignore-self t
+  "Whether or not ignore parameter exactly named self, defaults
+to t. For example, method like
+
+  def __init__(self, a, b): ...
+
+will only generate parameter items for a and b."
+  :group 'pardef
+  :type 'boolean)
+
+(defcustom pardef-sphinx-ignore-rest nil
+  " Whether or not ignore rest parameter like *args.
+Name of rest parameter doesn't limit, but it cannot have neither
+type annotation nor default value."
+  :group 'pardef
+  :type 'boolean)
+
+(defcustom pardef-sphinx-ignore-keyword nil
+  "Whether or not ignore keyword parameter like **args.
+Name of rest parameter doesn't limit, but it cannot have neither
+type annotation nor default value."
+  :group 'pardef
+  :type 'boolean)
+
+(defcustom pardef-sphinx-default-summary "[Summary]"
+  "Summary's default content.
+
+  '''`pardef-sphinx-default-summary'
+
+  ...
+  '''"
+  :group 'pardef
+  :type 'string)
+
+(defcustom pardef-sphinx-default-param " [ParamDescription]"
+  "Parameter description's default content.
+
+  '''...
+
+  :param x:`pardef-sphinx-default-param', defaults to xx
+  ...
+  '''"
+  :group 'pardef
+  :type 'string)
+
+(defcustom pardef-sphinx-default-return " [ReturnDescription]"
+  "Return description's default content.
+
+  '''...
+
+  :return:`pardef-sphinx-default-return'
+  ...
+  '''"
+  :group 'pardef
+  :type 'string)
+
+(defcustom pardef-do-jumpable-tags '("ParamDescription"
+                                     "ReturnDescription"
+                                     "Summary")
+  " List of tag that is able to jump by `pardef-do-jump-forward'
+and `pardef-do-jump-backward'.  In docstring, its format [TAG]."
+  :group 'pardef
+  :type '(repeat string))
 
 (defconst pardef--python-parameter-name
   "\\*\\{0,2\\}[a-zA-Z0-9_]+"
@@ -192,11 +252,19 @@ a short message which indicates the reason of failure with tag
   (unless (string-match "^\\s-*$" parlist)
     (let ((rezseq nil)
           (commap 0)
-          (commac (pardef--find-next-outside-par parlist ?\, 0)))
+          (commac (pardef--find-next-outside-par parlist ?\, 0))
+          (ignored-regexp (--> (list "\\*\\|/"
+                                     (when pardef-sphinx-ignore-self "self")
+                                     (when pardef-sphinx-ignore-rest "\\*[a-zA-Z0-9_]+")
+                                     (when pardef-sphinx-ignore-keyword
+                                       "\\*\\*[a-zA-Z0-9_]+"))
+                            (-remove-item nil it)
+                            (string-join it "\\|")
+                            (concat "^\\s-*\\(?:" it "\\)\\s-*$"))))
       (let ((forward!
              (lambda ()
                (let ((par (substring-no-properties parlist commap commac)))
-                 (unless (string-match pardef--ignored-param-field-regexp par)
+                 (unless (string-match ignored-regexp par)
                    (let ((parserez (pardef--parse-python-parameter par)))
                      (push parserez rezseq)))
                  (when commac
@@ -246,7 +314,8 @@ reason of failure will be returned."
 
 (defun pardef-load-python-line ()
   "Get line at point in current buffer as a string.
-This function read a python-style line at point.  In detail, all following code blocks it's a single python line:
+This function read a python-style line at point.  In detail, all
+following code blocks it's a single python line:
 
 def f(x):
 
@@ -334,6 +403,9 @@ string, each element is a line of docstring and prefix indent has
 been trimmed. Otherwise, namely no docstring is found, function
 returns nil."
   (save-excursion
+    (while (looking-at-p "\\s-*#")
+      (forward-line)
+      (beginning-of-line))
     (skip-chars-forward "\n[:space:]")
     (when (looking-at "'''\\|\"\"\"")
       (let ((begin (point))
@@ -442,6 +514,7 @@ will update it automatically."
                            (<= col (length (nth row lines))))
                 (pardef--user-error
                  "Renderer returned invalid location (%d, %d)" row col))
+              (when (looking-at "\\s-*#") (end-of-line))
               (when curdoc (delete-region (point) (cl-third curdoc)))
               (newline-and-indent)
               (let* ((indent-level (current-indentation))
@@ -503,7 +576,7 @@ for more details.")
 
 
 (defun pardef--rsph-format (string &rest objects)
-  (concat (make-string pardef-renderer-sphinx-list-indent ?\ )
+  (concat (make-string pardef-sphinx-list-indent ?\ )
           (apply 'format string objects)))
 
 
@@ -523,9 +596,9 @@ by `-flatten' before used."
          (lambda (param-spec)
            (let ((result nil))
              (cl-multiple-value-bind (name type value) param-spec
-               (let* ((nodefault (not pardef-renderer-sphinx-add-defaults))
+               (let* ((nodefault (not pardef-sphinx-add-defaults))
                       (doc (or (assoc-default name doc-alist 'string-equal)
-                               (format " [ParamDescription]%s"
+                               (concat pardef-sphinx-default-param
                                        (if (or nodefault (string-blank-p value))
                                            (string)
                                          (format ", defaults to %s" value)))))
@@ -557,7 +630,7 @@ return-specifiers. It will be insert between that two directly."
   (-flatten (list (pardef--rsph-create-params alist doc-alist type-alist)
                   raises-list
                   (let* ((doc (or (assoc-default "return" doc-alist 'string=)
-                                  '(" [ReturnDescription]")))
+                                  (list pardef-sphinx-default-return)))
                          (rest (cl-rest doc))
                          (first (cl-first doc)))
                     (cons (pardef--rsph-format ":return:%s" first) rest))
@@ -573,7 +646,7 @@ return-specifiers. It will be insert between that two directly."
 
 (defun pardef--rsph-create (alist)
   (let ((blank-line (string)))
-    (-flatten (list (format "%s[Summary]" pardef-docstring-style)
+    (-flatten (list (concat pardef-docstring-style pardef-sphinx-default-summary)
                     blank-line
                     (pardef--rsph-create-params-and-return alist nil nil)
                     pardef-docstring-style))))
@@ -629,14 +702,13 @@ See `pardef--rsph-group-lines' for more details about
                            (cdr grouped-line))))))))
 
 
-(defun pardef--rsph-rebuild-line (limbs &optional prefix)
+(defun pardef--rsph-rebuild-line (limbs)
   "Rebuild line from `LIMBS' and perfixed with `PREFIX'.
 Returns lines as a list.
 
 See `pardef--rsph-destruct-line' for more details."
-  (setq prefix (or prefix (string)))
   (cl-multiple-value-bind (type name rest) limbs
-      (let ((spec (format "%s:%s %s:" prefix type name))
+      (let ((spec (pardef--rsph-format ":%s %s:" type name))
             (first-rest (cl-first rest))
             (rest-rest (cdr rest)))
         (cons (concat spec first-rest)
@@ -746,7 +818,63 @@ for the Sphinx docstring format."
    0 (length pardef-docstring-style)))
 
 
+(defun pardef--do-jump (search-function)
+  "Search tags defined in `pardef-do-jumpable-tags' or bound of
+python docstring by `SEARCH-FUNCTION'.
+
+If succeed in search and result is a tag (See
+`pardef-do-jumpable-tags'), then the tag's begin position and end
+position are returned as a multiple value. Otherwise, namely
+search is fail or got bound of docstring, nil will be returned."
+  (let ((tags (format "'''\\|\"\"\"\\|\\[%s\\]"
+                      (regexp-opt pardef-do-jumpable-tags))))
+    (when (funcall search-function tags nil t)
+      (let ((tag (match-string-no-properties 0))
+            (begin (match-beginning 0))
+            (end (match-end 0)))
+        (when (char-equal ?\[ (aref tag 0))
+          (cl-values begin end))))))
+
+
+(defun pardef-do-jump-forward (&optional arg)
+  "Jump forward tag and docstring's bound.
+Tag is a string that enclosed by bracket ([]), customize optional
+tags by `pardef-do-jumpable-tags'.
+
+See `pardef-do-jump-backward'"
+  (interactive "p")
+  (cond ((cl-minusp arg) (pardef-do-jump-backward (- arg)))
+        ((cl-plusp arg) (dotimes (i arg) (pardef--do-jump #'re-search-forward)))))
+
+
+(defun pardef-do-jump-backward (&optional arg)
+  "Jump backward tag and docstring's bound.
+Tag is a string that enclosed by bracket ([]), customize optional
+tags by `pardef-do-jumpable-tags'.
+
+See `pardef-do-jump-forward'"
+  (interactive "p")
+  (cond (((cl-minusp arg) (pardef-do-jump-forward (- arg)))
+         ((cl-plusp arg) (dotimes (i arg) (pardef--do-jump #'re-search-backward))))))
+
+
+;;;###autoload
 (defun pardef-sphinx ()
+  "Generate Sphinx formatted Python docstring.
+
+Move your cursor to the line that contains keyword `def' and call
+this function as a command (M-x) or a key binding, then your
+docstring will be generated, or a error message will be reported
+if something is wrong.  We suggest binding this function to
+`python-mode-map':
+
+  (with-eval-after-load 'python
+    (define-key python-mode-map (kbd \"M-d M-d\") #'pardef-sphinx))
+
+See `pardef-gen' and `pardef-renderer-sphinx' for more
+information about the operation mechanism, and see URL
+`https://github.com/FloatingLion/pardef.el' for more detail about
+customization."
   (interactive)
   (pardef-gen #'pardef-renderer-sphinx))
 
