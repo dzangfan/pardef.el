@@ -1,10 +1,14 @@
-;;; pardef.el --- A general definition parser        -*- lexical-binding: t; -*-
+;;; pardef.el --- A Python docstring generator.        -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021  Lifoz
 
 ;; Author: Lifoz <li-fn@outlook.com>
+;; Package-Version: 1.0
+;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((dash "2.19.0"))
+
+;; This file is not part of GNU Emacs
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,7 +25,26 @@
 
 ;;; Commentary:
 
-;; 
+;; A Python docstring generator, uses the Sphinx format.
+;; Simply install this file and put following code in your init.el:
+;;
+;;   (add-to-list 'load-path "path/to/me")
+;;   (require 'pardef)
+;;   (with-eval-after-load 'python
+;;     (define-key python-mode-map (kbd "M-d M-d") #'pardef-sphinx))
+;;
+;; Then open a common python source, move your cursor to the line that
+;; contains `def' keyword and press M-d M-d (Alt+d, Alt+d), you will
+;; see the docstring is generated (or a error message if something is
+;; wrong :>).
+;;
+;; See URL `https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html'
+;; for more information about Sphinx docstring format.
+;;
+;; See URL `https://github.com/FloatingLion/pardef.el' for a complete
+;; manual.
+
+
 
 ;;; Code:
 
@@ -102,7 +125,10 @@ type annotation nor default value."
   '''`pardef-sphinx-default-summary'
 
   ...
-  '''"
+  '''
+
+It's able to be multiline, but note that it shouldn't contain
+blank line. It means that it shouldn't contain continuous \\n."
   :group 'pardef
   :type 'string)
 
@@ -113,7 +139,10 @@ type annotation nor default value."
 
   :param x:`pardef-sphinx-default-param', defaults to xx
   ...
-  '''"
+  '''
+
+It's able to be multiline, but note that it shouldn't contain
+blank line. It means that it shouldn't contain continuous \\n."
   :group 'pardef
   :type 'string)
 
@@ -124,7 +153,10 @@ type annotation nor default value."
 
   :return:`pardef-sphinx-default-return'
   ...
-  '''"
+  '''
+
+It's able to be multiline, but note that it shouldn't contain
+blank line. It means that it shouldn't contain continuous \\n."
   :group 'pardef
   :type 'string)
 
@@ -598,10 +630,9 @@ by `-flatten' before used."
              (cl-multiple-value-bind (name type value) param-spec
                (let* ((nodefault (not pardef-sphinx-add-defaults))
                       (doc (or (assoc-default name doc-alist 'string-equal)
-                               (concat pardef-sphinx-default-param
-                                       (if (or nodefault (string-blank-p value))
-                                           (string)
-                                         (format ", defaults to %s" value)))))
+                               (let ((dds (split-string pardef-sphinx-default-param "\n")))
+                                 (if (or nodefault (string-blank-p value)) dds
+                                   (--map-last t (format "%s, defaults to %s" it value) dds)))))
                       (doc (if (listp doc) doc (list doc)))
                       (rest (cl-rest doc))
                       (first (pardef--rsph-format
@@ -630,7 +661,7 @@ return-specifiers. It will be insert between that two directly."
   (-flatten (list (pardef--rsph-create-params alist doc-alist type-alist)
                   raises-list
                   (let* ((doc (or (assoc-default "return" doc-alist 'string=)
-                                  (list pardef-sphinx-default-return)))
+                                  (split-string pardef-sphinx-default-return "\n")))
                          (rest (cl-rest doc))
                          (first (cl-first doc)))
                     (cons (pardef--rsph-format ":return:%s" first) rest))
@@ -646,7 +677,8 @@ return-specifiers. It will be insert between that two directly."
 
 (defun pardef--rsph-create (alist)
   (let ((blank-line (string)))
-    (-flatten (list (concat pardef-docstring-style pardef-sphinx-default-summary)
+    (-flatten (list (->> (split-string pardef-sphinx-default-summary "\n")
+                         (--map-first t (concat pardef-docstring-style it)))
                     blank-line
                     (pardef--rsph-create-params-and-return alist nil nil)
                     pardef-docstring-style))))
@@ -836,6 +868,7 @@ search is fail or got bound of docstring, nil will be returned."
           (cl-values begin end))))))
 
 
+;;;###autoload
 (defun pardef-do-jump-forward (&optional arg)
   "Jump forward tag and docstring's bound.
 Tag is a string that enclosed by bracket ([]), customize optional
@@ -843,10 +876,13 @@ tags by `pardef-do-jumpable-tags'.
 
 See `pardef-do-jump-backward'"
   (interactive "p")
+  (setq arg (or arg 1))
   (cond ((cl-minusp arg) (pardef-do-jump-backward (- arg)))
-        ((cl-plusp arg) (dotimes (i arg) (pardef--do-jump #'re-search-forward)))))
+        ((cl-plusp arg) (dotimes (i arg)
+                          (pardef--do-jump #'re-search-forward)))))
 
 
+;;;###autoload
 (defun pardef-do-jump-backward (&optional arg)
   "Jump backward tag and docstring's bound.
 Tag is a string that enclosed by bracket ([]), customize optional
@@ -854,8 +890,24 @@ tags by `pardef-do-jumpable-tags'.
 
 See `pardef-do-jump-forward'"
   (interactive "p")
-  (cond (((cl-minusp arg) (pardef-do-jump-forward (- arg)))
-         ((cl-plusp arg) (dotimes (i arg) (pardef--do-jump #'re-search-backward))))))
+  (setq arg (or arg 1))
+  (cond ((cl-minusp arg) (pardef-do-jump-forward (- arg)))
+        ((cl-plusp arg) (dotimes (i arg)
+                          (pardef--do-jump #'re-search-backward)))))
+
+
+;;;###autoload
+(defun pardef-do-jump-forward-and-kill ()
+  (interactive)
+  (-when-let (reg (pardef--do-jump #'re-search-forward))
+    (delete-region (cl-first reg) (cl-second reg))))
+
+
+;;;###autoload
+(defun pardef-do-jump-backward-and-kill ()
+  (interactive)
+  (-when-let (reg (pardef--do-jump #'re-search-backward))
+    (delete-region (cl-first reg) (cl-second reg))))
 
 
 ;;;###autoload

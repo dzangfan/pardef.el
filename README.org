@@ -1,4 +1,3 @@
 * pardef
 
-A python docstring generator.
-
+A Python docstring generator, uses [[https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html][Sphinx docstring format]].
