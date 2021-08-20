@@ -1,4 +1,4 @@
-;;; pardef.el --- A Python docstring generator.        -*- lexical-binding: t; -*-
+;;; pardef.el --- A Python docstring generator.      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021  Lifoz
 
@@ -287,7 +287,8 @@ a short message which indicates the reason of failure with tag
           (commac (pardef--find-next-outside-par parlist ?\, 0))
           (ignored-regexp (--> (list "\\*\\|/"
                                      (when pardef-sphinx-ignore-self "self")
-                                     (when pardef-sphinx-ignore-rest "\\*[a-zA-Z0-9_]+")
+                                     (when pardef-sphinx-ignore-rest
+                                       "\\*[a-zA-Z0-9_]+")
                                      (when pardef-sphinx-ignore-keyword
                                        "\\*\\*[a-zA-Z0-9_]+"))
                             (-remove-item nil it)
@@ -630,9 +631,12 @@ by `-flatten' before used."
              (cl-multiple-value-bind (name type value) param-spec
                (let* ((nodefault (not pardef-sphinx-add-defaults))
                       (doc (or (assoc-default name doc-alist 'string-equal)
-                               (let ((dds (split-string pardef-sphinx-default-param "\n")))
+                               (let ((dds (split-string
+                                           pardef-sphinx-default-param "\n")))
                                  (if (or nodefault (string-blank-p value)) dds
-                                   (--map-last t (format "%s, defaults to %s" it value) dds)))))
+                                   (--map-last t (format
+                                                  "%s, defaults to %s" it value)
+                                               dds)))))
                       (doc (if (listp doc) doc (list doc)))
                       (rest (cl-rest doc))
                       (first (pardef--rsph-format
@@ -661,7 +665,8 @@ return-specifiers. It will be insert between that two directly."
   (-flatten (list (pardef--rsph-create-params alist doc-alist type-alist)
                   raises-list
                   (let* ((doc (or (assoc-default "return" doc-alist 'string=)
-                                  (split-string pardef-sphinx-default-return "\n")))
+                                  (split-string
+                                   pardef-sphinx-default-return "\n")))
                          (rest (cl-rest doc))
                          (first (cl-first doc)))
                     (cons (pardef--rsph-format ":return:%s" first) rest))
@@ -716,7 +721,8 @@ If succeed in destructing, return multiple value
      ^     ^ ^
      1     2 3
 
-First two components are string, REST is a list of string.  Both name and rest may be empty in this case:
+First two components are string, REST is a list of string.  Both
+name and rest may be empty in this case:
 
   \"  :return:\"
 
