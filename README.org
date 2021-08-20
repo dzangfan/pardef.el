@@ -4,7 +4,7 @@ A Python docstring generator, uses [[https://sphinx-rtd-tutorial.readthedocs.io/
 
 [[file:example/example.gif]]
 
-** Install
+** Installation
 
 Install [[file:pardef.el][pardef.el]] and put following code in your init.el:
 
@@ -83,7 +83,7 @@ Parameter list part also has its structure, refer to [[https://sphinx-rtd-tutori
 
 ** Customization
 
-*** ~pardef-docstring-style~: ='''= or ="""=
+*** ~pardef-docstring-style~: =​'''​= or =​"""​=
 
 Use double or single quotes as docstring's bound to output.  This value will not affect parsing existed docstring.
 
