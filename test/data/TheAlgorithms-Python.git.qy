@@ -1,234 +1,833 @@
-def quick_sort(collection: list) -> list:
-def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
-def heapify(array: list, index: int, heap_size: int) -> None:
-def heap_sort(array: list) -> list:
-def partition(array: list, low: int, high: int, pivot: int) -> int:
-def sort(array: list) -> list:
-def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
-def OddEvenTransposition(arr):
-def main():
-def radix_sort(list_of_ints: List[int]) -> List[int]:
-def natural_sort(input_list: list[str]) -> list[str]:
-def alphanum_key(key):
-def merge_insertion_sort(collection: list[int]) -> list[int]:
-def binary_search_insertion(sorted_list, item):
-def sortlist_2d(list_2d):
-def merge(left, right):
-def stooge_sort(arr):
-def stooge(arr, i, h):
-def bucket_sort(my_list: list) -> list:
-def quick_sort(data: list) -> list:
-def rec_insertion_sort(collection: list, n: int):
-def insert_next(collection: list, index: int):
-def cocktail_shaker_sort(unsorted: list) -> list:
-def comp_and_swap(array: List[int], index1: int, index2: int, direction: int) -> None:
-def bitonic_merge(array: List[int], low: int, length: int, direction: int) -> None:
-def bitonic_sort(array: List[int], low: int, length: int, direction: int) -> None:
-def heapify(unsorted, index, heap_size):
-def heap_sort(unsorted):
-def odd_even_sort(input_list: list) -> list:
-def cycle_sort(array: list) -> list:
-def bubble_sort(collection):
-def merge(input_list: list, low: int, mid: int, high: int) -> list:
-def iter_merge_sort(input_list: list) -> list:
-def double_sort(lst):
-def __init__(self, val):
-def insert(self, val):
-def inorder(root, res):
-def tree_sort(arr):
-def bubble_sort(list_data: list, length: int = 0) -> list:
-def counting_sort(collection):
-def counting_sort_string(string):
-def comb_sort(data: list) -> list:
-def topological_sort(start, visited, sort):
-def merge_sort(collection):
-def pancake_sort(arr):
-def gnome_sort(lst: list) -> list:
-def bead_sort(sequence: list) -> list:
-def binary_search(lst, item, start, end):
-def insertion_sort(lst):
-def merge(left, right):
-def tim_sort(lst):
-def main():
-def bogo_sort(collection):
-def is_sorted(collection):
-def partition(A, left_index, right_index):
-def quick_sort_random(A, left, right):
-def main():
-def shell_sort(collection):
-def insertion_sort(collection: list) -> list:
-def selection_sort(collection):
-def exchange_sort(numbers: list[int]) -> list[int]:
-def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
-def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
-def lomuto_partition(sorting: list, left: int, right: int) -> int:
-def three_way_radix_quicksort(sorting: list) -> list:
-def msd_radix_sort(list_of_ints: List[int]) -> List[int]:
-def _msd_radix_sort(list_of_ints: List[int], bit_position: int) -> List[int]:
-def msd_radix_sort_inplace(list_of_ints: List[int]):
-def wiggle_sort(nums: list) -> list:
-def odd_even_transposition(arr: list) -> list:
-def _inPlaceQuickSort(A, start, end):
-def _inPlacePartition(A, start, end):
-def strand_sort(arr: list, reverse: bool = False, solution: list = None) -> list:
-def merge(arr: list[int]) -> list[int]:
-def pigeon_sort(array: List[int]) -> List[int]:
-def __init__(self, filename):
-def write_block(self, data, block_number):
-def get_block_filenames(self):
-def split(self, block_size, sort_key=None):
-def cleanup(self):
-def select(self, choices):
-def __init__(self, files):
-def get_dict(self):
-def refresh(self):
-def unshift(self, index):
-def __init__(self, merge_strategy):
-def merge(self, filenames, outfilename, buffer_size):
-def get_file_handles(self, filenames, buffer_size):
-def __init__(self, block_size):
-def sort(self, filename, sort_key=None):
-def get_number_blocks(self, filename, block_size):
-def parse_memory(string):
-def main():
-def pigeonhole_sort(a):
-def main():
-def merge_sort(collection: list) -> list:
-def merge(left: list, right: list) -> list:
-def _merge():
-def __lt__(self, other):
-def __eq__(self, other):
-def patience_sort(collection: list) -> list:
-def format_ruleset(ruleset: int) -> list[int]:
-def new_generation(cells: list[list[int]], rule: list[int], time: int) -> list[int]:
-def generate_image(cells: list[list[int]]) -> Image.Image:
-def create_canvas(size):
-def seed(canvas):
-def run(canvas):
-def __judge_point(pt, neighbours):
-def new_generation(cells: List[List[int]]) -> List[List[int]]:
-def generate_images(cells: list[list[int]], frames) -> list[Image.Image]:
-def __init__(self, data):
-def rotate(n, b):
-def padding(self):
-def split_blocks(self):
-def expand_block(self, block):
-def final_hash(self):
-def testMatchHashes(self):
-def main():
-def adler32(plain_text: str) -> int:
-def sdbm(plain_text: str) -> int:
-def push(seed):
-def pull():
-def xorshift(X, Y):
-def reset():
-def djb2(s: str) -> int:
-def is_luhn(string: str) -> bool:
-def rotator():
-def engine(input_character):
-def text_to_bits(text, encoding="utf-8", errors="surrogatepass"):
-def text_from_bits(bits, encoding="utf-8", errors="surrogatepass"):
-def emitterConverter(sizePar, data):
-def receptorConverter(sizePar, data):
-def rearrange(bitString32):
-def reformatHex(i):
-def pad(bitString):
-def getBlock(bitString):
-def not32(i):
-def sum32(a, b):
-def leftrot32(i, s):
-def md5me(testString):
-def test():
-def save_model(self, save_path):
-def ReadModel(cls, model_path):
-def sig(self, x):
-def do_round(self, x):
-def convolute(self, data, convs, w_convs, thre_convs, conv_step):
-def pooling(self, featuremaps, size_pooling, type="average_pool"):
-def _expand(self, data):
-def _expand_mat(self, data_mat):
-def draw_error():
-def predict(self, datas_test):
-def convolution(self, data):
-def training(self) -> None:
-def sort(self, sample: list[float]) -> None:
-def sign(self, u: float) -> int:
-def sigmoid(x):
-def initializer(self, back_units):
-def cal_gradient(self):
-def forward_propagation(self, xdata):
-def back_propagation(self, gradient):
-def __init__(self):
-def add_layer(self, layer):
-def build(self):
-def summary(self):
-def train(self, xdata, ydata, train_round, accuracy):
-def cal_loss(self, ydata, ydata_):
-def plot_loss(self):
-def example():
-def __init__(self, input_array: numpy.ndarray, output_array: numpy.ndarray) -> None:
-def feedforward(self) -> numpy.ndarray:
-def back_propagation(self) -> None:
-def train(self, output: numpy.ndarray, iterations: int, give_loss: bool) -> None:
-def predict(self, input: numpy.ndarray) -> int:
-def sigmoid(value: numpy.ndarray) -> numpy.ndarray:
-def sigmoid_derivative(value: numpy.ndarray) -> numpy.ndarray:
-def example() -> int:
+def bisection(function: Callable[[float], float], a: float, b: float) -> float:
+def f(x: float) -> float:
+def retroactive_resolution(coefficients: np.matrix, vector: np.ndarray) -> np.ndarray:
+def gaussian_elimination(coefficients: np.matrix, vector: np.ndarray) -> np.ndarray:
+def intersection(function: Callable[[float], float], x0: float, x1: float) -> float:
+def f(x: float) -> float:
+def lower_upper_decomposition(table: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+def ucal(u: float, p: int) -> float:
+def main() -> None:
+def f(x: float) -> float:
+def f1(x: float) -> float:
+def f(x: float) -> float:
+def secant_method(lower_bound: float, upper_bound: float, repeats: int) -> float:
+def generate_all_combinations(n: int, k: int) -> List[List[int]]:
+def print_all_state(total_list: List[List[int]]) -> None:
+def generate_all_permutations(sequence: List[Union[int, str]]) -> None:
+def generate_all_subsequences(sequence: List[Any]) -> None:
+def color(graph: List[List[int]], max_colors: int) -> List[int]:
+def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) -> bool:
+def hamilton_cycle(graph: List[List[int]], start_index: int = 0) -> List[int]:
 def get_valid_pos(position: Tuple[int, int], n: int) -> List[Tuple[int, int]]:
 def is_complete(board: List[List[int]]) -> bool:
 def open_knight_tour(n: int) -> List[List[int]]:
+def main() -> None:
+def isSafe(board: List[List[int]], row: int, column: int) -> bool:
+def solve(board: List[List[int]], row: int) -> bool:
+def printboard(board: List[List[int]]) -> None:
+def n_queens_solution(n: int) -> None:
 def solve_maze(maze: List[List[int]]) -> bool:
 def run_maze(maze: List[List[int]], i: int, j: int, solutions: List[List[int]]) -> bool:
-def color(graph: List[List[int]], max_colors: int) -> List[int]:
 def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
 def find_empty_location(grid: Matrix) -> Optional[Tuple[int, int]]:
 def sudoku(grid: Matrix) -> Optional[Matrix]:
 def print_solution(grid: Matrix) -> None:
-def generate_all_combinations(n: int, k: int) -> List[List[int]]:
-def print_all_state(total_list: List[List[int]]) -> None:
-def main() -> None:
-def generate_all_subsequences(sequence: List[Any]) -> None:
-def generate_all_permutations(sequence: List[Union[int, str]]) -> None:
-def n_queens_solution(n: int) -> None:
-def isSafe(board: List[List[int]], row: int, column: int) -> bool:
-def solve(board: List[List[int]], row: int) -> bool:
-def printboard(board: List[List[int]]) -> None:
 def generate_sum_of_subsets_soln(nums: List[int], max_sum: int) -> List[List[int]]:
-def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) -> bool:
-def hamilton_cycle(graph: List[List[int]], start_index: int = 0) -> List[int]:
-def get_set_bits_count(number: int) -> int:
-def binary_count_setbits(a: int) -> int:
-def binary_xor(a: int, b: int) -> str:
-def get_reverse_bit_string(number: int) -> str:
-def reverse_bit(number: int) -> str:
-def binary_or(a: int, b: int) -> str:
-def twos_complement(number: int) -> str:
 def binary_and(a: int, b: int) -> str:
+def binary_count_setbits(a: int) -> int:
 def binary_count_trailing_zeros(a: int) -> int:
+def binary_or(a: int, b: int) -> str:
 def logical_left_shift(number: int, shift_amount: int) -> str:
 def logical_right_shift(number: int, shift_amount: int) -> str:
 def arithmetic_right_shift(number: int, shift_amount: int) -> str:
+def twos_complement(number: int) -> str:
+def binary_xor(a: int, b: int) -> str:
+def get_set_bits_count(number: int) -> int:
+def get_reverse_bit_string(number: int) -> str:
+def reverse_bit(number: int) -> str:
 def set_bit(number: int, position: int) -> int:
 def clear_bit(number: int, position: int) -> int:
 def flip_bit(number: int, position: int) -> int:
 def is_bit_set(number: int, position: int) -> bool:
 def get_bit(number: int, position: int) -> int:
-def intersection(function: Callable[[float], float], x0: float, x1: float) -> float:
-def f(x: float) -> float:
-def ucal(u: float, p: int) -> float:
+def extended_euclid(a: int, b: int) -> Tuple[int, int]:
+def chinese_remainder_theorem(n1: int, r1: int, n2: int, r2: int) -> int:
+def invert_modulo(a: int, n: int) -> int:
+def chinese_remainder_theorem2(n1: int, r1: int, n2: int, r2: int) -> int:
+def diophantine(a: int, b: int, c: int) -> Tuple[float, float]:
+def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
+def greatest_common_divisor(a: int, b: int) -> int:
+def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
+def modular_division(a: int, b: int, n: int) -> int:
+def invert_modulo(a: int, n: int) -> int:
+def modular_division2(a: int, b: int, n: int) -> int:
+def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
+def extended_euclid(a: int, b: int) -> Tuple[int, int]:
+def greatest_common_divisor(a: int, b: int) -> int:
+def compare_string(string1: str, string2: str) -> str:
+def check(binary: List[str]) -> List[str]:
+def decimal_to_binary(no_of_variable: int, minterms: List[float]) -> List[str]:
+def is_for_table(string1: str, string2: str, count: int) -> bool:
+def selection(chart: List[List[int]], prime_implicants: List[str]) -> List[str]:
+def main():
+def new_generation(cells: List[List[int]]) -> List[List[int]]:
+def generate_images(cells: list[list[int]], frames) -> list[Image.Image]:
+def create_canvas(size):
+def seed(canvas):
+def run(canvas):
+def __judge_point(pt, neighbours):
+def format_ruleset(ruleset: int) -> list[int]:
+def new_generation(cells: list[list[int]], rule: list[int], time: int) -> list[int]:
+def generate_image(cells: list[list[int]]) -> Image.Image:
+def encode(plain: str) -> list[int]:
+def decode(encoded: list[int]) -> str:
 def main() -> None:
-def f(x: float) -> float:
-def f1(x: float) -> float:
-def lower_upper_decomposition(table: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
-def f(x: float) -> float:
-def secant_method(lower_bound: float, upper_bound: float, repeats: int) -> float:
-def bisection(function: Callable[[float], float], a: float, b: float) -> float:
-def f(x: float) -> float:
-def retroactive_resolution(coefficients: np.matrix, vector: np.ndarray) -> np.ndarray:
-def gaussian_elimination(coefficients: np.matrix, vector: np.ndarray) -> np.ndarray:
-def make_sepia(img, factor: int):
-def to_grayscale(blue, green, red):
-def normalize(value):
+def check_keys(keyA: int, keyB: int, mode: str) -> None:
+def encrypt_message(key: int, message: str) -> str:
+def decrypt_message(key: int, message: str) -> str:
+def get_random_key() -> int:
+def main() -> None:
+def atbash_slow(sequence: str) -> str:
+def atbash(sequence: str) -> str:
+def benchmark() -> None:
+def encode_to_b16(inp: str) -> bytes:
+def main() -> None:
+def base64_encode(data: bytes) -> bytes:
+def base64_decode(encoded_data: str) -> bytes:
+def main() -> None:
+def generate_key(message: str, key: str) -> str:
+def cipher_text(message: str, key_new: str) -> str:
+def original_text(cipher_text: str, key_new: str) -> str:
+def main() -> None:
+def decrypt(message: str) -> None:
+def main() -> None:
+def encrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
+def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
+def brute_force(input_string: str, alphabet: Optional[str] = None) -> Dict[int, str]:
+def gcd(a: int, b: int) -> int:
+def find_mod_inverse(a: int, m: int) -> int:
+def miller_rabin(n: int, allow_probable: bool = False) -> bool:
+def test_miller_rabin() -> None:
+def find_primitive(n: int) -> Optional[int]:
+def __init__(self, group: int = 14) -> None:
+def get_private_key(self) -> str:
+def generate_public_key(self) -> str:
+def is_valid_public_key(self, key: int) -> bool:
+def generate_shared_key(self, other_key_str: str) -> str:
+def is_valid_public_key_static(remote_public_key_str: int, prime: int) -> bool:
+def primitive_root(p_val: int) -> int:
+def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, int]]:
+def make_key_files(name: str, keySize: int) -> None:
+def main() -> None:
+def _plugboard(pbstring: str) -> dict[str, str]:
+def greatest_common_divisor(a: int, b: int) -> int:
+def __init__(self, encrypt_key: numpy.ndarray) -> None:
+def replace_letters(self, letter: str) -> int:
+def replace_digits(self, num: int) -> str:
+def check_determinant(self) -> None:
+def process_text(self, text: str) -> str:
+def encrypt(self, text: str) -> str:
+def make_decrypt_key(self) -> numpy.ndarray:
+def decrypt(self, text: str) -> str:
+def main() -> None:
+def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
+def encrypt_message(key: str, message: str) -> str:
+def decrypt_message(key: str, message: str) -> str:
+def main() -> None:
+def encrypt(message: str) -> str:
+def decrypt(message: str) -> str:
+def main() -> None:
+def encrypt(text: str) -> tuple[list[int], list[int]]:
+def decrypt(cipher: list[int], key: list[int]) -> str:
+def chunker(seq: Iterable[str], size: int) -> Generator[tuple[str, ...], None, None]:
+def prepare_input(dirty: str) -> str:
+def generate_table(key: str) -> list[str]:
+def encode(plaintext: str, key: str) -> str:
+def decode(ciphertext: str, key: str) -> str:
+def generate_table(key: str) -> list[tuple[str, str]]:
+def encrypt(key: str, words: str) -> str:
+def decrypt(key: str, words: str) -> str:
+def get_position(table: tuple[str, str], char: str) -> tuple[int, int]:
+def get_opponent(table: tuple[str, str], char: str) -> str:
+def rabinMiller(num: int) -> bool:
+def isPrime(num: int) -> bool:
+def generateLargePrime(keysize: int = 1024) -> int:
+def encrypt(input_string: str, key: int) -> str:
+def decrypt(input_string: str, key: int) -> str:
+def bruteforce(input_string: str) -> dict[int, str]:
+def dencrypt(s: str, n: int = 13) -> str:
+def main() -> None:
+def read_key_file(key_filename: str) -> tuple[int, int, int]:
+def read_from_file_and_decrypt(message_filename: str, key_filename: str) -> str:
+def main() -> None:
+def rsafactor(d: int, e: int, N: int) -> list[int]:
+def main() -> None:
+def generateKey(keySize: int) -> tuple[tuple[int, int], tuple[int, int]]:
+def makeKeyFiles(name: str, keySize: int) -> None:
+def __init__(self, passcode: Optional[str] = None) -> None:
+def __str__(self) -> str:
+def __neg_pos(self, iterlist: list[int]) -> list[int]:
+def __passcode_creator(self) -> list[str]:
+def __make_key_list(self) -> list[str]:
+def __make_shift_key(self) -> int:
+def decrypt(self, encoded_message: str) -> str:
+def encrypt(self, plaintext: str) -> str:
+def test_end_to_end(msg: str = "Hello, this is a modified Caesar cipher") -> str:
+def remove_duplicates(key: str) -> str:
+def create_cipher_map(key: str) -> dict[str, str]:
+def encipher(message: str, cipher_map: dict[str, str]) -> str:
+def decipher(message: str, cipher_map: dict[str, str]) -> str:
+def main() -> None:
+def main() -> None:
+def checkValidKey(key: str) -> None:
+def encryptMessage(key: str, message: str) -> str:
+def decryptMessage(key: str, message: str) -> str:
+def translateMessage(key: str, message: str, mode: str) -> str:
+def getRandomKey() -> str:
+def __encryptPart(messagePart: str, character2Number: dict[str, str]) -> str:
+def main() -> None:
+def encryptMessage(key: int, message: str) -> str:
+def decryptMessage(key: int, message: str) -> str:
+def main() -> None:
+def main() -> None:
+def encryptMessage(key: str, message: str) -> str:
+def decryptMessage(key: str, message: str) -> str:
+def translateMessage(key: str, message: str, mode: str) -> str:
+def __init__(self, key: int = 0):
+def encrypt(self, content: str, key: int) -> list[str]:
+def decrypt(self, content: str, key: int) -> list[str]:
+def encrypt_string(self, content: str, key: int = 0) -> str:
+def decrypt_string(self, content: str, key: int = 0) -> str:
+def encrypt_file(self, file: str, key: int = 0) -> bool:
+def decrypt_file(self, file: str, key: int) -> bool:
+def all_rotations(s: str) -> list[str]:
+def bwt_transform(s: str) -> dict:
+def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
+def __init__(self, letter, freq):
+def __repr__(self):
+def __init__(self, freq, left, right):
+def parse_file(file_path):
+def build_tree(letters):
+def traverse_tree(root, bitstring):
+def huffman(file_path):
+def read_file_binary(file_path: str) -> str:
+def compress_data(data_bits: str) -> str:
+def add_file_length(source_path: str, compressed: str) -> str:
+def write_file_binary(file_path: str, to_write: str) -> None:
+def compress(source_path, destination_path: str) -> None:
+def read_file_binary(file_path: str) -> str:
+def decompress_data(data_bits: str) -> str:
+def write_file_binary(file_path: str, to_write: str) -> None:
+def remove_prefix(data_bits: str) -> str:
+def compress(source_path: str, destination_path: str) -> None:
+def psnr(original, contrast):
+def main():
+def __init__(self, k: float, window_size: int):
+def __str__(self):
+def detect(self, img_path: str):
+def mean_threshold(image: Image) -> Image:
+def bin_to_decimal(bin_string: str) -> int:
+def bin_to_octal(bin_string: str) -> str:
+def decimal_to_any(num: int, base: int) -> str:
+def decimal_to_binary(num: int) -> str:
+def binary_recursive(decimal: int) -> str:
+def main(number: str) -> str:
+def decimal_to_hexadecimal(decimal: float) -> str:
+def decimal_to_octal(num: int) -> str:
+def main() -> None:
+def hex_to_bin(hex_num: str) -> int:
+def hex_to_decimal(hex_string: str) -> int:
+def molarity_to_normality(nfactor: int, moles: float, volume: float) -> float:
+def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:
+def moles_to_volume(pressure: float, moles: float, temperature: float) -> float:
+def oct_to_decimal(oct_string: str) -> int:
+def hsv_to_rgb(hue: float, saturation: float, value: float) -> list[int]:
+def rgb_to_hsv(red: int, green: int, blue: int) -> list[float]:
+def approximately_equal_hsv(hsv_1: list[float], hsv_2: list[float]) -> bool:
+def roman_to_int(roman: str) -> int:
+def int_to_roman(number: int) -> str:
+def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
+def celsius_to_kelvin(celsius: float, ndigits: int = 2) -> float:
+def celsius_to_rankine(celsius: float, ndigits: int = 2) -> float:
+def fahrenheit_to_celsius(fahrenheit: float, ndigits: int = 2) -> float:
+def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
+def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
+def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
+def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
+def kelvin_to_rankine(kelvin: float, ndigits: int = 2) -> float:
+def rankine_to_celsius(rankine: float, ndigits: int = 2) -> float:
+def rankine_to_fahrenheit(rankine: float, ndigits: int = 2) -> float:
+def rankine_to_kelvin(rankine: float, ndigits: int = 2) -> float:
+def reaumur_to_kelvin(reaumur: float, ndigits: int = 2) -> float:
+def reaumur_to_fahrenheit(reaumur: float, ndigits: int = 2) -> float:
+def reaumur_to_celsius(reaumur: float, ndigits: int = 2) -> float:
+def reaumur_to_rankine(reaumur: float, ndigits: int = 2) -> float:
+def weight_conversion(from_type: str, to_type: str, value: float) -> float:
+def __init__(self) -> None:
+def is_empty(self) -> bool:
+def push(self, data: Any) -> None:
+def pop(self) -> Any:
+def count(self) -> int:
+def print(self) -> None:
+def __init__(self, data: Any) -> None:
+def get_data(self) -> Any:
+def get_left(self) -> Optional["my_node"]:
+def get_right(self) -> Optional["my_node"]:
+def get_height(self) -> int:
+def set_data(self, data: Any) -> None:
+def set_left(self, node: Optional["my_node"]) -> None:
+def set_right(self, node: Optional["my_node"]) -> None:
+def set_height(self, height: int) -> None:
+def get_height(node: Optional["my_node"]) -> int:
+def my_max(a: int, b: int) -> int:
+def right_rotation(node: my_node) -> my_node:
+def left_rotation(node: my_node) -> my_node:
+def lr_rotation(node: my_node) -> my_node:
+def rl_rotation(node: my_node) -> my_node:
+def insert_node(node: Optional["my_node"], data: Any) -> Optional["my_node"]:
+def get_rightMost(root: my_node) -> Any:
+def get_leftMost(root: my_node) -> Any:
+def del_node(root: my_node, data: Any) -> Optional["my_node"]:
+def __init__(self) -> None:
+def get_height(self) -> int:
+def insert(self, data: Any) -> None:
+def del_node(self, data: Any) -> None:
+def _test() -> None:
+def __init__(self, data: int) -> None:
+def display(tree: Optional[Node]) -> None:
+def depth_of_tree(tree: Optional[Node]) -> int:
+def is_full_binary_tree(tree: Node) -> bool:
+def main() -> None:
+def __init__(self, value, parent):
+def __repr__(self):
+def __init__(self, root=None):
+def __str__(self):
+def __reassign_nodes(self, node, new_children):
+def is_right(self, node):
+def empty(self):
+def __insert(self, value):
+def insert(self, *values):
+def search(self, value):
+def get_max(self, node=None):
+def get_min(self, node=None):
+def remove(self, value):
+def preorder_traverse(self, node):
+def traversal_tree(self, traversal_function=None):
+def inorder(self, arr: list, node: Node):
+def find_kth_smallest(self, k: int, node: Node) -> int:
+def postorder(curr_node):
+def binary_search_tree():
+def __init__(self, label: int, parent: Optional["Node"]) -> None:
+def __init__(self) -> None:
+def empty(self) -> None:
+def is_empty(self) -> bool:
+def put(self, label: int) -> None:
+def search(self, label: int) -> Node:
+def _search(self, node: Optional[Node], label: int) -> Node:
+def remove(self, label: int) -> None:
+def _reassign_nodes(self, node: Node, new_children: Optional[Node]) -> None:
+def _get_lowest_node(self, node: Node) -> Node:
+def exists(self, label: int) -> bool:
+def get_max_label(self) -> int:
+def get_min_label(self) -> int:
+def inorder_traversal(self) -> Iterator[Node]:
+def _inorder_traversal(self, node: Optional[Node]) -> Iterator[Node]:
+def preorder_traversal(self) -> Iterator[Node]:
+def _preorder_traversal(self, node: Optional[Node]) -> Iterator[Node]:
+def _get_binary_search_tree() -> BinarySearchTree:
+def test_put(self) -> None:
+def test_search(self) -> None:
+def test_remove(self) -> None:
+def test_remove_2(self) -> None:
+def test_empty(self) -> None:
+def test_is_empty(self) -> None:
+def test_exists(self) -> None:
+def test_get_max_label(self) -> None:
+def test_get_min_label(self) -> None:
+def test_inorder_traversal(self) -> None:
+def test_preorder_traversal(self) -> None:
+def binary_search_tree_example() -> None:
+def binary_tree_mirror_dict(binary_tree_mirror_dictionary: dict, root: int):
+def binary_tree_mirror(binary_tree: dict, root: int = 1) -> dict:
+def make_tree() -> Node:
+def preorder(root: Node):
+def postorder(root: Node):
+def inorder(root: Node):
+def height(root: Node):
+def level_order_1(root: Node):
+def level_order_2(root: Node, level: int):
+def print_left_to_right(root: Node, level: int):
+def print_right_to_left(root: Node, level: int):
+def zigzag(root: Node):
+def main():
+def __init__(self, SIZE):
+def update(self, i, val):
+def query(self, i):
+def __init__(self, size: int) -> None:
+def left(self, idx: int) -> int:
+def right(self, idx: int) -> int:
+def __str__(self) -> str:
+def swap(a: int, b: int) -> tuple[int, int]:
+def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
+def main() -> None:
+def __init__(self, value: int = 0) -> None:
+def merge_two_binary_trees(tree1: Optional[Node], tree2: Optional[Node]) -> Node:
+def print_preorder(root: Optional[Node]) -> None:
+def __init__(self, arr: list[T], fnc: Callable[[T, T], T]) -> None:
+def build(self) -> None:
+def update(self, p: int, v: T) -> None:
+def query(self, l: int, r: int) -> T:
+def test_all_segments():
+def binomial_coefficient(n: int, k: int) -> int:
+def catalan_number(node_count: int) -> int:
+def factorial(n: int) -> int:
+def binary_tree_count(node_count: int) -> int:
+def rotate_left(self) -> "RedBlackTree":
+def rotate_right(self) -> "RedBlackTree":
+def insert(self, label: int) -> "RedBlackTree":
+def _insert_repair(self) -> None:
+def remove(self, label: int) -> "RedBlackTree":
+def _remove_repair(self) -> None:
+def check_color_properties(self) -> bool:
+def check_coloring(self) -> None:
+def black_height(self) -> int:
+def __contains__(self, label) -> bool:
+def search(self, label: int) -> "RedBlackTree":
+def floor(self, label: int) -> int:
+def ceil(self, label: int) -> int:
+def get_max(self) -> int:
+def get_min(self) -> int:
+def grandparent(self) -> "RedBlackTree":
+def sibling(self) -> "RedBlackTree":
+def is_left(self) -> bool:
+def is_right(self) -> bool:
+def __bool__(self) -> bool:
+def __len__(self) -> int:
+def preorder_traverse(self) -> Iterator[int]:
+def inorder_traverse(self) -> Iterator[int]:
+def postorder_traverse(self) -> Iterator[int]:
+def __repr__(self) -> str:
+def __eq__(self, other) -> bool:
+def color(node) -> int:
+def test_rotations() -> bool:
+def test_insertion_speed() -> bool:
+def test_insert() -> bool:
+def test_insert_and_search() -> bool:
+def test_insert_delete() -> bool:
+def test_floor_ceil() -> bool:
+def test_min_max() -> bool:
+def test_tree_traversal() -> bool:
+def test_tree_chaining() -> bool:
+def print_results(msg: str, passes: bool) -> None:
+def pytests() -> None:
+def main() -> None:
+def __init__(self, A):
+def left(self, idx):
+def right(self, idx):
+def build(self, idx, l, r):
+def update(self, a, b, val):
+def update_recursive(self, idx, l, r, a, b, val):
+def query(self, a, b):
+def query_recursive(self, idx, l, r, a, b):
+def showData(self):
+def __init__(self, start, end, val, left=None, right=None):
+def __str__(self):
+def __init__(self, collection: Sequence, function):
+def update(self, i, val):
+def query_range(self, i, j):
+def _build_tree(self, start, end):
+def _update_tree(self, node, i, val):
+def _query_range(self, node, i, j):
+def traverse(self):
+def __init__(self, value: Optional[int] = None):
+def __repr__(self) -> str:
+def __str__(self) -> str:
+def split(root: Optional[Node], value: int) -> Tuple[Optional[Node], Optional[Node]]:
+def merge(left: Optional[Node], right: Optional[Node]) -> Optional[Node]:
+def insert(root: Optional[Node], value: int) -> Optional[Node]:
+def erase(root: Optional[Node], value: int) -> Optional[Node]:
+def inorder(root: Optional[Node]) -> None:
+def interactTreap(root: Optional[Node], args: str) -> Optional[Node]:
+def main() -> None:
+def __init__(self, length: int) -> None:
+def __repr__(self) -> str:
+def build_tree(arr: list[int]) -> Node:
+def rank_till_index(node: Node, num: int, index: int) -> int:
+def rank(node: Node, num: int, start: int, end: int) -> int:
+def quantile(node: Node, index: int, start: int, end: int) -> int:
+def __init__(self, set_counts: list) -> None:
+def merge(self, src: int, dst: int) -> bool:
+def get_parent(self, disj_set: int) -> int:
+def __init__(self, data):
+def make_set(x):
+def union_set(x, y):
+def find_set(x):
+def find_python_set(node: Node) -> set:
+def test_disjoint_set():
+def __init__(self, *args, **kwargs):
+def __hash_function_2(self, value, data):
+def __hash_double_function(self, key, data, increment):
+def _collision_resolution(self, key, data=None):
+def __init__(self, size_table, charge_factor=None, lim_charge=None):
+def keys(self):
+def balanced_factor(self):
+def hash_function(self, key):
+def _step_by_step(self, step_ord):
+def bulk_insert(self, values):
+def _set_value(self, key, data):
+def _collision_resolution(self, key, data=None):
+def rehashing(self):
+def insert_data(self, data):
+def __init__(self, *args, **kwargs):
+def _set_value(self, key, data):
+def balanced_factor(self):
+def _collision_resolution(self, key, data=None):
+def check_prime(number):
+def next_prime(value, factor=1, **kwargs):
+def __init__(self, *args, **kwargs):
+def _collision_resolution(self, key, data=None):
+def __init__(self, val):
+def mergeTrees(self, other):
+def __init__(self, bottom_root=None, min_node=None, heap_size=0):
+def mergeHeaps(self, other):
+def insert(self, val):
+def peek(self):
+def isEmpty(self):
+def deleteMin(self):
+def preOrder(self):
+def __traversal(self, curr_node, preorder, level=0):
+def __str__(self):
+def __init__(self) -> None:
+def __repr__(self) -> str:
+def parent_index(self, child_idx: int) -> Optional[int]:
+def left_child_idx(self, parent_idx: int) -> Optional[int]:
+def right_child_idx(self, parent_idx: int) -> Optional[int]:
+def max_heapify(self, index: int) -> None:
+def build_max_heap(self, collection: Iterable[float]) -> None:
+def max(self) -> float:
+def extract_max(self) -> float:
+def insert(self, value: float) -> None:
+def heap_sort(self) -> None:
+def __init__(self, key=None):
+def _parent(self, i):
+def _left(self, i):
+def _right(self, i):
+def _swap(self, i, j):
+def _cmp(self, i, j):
+def _get_valid_parent(self, i):
+def _heapify_up(self, index):
+def _heapify_down(self, index):
+def update_item(self, item, item_value):
+def delete_item(self, item):
+def insert_item(self, item, item_value):
+def get_top(self):
+def extract_top(self):
+def test_heap() -> None:
+def __init__(self):
+def __swap_up(self, i: int) -> None:
+def insert(self, value: int) -> None:
+def __swap_down(self, i: int) -> None:
+def pop(self) -> int:
+def get_list(self):
+def __len__(self):
+def __init__(self, name, val):
+def __str__(self):
+def __lt__(self, other):
+def __init__(self, array):
+def __getitem__(self, key):
+def get_parent_idx(self, idx):
+def get_left_child_idx(self, idx):
+def get_right_child_idx(self, idx):
+def get_value(self, key):
+def build_heap(self, array):
+def sift_down(self, idx, array):
+def sift_up(self, idx):
+def peek(self):
+def remove(self):
+def insert(self, node):
+def is_empty(self):
+def decrease_key(self, node, newValue):
+def __init__(self, value: T) -> None:
+def value(self) -> T:
+def __init__(self, data: Optional[Iterable[T]] = ()) -> None:
+def insert(self, value: T) -> None:
+def pop(self) -> T:
+def top(self) -> T:
+def clear(self):
+def to_sorted_list(self) -> List[T]:
+def __bool__(self) -> bool:
+def __init__(self, value: T) -> None:
+def value(self) -> T:
+def __init__(self, data: Optional[Iterable[T]] = ()) -> None:
+def __bool__(self) -> bool:
+def __iter__(self) -> Iterator[T]:
+def insert(self, value: T) -> None:
+def pop(self) -> T:
+def top(self) -> T:
+def clear(self):
+def __init__(self, item: Any, next: Any) -> None:
+def __init__(self) -> None:
+def add(self, item: Any) -> None:
+def remove(self) -> Any:
+def is_empty(self) -> bool:
+def __str__(self) -> str:
+def __len__(self) -> int:
+def __init__(self, data: Any):
+def __init__(self):
+def __iter__(self):
+def __len__(self) -> int:
+def __repr__(self):
+def insert_tail(self, data: Any) -> None:
+def insert_head(self, data: Any) -> None:
+def insert_nth(self, index: int, data: Any) -> None:
+def delete_front(self):
+def delete_tail(self) -> None:
+def delete_nth(self, index: int = 0):
+def is_empty(self):
+def test_circular_linked_list() -> None:
+def __init__(self, link_p, element, link_n):
+def has_next_and_prev(self):
+def __init__(self):
+def __len__(self):
+def is_empty(self):
+def _insert(self, predecessor, e, successor):
+def _delete(self, node):
+def first(self):
+def last(self):
+def add_first(self, element):
+def add_last(self, element):
+def remove_first(self):
+def remove_last(self):
+def __init__(self, data):
+def __str__(self):
+def __init__(self):
+def __iter__(self):
+def __str__(self):
+def __len__(self):
+def insert_at_head(self, data):
+def insert_at_tail(self, data):
+def insert_at_nth(self, index: int, data):
+def delete_head(self):
+def delete_tail(self):
+def delete_at_nth(self, index: int):
+def delete(self, data) -> str:
+def is_empty(self):
+def test_doubly_linked_list() -> None:
+def __init__(self, data: int, previous=None, next_node=None):
+def __str__(self) -> str:
+def get_data(self) -> int:
+def get_next(self):
+def get_previous(self):
+def __init__(self, head):
+def __iter__(self):
+def __next__(self):
+def __init__(self):
+def __str__(self):
+def __contains__(self, value: int):
+def __iter__(self):
+def get_head_data(self):
+def get_tail_data(self):
+def set_head(self, node: Node) -> None:
+def set_tail(self, node: Node) -> None:
+def insert(self, value: int) -> None:
+def insert_before_node(self, node: Node, node_to_insert: Node) -> None:
+def insert_after_node(self, node: Node, node_to_insert: Node) -> None:
+def insert_at_position(self, position: int, value: int) -> None:
+def get_node(self, item: int) -> Node:
+def delete_value(self, value):
+def remove_node_pointers(node: Node) -> None:
+def is_empty(self):
+def create_linked_list() -> None:
+def __init__(self, data=None):
+def __repr__(self):
+def make_linked_list(elements_list):
+def __init__(self, data: Any) -> None:
+def __iter__(self):
+def has_loop(self) -> bool:
+def is_palindrome(head):
+def is_palindrome_stack(head):
+def is_palindrome_dict(head):
+def __init__(self, ints: Iterable[int]) -> None:
+def __iter__(self) -> Iterator[int]:
+def __len__(self) -> int:
+def __str__(self) -> str:
+def __init__(self, data: int) -> int:
+def __init__(self):
+def push(self, new_data: int) -> int:
+def middle_element(self) -> int:
+def __init__(self, data=None):
+def __repr__(self):
+def make_linked_list(elements_list: List):
+def print_reverse(head_node: Node) -> None:
+def main():
+def __init__(self, data):
+def __repr__(self):
+def __init__(self):
+def __iter__(self):
+def __len__(self) -> int:
+def __repr__(self):
+def __getitem__(self, index):
+def __setitem__(self, index, data):
+def insert_tail(self, data) -> None:
+def insert_head(self, data) -> None:
+def insert_nth(self, index: int, data) -> None:
+def print_list(self) -> None:
+def delete_head(self):
+def delete_tail(self):
+def delete_nth(self, index: int = 0):
+def is_empty(self) -> bool:
+def reverse(self):
+def test_singly_linked_list() -> None:
+def main():
+def __init__(self, key: KT, value: VT):
+def __repr__(self) -> str:
+def level(self) -> int:
+def __init__(self, p: float = 0.5, max_level: int = 16):
+def __str__(self) -> str:
+def __iter__(self):
+def random_level(self) -> int:
+def _locate_node(self, key) -> tuple[Optional[Node[KT, VT]], list[Node[KT, VT]]]:
+def delete(self, key: KT):
+def insert(self, key: KT, value: VT):
+def find(self, key: VT) -> Optional[VT]:
+def test_insert():
+def test_insert_overrides_existing_value():
+def test_searching_empty_list_returns_none():
+def test_search():
+def test_deleting_item_from_empty_list_do_nothing():
+def test_deleted_items_are_not_founded_by_find_method():
+def test_delete_removes_only_given_key():
+def test_delete_doesnt_leave_dead_nodes():
+def traverse_keys(node):
+def test_iter_always_yields_sorted_values():
+def is_sorted(lst):
+def pytests():
+def main():
+def __init__(self, data: Any):
+def __init__(self):
+def print_list(self):
+def push(self, new_data: Any):
+def swap_nodes(self, node_data_1, node_data_2):
+def __init__(self, n: int):
+def __len__(self) -> int:
+def is_empty(self) -> bool:
+def first(self):
+def enqueue(self, data):
+def dequeue(self):
+def __init__(self, data: Any) -> None:
+def __str__(self) -> str:
+def __init__(self) -> None:
+def __iter__(self):
+def __len__(self) -> int:
+def __str__(self) -> str:
+def is_empty(self) -> bool:
+def put(self, item) -> None:
+def get(self) -> Any:
+def clear(self) -> None:
+def __init__(self):
+def enqueue(self, priority: int, data: int) -> None:
+def dequeue(self) -> int:
+def __str__(self) -> str:
+def __init__(self):
+def enqueue(self, data: int) -> None:
+def dequeue(self) -> int:
+def __str__(self) -> str:
+def fixed_priority_queue():
+def element_priority_queue():
+def __init__(self):
+def __str__(self):
+def put(self, item):
+def get(self):
+def rotate(self, rotation):
+def get_front(self):
+def size(self):
+def __init__(self):
+def __str__(self):
+def put(self, item):
+def get(self):
+def rotate(self, rotation):
+def front(self):
+def size(self):
+def balanced_parentheses(parentheses: str) -> bool:
+def dijkstras_two_stack_algorithm(equation: str) -> int:
+def evaluate_postfix(postfix_notation: list) -> int:
+def precedence(char: str) -> int:
+def infix_to_postfix(expression_str: str) -> str:
+def infix_2_postfix(Infix):
+def infix_2_prefix(Infix):
+def __init__(self, data):
+def __str__(self):
+def __init__(self) -> None:
+def __iter__(self):
+def __str__(self):
+def __len__(self):
+def is_empty(self) -> bool:
+def push(self, item: Any) -> None:
+def pop(self) -> Any:
+def peek(self) -> Any:
+def clear(self) -> None:
+def next_greatest_element_slow(arr: list) -> list:
+def next_greatest_element_fast(arr: list) -> list:
+def next_greatest_element(arr: list) -> list:
+def Solve(Postfix):
+def is_operand(c):
+def evaluate(expression):
+def __init__(self, limit: int = 10):
+def __bool__(self) -> bool:
+def __str__(self) -> str:
+def push(self, data):
+def pop(self):
+def peek(self):
+def is_empty(self) -> bool:
+def is_full(self) -> bool:
+def size(self) -> int:
+def __contains__(self, item) -> bool:
+def test_stack() -> None:
+def __init__(self, data):
+def __init__(self):
+def push(self, data):
+def pop(self):
+def top(self):
+def __len__(self):
+def is_empty(self):
+def print_stack(self):
+def calculateSpan(price, S):
+def printArray(arr, n):
+def __init__(self):
+def insert_many(self, words: [str]):
+def insert(self, word: str):
+def find(self, word: str) -> bool:
+def delete(self, word: str):
+def _delete(curr: TrieNode, word: str, index: int):
+def print_words(node: TrieNode, word: str):
+def test_trie():
+def print_results(msg: str, passes: bool) -> None:
+def pytests():
+def main():
+def change_brightness(img: Image, level: float) -> Image:
+def brightness(c: int) -> float:
+def change_contrast(img: Image, level: int) -> Image:
+def contrast(c: int) -> int:
+def convert_to_negative(img):
+def __init__(self, input_img, threshold: int):
+def get_greyscale(cls, blue: int, green: int, red: int) -> float:
+def process(self) -> None:
+def gen_gaussian_kernel(k_size, sigma):
+def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
+def vec_gaussian(img: np.ndarray, variance: float) -> np.ndarray:
+def get_slice(img: np.ndarray, x: int, y: int, kernel_size: int) -> np.ndarray:
+def get_gauss_kernel(kernel_size: int, spatial_variance: float) -> np.ndarray:
+def parse_args(args: list) -> tuple:
+def im2col(image, block_size):
+def img_convolve(image, filter_kernel):
+def gen_gaussian_kernel(k_size, sigma):
+def gaussian_filter(image, k_size, sigma):
+def median_filter(gray_img, mask=3):
+def sobel_filter(image):
+def __init__(self):
+def stretch(self, input_image):
+def plotHistogram(self):
+def showImage(self):
 def __init__(self, red=None, green=None, blue=None, redEdge=None, nir=None):
 def setMatrices(self, red=None, green=None, blue=None, redEdge=None, nir=None):
 def ARVI2(self):
@@ -271,10 +870,13 @@ def IF(self):
 def DVI(self):
 def TVI(self):
 def NDRE(self):
-def change_contrast(img: Image, level: int) -> Image:
-def contrast(c: int) -> int:
-def change_brightness(img: Image, level: float) -> Image:
-def brightness(c: int) -> float:
+def __init__(self, img, dst_width: int, dst_height: int):
+def process(self):
+def get_x(self, x: int) -> int:
+def get_y(self, y: int) -> int:
+def make_sepia(img, factor: int):
+def to_grayscale(blue, green, red):
+def normalize(value):
 def test_convert_to_negative():
 def test_change_contrast():
 def test_gen_gaussian_kernel():
@@ -285,895 +887,12 @@ def test_median_filter():
 def test_sobel_filter():
 def test_sepia():
 def test_burkes(file_path: str = "digital_image_processing/image_data/lena_small.jpg"):
-def convert_to_negative(img):
-def __init__(self, img, dst_width: int, dst_height: int):
-def process(self):
-def get_x(self, x: int) -> int:
-def get_y(self, y: int) -> int:
-def __init__(self):
-def stretch(self, input_image):
-def plotHistogram(self):
-def showImage(self):
-def gen_gaussian_kernel(k_size, sigma):
-def gaussian_filter(image, k_size, sigma):
-def sobel_filter(image):
-def vec_gaussian(img: np.ndarray, variance: float) -> np.ndarray:
-def get_slice(img: np.ndarray, x: int, y: int, kernel_size: int) -> np.ndarray:
-def get_gauss_kernel(kernel_size: int, spatial_variance: float) -> np.ndarray:
-def parse_args(args: list) -> tuple:
-def im2col(image, block_size):
-def img_convolve(image, filter_kernel):
-def median_filter(gray_img, mask=3):
-def gen_gaussian_kernel(k_size, sigma):
-def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
-def __init__(self, input_img, threshold: int):
-def get_greyscale(cls, blue: int, green: int, red: int) -> float:
-def process(self) -> None:
-def good_file_paths(top_dir: str = ".") -> Iterator[str]:
-def md_prefix(i):
-def print_path(old_path: str, new_path: str) -> str:
-def print_directory_md(top_dir: str = ".") -> None:
-def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
-def all_solution_file_paths() -> list[pathlib.Path]:
-def get_files_url() -> str:
-def added_solution_file_path() -> list[pathlib.Path]:
-def collect_solution_file_paths() -> list[pathlib.Path]:
-def test_project_euler(solution_path: pathlib.Path) -> None:
-def __init__(self, list_of_points: list[tuple[float, float]]):
-def basis_function(self, t: float) -> list[float]:
-def bezier_curve_function(self, t: float) -> tuple[float, float]:
-def plot_curve(self, step_size: float = 0.01):
-def is_prime(number: int) -> bool:
-def prime_generator() -> Iterator[int]:
-def solution(n: int = 2000000) -> int:
-def solution(n: int = 2000000) -> int:
-def is_prime(n: int) -> bool:
-def solution(n: int = 2000000) -> int:
-def pythagorean_triple(max_perimeter: int) -> typing.Counter[int]:
-def solution(n: int = 1000) -> int:
-def solution(limit: int = 100) -> int:
-def check_bouncy(n: int) -> bool:
-def solution(percent: float = 99) -> int:
-def collatz_sequence(n: int) -> List[int]:
-def solution(n: int = 1000000) -> int:
-def solution(n: int = 1000000) -> int:
-def solution():
-def solution():
-def solution(data_file: str = "base_exp.txt") -> int:
-def prime_sieve(n: int) -> List[int]:
-def digit_replacements(number: int) -> List[List[int]]:
-def solution(family_length: int = 8) -> int:
-def is_palindrome(n: int) -> bool:
-def solution() -> int:
-def solution(numerator: int = 3, denominator: int = 7, limit: int = 1000000) -> int:
-def is_palindrome(n: int) -> bool:
-def sum_reverse(n: int) -> int:
-def solution(limit: int = 10000) -> int:
-def isprime(number: int) -> bool:
-def solution(nth: int = 10001) -> int:
-def prime_check(number: int) -> bool:
-def prime_generator():
-def solution(nth: int = 10001) -> int:
-def is_prime(num: int) -> bool:
-def solution(nth: int = 10001) -> int:
-def solution(a: int = 100, b: int = 100) -> int:
-def is_substring_divisible(num: tuple) -> bool:
-def solution(n: int = 10) -> int:
-def isCombinationValid(combination):
-def solution():
-def factorial(a: int) -> int:
-def factorial_sum(a: int) -> int:
-def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
-def sum_digit_factorials(n: int) -> int:
-def chain_length(n: int, previous: set = None) -> int:
-def solution(num_terms: int = 60, max_start: int = 1000000) -> int:
-def least_divisible_repunit(divisor: int) -> int:
-def solution(limit: int = 1000000) -> int:
-def solution(n: str = N) -> int:
-def str_eval(s: str) -> int:
-def solution(n: str = N) -> int:
-def solution(n: str = N) -> int:
-def choose(n: int, r: int) -> int:
-def non_bouncy_exact(n: int) -> int:
-def non_bouncy_upto(n: int) -> int:
-def solution(num_digits: int = 100) -> int:
-def solution(n: int = 1000) -> int:
-def solution() -> int:
-def solution() -> int:
-def solution_fast() -> int:
-def benchmark() -> None:
-def solution(first_x_coord: float = 1.4, first_y_coord: float = -9.6) -> int:
-def solution(n: int = 998001) -> int:
-def solution(n: int = 998001) -> int:
-def sieve() -> Generator[int, None, None]:
-def solution(limit: float = 1e10) -> int:
-def generate_random_hand():
-def generate_random_hands(number_of_hands: int = 100):
-def test_hand_is_flush(hand, expected):
-def test_hand_is_straight(hand, expected):
-def test_hand_is_five_high_straight(hand, expected, card_values):
-def test_hand_is_same_kind(hand, expected):
-def test_hand_values(hand, expected):
-def test_compare_simple(hand, other, expected):
-def test_compare_random(hand, other, expected):
-def test_hand_sorted():
-def test_custom_sort_five_high_straight():
-def test_multiple_calls_five_high_straight():
-def test_euler_project():
-def __init__(self, hand: str) -> None:
-def hand(self):
-def compare_with(self, other: "PokerHand") -> str:
-def hand_name(self) -> str:
-def _compare_cards(self, other: "PokerHand") -> str:
-def _get_hand_type(self) -> int:
-def _is_flush(self) -> bool:
-def _is_five_high_straight(self) -> bool:
-def _is_straight(self) -> bool:
-def _is_same_kind(self) -> int:
-def _internal_state(self) -> tuple[list[int], set[str]]:
-def __repr__(self):
-def __str__(self):
-def __eq__(self, other):
-def __lt__(self, other):
-def __le__(self, other):
-def __gt__(self, other):
-def __ge__(self, other):
-def __hash__(self):
-def solution() -> int:
-def solve(matrix: Matrix, vector: Matrix) -> Matrix:
-def interpolate(y_list: List[int]) -> Callable[[int], int]:
-def interpolated_func(var: int) -> int:
-def question_function(variable: int) -> int:
-def solution(func: Callable[[int], int] = question_function, order: int = 10) -> int:
-def next_term(a_i, k, i, n):
-def compute(a_i, k, i, n):
-def add(digits, k, addend):
-def solution(n: int = 10 ** 15) -> int:
-def is_prime(number: int) -> bool:
-def search(target: int, prime_list: list) -> bool:
-def solution():
-def vector_product(point1: Tuple[int, int], point2: Tuple[int, int]) -> int:
-def contains_origin(x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> bool:
-def solution(filename: str = "p102_triangles.txt") -> int:
-def is_right(x1: int, y1: int, x2: int, y2: int) -> bool:
-def solution(limit: int = 50) -> int:
-def get_pascal_triangle_unique_coefficients(depth: int) -> Set[int]:
-def get_primes_squared(max_number: int) -> List[int]:
-def solution(n: int = 51) -> int:
-def solution(limit: int = 1000000) -> int:
-def is_pentagonal(n: int) -> bool:
-def solution(limit: int = 5000) -> int:
-def sum_of_divisors(n: int) -> int:
-def solution(n: int = 10000) -> int:
-def solution(limit: int = 50000000) -> int:
-def solution(n: int = 600851475143) -> int:
-def solution(n: int = 600851475143) -> int:
-def isprime(num: int) -> bool:
-def solution(n: int = 600851475143) -> int:
-def solution(num_turns: int = 15) -> int:
-def is_prime(n: int) -> bool:
-def solution(n: int = 7) -> int:
-def get_totients(max_one: int) -> List[int]:
-def has_same_digits(num1: int, num2: int) -> bool:
-def solution(max: int = 10000000) -> int:
-def solution(m: int = 100) -> int:
-def solution(n: int = 1001) -> int:
-def triangle_number_generator():
-def count_divisors(n):
-def solution():
-def count_divisors(n):
-def solution():
-def is_prime(n: int) -> bool:
-def contains_an_even_digit(n: int) -> bool:
-def find_circular_primes(limit: int = 1000000) -> list[int]:
-def solution() -> int:
-def is_prime(k: int) -> bool:
-def solution(a_limit: int = 1000, b_limit: int = 1000) -> int:
-def solution():
-def solution():
-def largest_product(grid):
-def solution():
-def is_digit_cancelling(num: int, den: int) -> bool:
-def fraction_list(digit_len: int) -> List[str]:
-def solution(n: int = 2) -> int:
-def is_9_pandigital(n: int) -> bool:
-def solution() -> Union[int, None]:
-def prime_sieve(n: int) -> list:
-def solution(limit: int = 999_966_663_333) -> int:
-def solution():
-def solution(limit: int = 1000000) -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def digitsum(s: str) -> int:
-def solution() -> int:
-def solution(target: int = 2000000) -> int:
-def partition(number_to_partition: int) -> Set[int]:
-def solution(number_unique_partitions: int = 5000) -> Optional[int]:
-def gcd(x: int, y: int) -> int:
-def lcm(x: int, y: int) -> int:
-def solution(n: int = 20) -> int:
-def solution(n: int = 20) -> int:
-def solution():
-def parse_roman_numerals(numerals: str) -> int:
-def generate_roman_numerals(num: int) -> str:
-def solution(roman_numerals_filename: str = "/p089_roman.txt") -> int:
-def unique_prime_factors(n: int) -> set:
-def upf_len(num: int) -> int:
-def equality(iterable: list) -> bool:
-def run(n: int) -> list:
-def solution(n: int = 4) -> int:
-def solution(filename: str = "matrix.txt") -> int:
-def is_prime(n: int) -> bool:
-def list_truncated_nums(n: int) -> list[int]:
-def validate(n: int) -> bool:
-def compute_truncated_primes(count: int = 11) -> list[int]:
-def solution() -> int:
-def solution(max_base: int = 5) -> int:
-def get_digits(num: int) -> str:
-def is_sq(number: int) -> bool:
-def solution(order: int = 35) -> int:
-def solution() -> int:
-def solution():
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def digit_sum(n: int) -> int:
-def solution(n: int = 30) -> int:
-def _calculate(days: int, absent: int, late: int) -> int:
-def solution(days: int = 30) -> int:
-def combinations(n, r):
-def solution():
-def solution():
-def _modexpt(base: int, exponent: int, modulo_value: int) -> int:
-def solution(base: int = 1777, height: int = 1855, digits: int = 8) -> int:
-def solution(power: int = 1000) -> int:
-def solution(power: int = 1000) -> int:
-def solution(n: int = 100) -> int:
-def solution(limit: int = 1000000) -> int:
-def solution(n: int = 100) -> int:
-def solution(n: int = 100) -> int:
-def solution(n: int = 100) -> int:
-def solution(n: int = 100) -> int:
-def solution(num: int = 100) -> int:
-def solution(num: int = 100) -> int:
-def solution(num: int = 100) -> int:
-def factorial(num: int) -> int:
-def split_and_add(number: int) -> int:
-def solution(num: int = 100) -> int:
-def continuous_fraction_period(n: int) -> int:
-def solution(n: int = 10000) -> int:
-def check_partition_perfect(positive_integer: int) -> bool:
-def solution(max_proportion: float = 1 / 12345) -> int:
-def hexagonal_num(n: int) -> int:
-def is_pentagonal(n: int) -> bool:
-def solution(start: int = 144) -> int:
-def solution():
-def solution(limit=28123):
-def solution(n: int = 20) -> int:
-def try_key(ciphertext: List[int], key: Tuple[int, ...]) -> Optional[str]:
-def filter_valid_chars(ciphertext: List[int]) -> List[str]:
-def filter_common_word(possibles: List[str], common_word: str) -> List[str]:
-def solution(filename: str = "p059_cipher.txt") -> int:
-def solution(t_limit: int = 1000000, n_limit: int = 10) -> int:
-def solution(exponent: int = 30) -> int:
-def solution(pence: int = 200) -> int:
-def one_pence() -> int:
-def two_pence(x: int) -> int:
-def five_pence(x: int) -> int:
-def ten_pence(x: int) -> int:
-def twenty_pence(x: int) -> int:
-def fifty_pence(x: int) -> int:
-def one_pound(x: int) -> int:
-def two_pound(x: int) -> int:
-def solution(n: int = 200) -> int:
-def is_square_form(num: int) -> bool:
-def solution() -> int:
-def solution():
-def solution(numerator: int = 1, digit: int = 1000) -> int:
-def __init__(self, vertices: Set[int], edges: Mapping[EdgeT, int]) -> None:
-def add_edge(self, edge: EdgeT, weight: int) -> None:
-def prims_algorithm(self) -> "Graph":
-def solution(filename: str = "p107_network.txt") -> int:
-def sum_digits(num: int) -> int:
-def solution(max: int = 100) -> int:
-def prime_sieve(limit: int) -> List[int]:
-def solution(ceiling: int = 1_000_000) -> int:
-def solution():
-def solution(max_base: int = 10, max_power: int = 22) -> int:
-def sum_of_digit_factorial(n: int) -> int:
-def solution() -> int:
-def solution(n: int = 4000000) -> int:
-def solution(n: int = 4000000) -> int:
-def solution(n: int = 4000000) -> int:
-def solution(n: int = 4000000) -> int:
-def solution(n: int = 4000000) -> int:
-def solution(n: int = 10) -> str:
-def solution():
-def solution(limit: int = 1500000) -> int:
-def fibonacci_generator() -> int:
-def solution(n: int = 1000) -> int:
-def solution(n: int = 1000) -> int:
-def fibonacci(n: int) -> int:
-def fibonacci_digits_index(n: int) -> int:
-def solution(n: int = 1000) -> int:
-def is_palindrome(n: Union[int, str]) -> bool:
-def solution(n: int = 1000000):
-def isprime(d: int) -> int:
-def solution(ratio: float = 0.1) -> int:
-def solution(limit: int = 1000000) -> int:
-def solution(limit: int = 1_000_000) -> int:
-def solution(n: int = 10 ** 6) -> int:
-def is_prime(n: int) -> bool:
-def compute_nums(n: int) -> list[int]:
-def solution() -> int:
-def __init__(self, link_p, element, link_n):
-def has_next_and_prev(self):
-def __init__(self):
-def __len__(self):
-def is_empty(self):
-def _insert(self, predecessor, e, successor):
-def _delete(self, node):
-def first(self):
-def last(self):
-def add_first(self, element):
-def add_last(self, element):
-def remove_first(self):
-def remove_last(self):
-def __init__(self, data):
-def __str__(self):
-def __init__(self):
-def __iter__(self):
-def __str__(self):
-def __len__(self):
-def insert_at_head(self, data):
-def insert_at_tail(self, data):
-def insert_at_nth(self, index: int, data):
-def delete_head(self):
-def delete_tail(self):
-def delete_at_nth(self, index: int):
-def delete(self, data) -> str:
-def is_empty(self):
-def test_doubly_linked_list() -> None:
-def __init__(self, data: Any) -> None:
-def __iter__(self):
-def has_loop(self) -> bool:
-def __init__(self, data: int, previous=None, next_node=None):
-def __str__(self) -> str:
-def get_data(self) -> int:
-def get_next(self):
-def get_previous(self):
-def __init__(self, head):
-def __iter__(self):
-def __next__(self):
-def __init__(self):
-def __str__(self):
-def __contains__(self, value: int):
-def __iter__(self):
-def get_head_data(self):
-def get_tail_data(self):
-def set_head(self, node: Node) -> None:
-def set_tail(self, node: Node) -> None:
-def insert(self, value: int) -> None:
-def insert_before_node(self, node: Node, node_to_insert: Node) -> None:
-def insert_after_node(self, node: Node, node_to_insert: Node) -> None:
-def insert_at_position(self, position: int, value: int) -> None:
-def get_node(self, item: int) -> Node:
-def delete_value(self, value):
-def remove_node_pointers(node: Node) -> None:
-def is_empty(self):
-def create_linked_list() -> None:
-def __init__(self, data: int) -> int:
-def __init__(self):
-def push(self, new_data: int) -> int:
-def middle_element(self) -> int:
-def is_palindrome(head):
-def is_palindrome_stack(head):
-def is_palindrome_dict(head):
-def __init__(self, data=None):
-def __repr__(self):
-def make_linked_list(elements_list: List):
-def print_reverse(head_node: Node) -> None:
-def main():
-def __init__(self, data):
-def __repr__(self):
-def __init__(self):
-def __iter__(self):
-def __len__(self) -> int:
-def __repr__(self):
-def __getitem__(self, index):
-def __setitem__(self, index, data):
-def insert_tail(self, data) -> None:
-def insert_head(self, data) -> None:
-def insert_nth(self, index: int, data) -> None:
-def print_list(self) -> None:
-def delete_head(self):
-def delete_tail(self):
-def delete_nth(self, index: int = 0):
-def is_empty(self) -> bool:
-def reverse(self):
-def test_singly_linked_list() -> None:
-def main():
-def __init__(self, item: Any, next: Any) -> None:
-def __init__(self) -> None:
-def add(self, item: Any) -> None:
-def remove(self) -> Any:
-def is_empty(self) -> bool:
-def __str__(self) -> str:
-def __len__(self) -> int:
-def __init__(self, ints: Iterable[int]) -> None:
-def __iter__(self) -> Iterator[int]:
-def __len__(self) -> int:
-def __str__(self) -> str:
-def __init__(self, key: KT, value: VT):
-def __repr__(self) -> str:
-def level(self) -> int:
-def __init__(self, p: float = 0.5, max_level: int = 16):
-def __str__(self) -> str:
-def __iter__(self):
-def random_level(self) -> int:
-def _locate_node(self, key) -> tuple[Optional[Node[KT, VT]], list[Node[KT, VT]]]:
-def delete(self, key: KT):
-def insert(self, key: KT, value: VT):
-def find(self, key: VT) -> Optional[VT]:
-def test_insert():
-def test_insert_overrides_existing_value():
-def test_searching_empty_list_returns_none():
-def test_search():
-def test_deleting_item_from_empty_list_do_nothing():
-def test_deleted_items_are_not_founded_by_find_method():
-def test_delete_removes_only_given_key():
-def test_delete_doesnt_leave_dead_nodes():
-def traverse_keys(node):
-def test_iter_always_yields_sorted_values():
-def is_sorted(lst):
-def pytests():
-def main():
-def __init__(self, data: Any):
-def __init__(self):
-def print_list(self):
-def push(self, new_data: Any):
-def swap_nodes(self, node_data_1, node_data_2):
-def __init__(self, data: Any):
-def __init__(self):
-def __iter__(self):
-def __len__(self) -> int:
-def __repr__(self):
-def insert_tail(self, data: Any) -> None:
-def insert_head(self, data: Any) -> None:
-def insert_nth(self, index: int, data: Any) -> None:
-def delete_front(self):
-def delete_tail(self) -> None:
-def delete_nth(self, index: int = 0):
-def is_empty(self):
-def test_circular_linked_list() -> None:
-def __init__(self, data=None):
-def __repr__(self):
-def make_linked_list(elements_list):
-def __init__(self, *args, **kwargs):
-def _collision_resolution(self, key, data=None):
-def __init__(self, size_table, charge_factor=None, lim_charge=None):
-def keys(self):
-def balanced_factor(self):
-def hash_function(self, key):
-def _step_by_step(self, step_ord):
-def bulk_insert(self, values):
-def _set_value(self, key, data):
-def _collision_resolution(self, key, data=None):
-def rehashing(self):
-def insert_data(self, data):
-def __init__(self, *args, **kwargs):
-def __hash_function_2(self, value, data):
-def __hash_double_function(self, key, data, increment):
-def _collision_resolution(self, key, data=None):
-def __init__(self, *args, **kwargs):
-def _set_value(self, key, data):
-def balanced_factor(self):
-def _collision_resolution(self, key, data=None):
-def check_prime(number):
-def next_prime(value, factor=1, **kwargs):
-def dijkstras_two_stack_algorithm(equation: str) -> int:
-def is_operand(c):
-def evaluate(expression):
-def __init__(self, data):
-def __init__(self):
-def push(self, data):
-def pop(self):
-def top(self):
-def __len__(self):
-def is_empty(self):
-def print_stack(self):
-def precedence(char: str) -> int:
-def infix_to_postfix(expression_str: str) -> str:
-def __init__(self, data):
-def __str__(self):
-def __init__(self) -> None:
-def __iter__(self):
-def __str__(self):
-def __len__(self):
-def is_empty(self) -> bool:
-def push(self, item: Any) -> None:
-def pop(self) -> Any:
-def peek(self) -> Any:
-def clear(self) -> None:
-def calculateSpan(price, S):
-def printArray(arr, n):
-def balanced_parentheses(parentheses: str) -> bool:
-def Solve(Postfix):
-def evaluate_postfix(postfix_notation: list) -> int:
-def infix_2_postfix(Infix):
-def infix_2_prefix(Infix):
-def next_greatest_element_slow(arr: list) -> list:
-def next_greatest_element_fast(arr: list) -> list:
-def next_greatest_element(arr: list) -> list:
-def __init__(self, limit: int = 10):
-def __bool__(self) -> bool:
-def __str__(self) -> str:
-def push(self, data):
-def pop(self):
-def peek(self):
-def is_empty(self) -> bool:
-def is_full(self) -> bool:
-def size(self) -> int:
-def __contains__(self, item) -> bool:
-def test_stack() -> None:
-def __init__(self, value: T) -> None:
-def value(self) -> T:
-def __init__(self, data: Optional[Iterable[T]] = ()) -> None:
-def __bool__(self) -> bool:
-def __iter__(self) -> Iterator[T]:
-def insert(self, value: T) -> None:
-def pop(self) -> T:
-def top(self) -> T:
-def clear(self):
-def __init__(self, val):
-def mergeTrees(self, other):
-def __init__(self, bottom_root=None, min_node=None, heap_size=0):
-def mergeHeaps(self, other):
-def insert(self, val):
-def peek(self):
-def isEmpty(self):
-def deleteMin(self):
-def preOrder(self):
-def __traversal(self, curr_node, preorder, level=0):
-def __str__(self):
-def __init__(self, key=None):
-def _parent(self, i):
-def _left(self, i):
-def _right(self, i):
-def _swap(self, i, j):
-def _cmp(self, i, j):
-def _get_valid_parent(self, i):
-def _heapify_up(self, index):
-def _heapify_down(self, index):
-def update_item(self, item, item_value):
-def delete_item(self, item):
-def insert_item(self, item, item_value):
-def get_top(self):
-def extract_top(self):
-def test_heap() -> None:
-def __init__(self, value: T) -> None:
-def value(self) -> T:
-def __init__(self, data: Optional[Iterable[T]] = ()) -> None:
-def insert(self, value: T) -> None:
-def pop(self) -> T:
-def top(self) -> T:
-def clear(self):
-def to_sorted_list(self) -> List[T]:
-def __bool__(self) -> bool:
-def __init__(self) -> None:
-def __repr__(self) -> str:
-def parent_index(self, child_idx: int) -> Optional[int]:
-def left_child_idx(self, parent_idx: int) -> Optional[int]:
-def right_child_idx(self, parent_idx: int) -> Optional[int]:
-def max_heapify(self, index: int) -> None:
-def build_max_heap(self, collection: Iterable[float]) -> None:
-def max(self) -> float:
-def extract_max(self) -> float:
-def insert(self, value: float) -> None:
-def heap_sort(self) -> None:
-def __init__(self):
-def __swap_up(self, i: int) -> None:
-def insert(self, value: int) -> None:
-def __swap_down(self, i: int) -> None:
-def pop(self) -> int:
-def get_list(self):
-def __len__(self):
-def __init__(self, name, val):
-def __str__(self):
-def __lt__(self, other):
-def __init__(self, array):
-def __getitem__(self, key):
-def get_parent_idx(self, idx):
-def get_left_child_idx(self, idx):
-def get_right_child_idx(self, idx):
-def get_value(self, key):
-def build_heap(self, array):
-def sift_down(self, idx, array):
-def sift_up(self, idx):
-def peek(self):
-def remove(self):
-def insert(self, node):
-def is_empty(self):
-def decrease_key(self, node, newValue):
-def __init__(self):
-def __str__(self):
-def put(self, item):
-def get(self):
-def rotate(self, rotation):
-def get_front(self):
-def size(self):
-def __init__(self):
-def __str__(self):
-def put(self, item):
-def get(self):
-def rotate(self, rotation):
-def front(self):
-def size(self):
-def __init__(self, n: int):
-def __len__(self) -> int:
-def is_empty(self) -> bool:
-def first(self):
-def enqueue(self, data):
-def dequeue(self):
-def __init__(self):
-def enqueue(self, priority: int, data: int) -> None:
-def dequeue(self) -> int:
-def __str__(self) -> str:
-def __init__(self):
-def enqueue(self, data: int) -> None:
-def dequeue(self) -> int:
-def __str__(self) -> str:
-def fixed_priority_queue():
-def element_priority_queue():
-def __init__(self, data: Any) -> None:
-def __str__(self) -> str:
-def __init__(self) -> None:
-def __iter__(self):
-def __len__(self) -> int:
-def __str__(self) -> str:
-def is_empty(self) -> bool:
-def put(self, item) -> None:
-def get(self) -> Any:
-def clear(self) -> None:
-def __init__(self, data):
-def make_set(x):
-def union_set(x, y):
-def find_set(x):
-def find_python_set(node: Node) -> set:
-def test_disjoint_set():
-def __init__(self, set_counts: list) -> None:
-def merge(self, src: int, dst: int) -> bool:
-def get_parent(self, disj_set: int) -> int:
-def __init__(self, start, end, val, left=None, right=None):
-def __str__(self):
-def __init__(self, collection: Sequence, function):
-def update(self, i, val):
-def query_range(self, i, j):
-def _build_tree(self, start, end):
-def _update_tree(self, node, i, val):
-def _query_range(self, node, i, j):
-def traverse(self):
-def __init__(self, value: int = 0) -> None:
-def merge_two_binary_trees(tree1: Optional[Node], tree2: Optional[Node]) -> Node:
-def print_preorder(root: Optional[Node]) -> None:
-def __init__(self, size: int) -> None:
-def left(self, idx: int) -> int:
-def right(self, idx: int) -> int:
-def __str__(self) -> str:
-def __init__(self) -> None:
-def is_empty(self) -> bool:
-def push(self, data: Any) -> None:
-def pop(self) -> Any:
-def count(self) -> int:
-def print(self) -> None:
-def __init__(self, data: Any) -> None:
-def get_data(self) -> Any:
-def get_left(self) -> Optional["my_node"]:
-def get_right(self) -> Optional["my_node"]:
-def get_height(self) -> int:
-def set_data(self, data: Any) -> None:
-def set_left(self, node: Optional["my_node"]) -> None:
-def set_right(self, node: Optional["my_node"]) -> None:
-def set_height(self, height: int) -> None:
-def get_height(node: Optional["my_node"]) -> int:
-def my_max(a: int, b: int) -> int:
-def right_rotation(node: my_node) -> my_node:
-def left_rotation(node: my_node) -> my_node:
-def lr_rotation(node: my_node) -> my_node:
-def rl_rotation(node: my_node) -> my_node:
-def insert_node(node: Optional["my_node"], data: Any) -> Optional["my_node"]:
-def get_rightMost(root: my_node) -> Any:
-def get_leftMost(root: my_node) -> Any:
-def del_node(root: my_node, data: Any) -> Optional["my_node"]:
-def __init__(self) -> None:
-def get_height(self) -> int:
-def insert(self, data: Any) -> None:
-def del_node(self, data: Any) -> None:
-def _test() -> None:
-def __init__(self, length: int) -> None:
-def __repr__(self) -> str:
-def build_tree(arr: list[int]) -> Node:
-def rank_till_index(node: Node, num: int, index: int) -> int:
-def rank(node: Node, num: int, start: int, end: int) -> int:
-def quantile(node: Node, index: int, start: int, end: int) -> int:
-def binary_tree_mirror_dict(binary_tree_mirror_dictionary: dict, root: int):
-def binary_tree_mirror(binary_tree: dict, root: int = 1) -> dict:
-def __init__(self, SIZE):
-def update(self, i, val):
-def query(self, i):
-def make_tree() -> Node:
-def preorder(root: Node):
-def postorder(root: Node):
-def inorder(root: Node):
-def height(root: Node):
-def level_order_1(root: Node):
-def level_order_2(root: Node, level: int):
-def print_left_to_right(root: Node, level: int):
-def print_right_to_left(root: Node, level: int):
-def zigzag(root: Node):
-def main():
-def binomial_coefficient(n: int, k: int) -> int:
-def catalan_number(node_count: int) -> int:
-def factorial(n: int) -> int:
-def binary_tree_count(node_count: int) -> int:
-def __init__(self, value, parent):
-def __repr__(self):
-def __init__(self, root=None):
-def __str__(self):
-def __reassign_nodes(self, node, new_children):
-def is_right(self, node):
-def empty(self):
-def __insert(self, value):
-def insert(self, *values):
-def search(self, value):
-def get_max(self, node=None):
-def get_min(self, node=None):
-def remove(self, value):
-def preorder_traverse(self, node):
-def traversal_tree(self, traversal_function=None):
-def inorder(self, arr: list, node: Node):
-def find_kth_smallest(self, k: int, node: Node) -> int:
-def postorder(curr_node):
-def binary_search_tree():
-def __init__(self, arr: list[T], fnc: Callable[[T, T], T]) -> None:
-def build(self) -> None:
-def update(self, p: int, v: T) -> None:
-def query(self, l: int, r: int) -> T:
-def test_all_segments():
-def __init__(self, label: int, parent: Optional["Node"]) -> None:
-def __init__(self) -> None:
-def empty(self) -> None:
-def is_empty(self) -> bool:
-def put(self, label: int) -> None:
-def search(self, label: int) -> Node:
-def _search(self, node: Optional[Node], label: int) -> Node:
-def remove(self, label: int) -> None:
-def _reassign_nodes(self, node: Node, new_children: Optional[Node]) -> None:
-def _get_lowest_node(self, node: Node) -> Node:
-def exists(self, label: int) -> bool:
-def get_max_label(self) -> int:
-def get_min_label(self) -> int:
-def inorder_traversal(self) -> Iterator[Node]:
-def _inorder_traversal(self, node: Optional[Node]) -> Iterator[Node]:
-def preorder_traversal(self) -> Iterator[Node]:
-def _preorder_traversal(self, node: Optional[Node]) -> Iterator[Node]:
-def _get_binary_search_tree() -> BinarySearchTree:
-def test_put(self) -> None:
-def test_search(self) -> None:
-def test_remove(self) -> None:
-def test_remove_2(self) -> None:
-def test_empty(self) -> None:
-def test_is_empty(self) -> None:
-def test_exists(self) -> None:
-def test_get_max_label(self) -> None:
-def test_get_min_label(self) -> None:
-def test_inorder_traversal(self) -> None:
-def test_preorder_traversal(self) -> None:
-def binary_search_tree_example() -> None:
-def __init__(self, data: int) -> None:
-def display(tree: Optional[Node]) -> None:
-def depth_of_tree(tree: Optional[Node]) -> int:
-def is_full_binary_tree(tree: Node) -> bool:
-def main() -> None:
-def __init__(self, A):
-def left(self, idx):
-def right(self, idx):
-def build(self, idx, l, r):
-def update(self, a, b, val):
-def update_recursive(self, idx, l, r, a, b, val):
-def query(self, a, b):
-def query_recursive(self, idx, l, r, a, b):
-def showData(self):
-def __init__(self, value: Optional[int] = None):
-def __repr__(self) -> str:
-def __str__(self) -> str:
-def split(root: Optional[Node], value: int) -> Tuple[Optional[Node], Optional[Node]]:
-def merge(left: Optional[Node], right: Optional[Node]) -> Optional[Node]:
-def insert(root: Optional[Node], value: int) -> Optional[Node]:
-def erase(root: Optional[Node], value: int) -> Optional[Node]:
-def inorder(root: Optional[Node]) -> None:
-def interactTreap(root: Optional[Node], args: str) -> Optional[Node]:
-def main() -> None:
-def swap(a: int, b: int) -> tuple[int, int]:
-def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
-def main() -> None:
-def rotate_left(self) -> "RedBlackTree":
-def rotate_right(self) -> "RedBlackTree":
-def insert(self, label: int) -> "RedBlackTree":
-def _insert_repair(self) -> None:
-def remove(self, label: int) -> "RedBlackTree":
-def _remove_repair(self) -> None:
-def check_color_properties(self) -> bool:
-def check_coloring(self) -> None:
-def black_height(self) -> int:
-def __contains__(self, label) -> bool:
-def search(self, label: int) -> "RedBlackTree":
-def floor(self, label: int) -> int:
-def ceil(self, label: int) -> int:
-def get_max(self) -> int:
-def get_min(self) -> int:
-def grandparent(self) -> "RedBlackTree":
-def sibling(self) -> "RedBlackTree":
-def is_left(self) -> bool:
-def is_right(self) -> bool:
-def __bool__(self) -> bool:
-def __len__(self) -> int:
-def preorder_traverse(self) -> Iterator[int]:
-def inorder_traverse(self) -> Iterator[int]:
-def postorder_traverse(self) -> Iterator[int]:
-def __repr__(self) -> str:
-def __eq__(self, other) -> bool:
-def color(node) -> int:
-def test_rotations() -> bool:
-def test_insertion_speed() -> bool:
-def test_insert() -> bool:
-def test_insert_and_search() -> bool:
-def test_insert_delete() -> bool:
-def test_floor_ceil() -> bool:
-def test_min_max() -> bool:
-def test_tree_traversal() -> bool:
-def test_tree_chaining() -> bool:
-def print_results(msg: str, passes: bool) -> None:
-def pytests() -> None:
-def main() -> None:
-def __init__(self):
-def insert_many(self, words: [str]):
-def insert(self, word: str):
-def find(self, word: str) -> bool:
-def delete(self, word: str):
-def _delete(curr: TrieNode, word: str, index: int):
-def print_words(node: TrieNode, word: str):
-def test_trie():
-def print_results(msg: str, passes: bool) -> None:
-def pytests():
-def main():
-def default_matrix_multiplication(a: list, b: list) -> list:
-def matrix_addition(matrix_a: list, matrix_b: list):
-def matrix_subtraction(matrix_a: list, matrix_b: list):
-def split_matrix(a: list) -> tuple[list, list, list, list]:
-def matrix_dimensions(matrix: list) -> tuple[int, int]:
-def print_matrix(matrix: list) -> None:
-def actual_strassen(matrix_a: list, matrix_b: list) -> list:
-def strassen(matrix1: list, matrix2: list) -> list:
-def peak(lst: List[int]) -> int:
-def actual_power(a: int, b: int):
-def power(a: int, b: int) -> float:
-def max_difference(a: list[int]) -> tuple[int, int]:
-def merge(left_half: List, right_half: List) -> List:
-def merge_sort(array: List) -> List:
 def euclidean_distance_sqr(point1, point2):
 def column_based_sort(array, column=0):
 def dis_between_closest_pair(points, points_counts, min_dis=float("inf")):
 def dis_between_closest_in_strip(points, points_counts, min_dis=float("inf")):
 def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_counts):
 def closest_pair_of_points(points, points_counts):
-def heaps(arr: list) -> list:
-def generate(n: int, arr: list):
 def __init__(self, x, y):
 def __eq__(self, other):
 def __ne__(self, other):
@@ -1189,642 +908,413 @@ def convex_hull_bf(points: List[Point]) -> List[Point]:
 def convex_hull_recursive(points: List[Point]) -> List[Point]:
 def convex_hull_melkman(points: List[Point]) -> List[Point]:
 def main():
+def heaps(arr: list) -> list:
+def generate(k: int, arr: list):
+def heaps(arr: list) -> list:
+def generate(n: int, arr: list):
 def count_inversions_bf(arr):
 def count_inversions_recursive(arr):
 def _count_cross_inversions(P, Q):
 def main():
 def random_pivot(lst):
 def kth_number(lst: List[int], k: int) -> int:
-def heaps(arr: list) -> list:
-def generate(k: int, arr: list):
+def max_difference(a: list[int]) -> tuple[int, int]:
 def max_sum_from_start(array):
 def max_cross_array_sum(array, left, mid, right):
 def max_subarray_sum(array, left, right):
-def modular_division(a: int, b: int, n: int) -> int:
-def invert_modulo(a: int, n: int) -> int:
-def modular_division2(a: int, b: int, n: int) -> int:
-def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
-def extended_euclid(a: int, b: int) -> Tuple[int, int]:
-def greatest_common_divisor(a: int, b: int) -> int:
-def diophantine(a: int, b: int, c: int) -> Tuple[float, float]:
-def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
-def greatest_common_divisor(a: int, b: int) -> int:
-def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
-def extended_euclid(a: int, b: int) -> Tuple[int, int]:
-def chinese_remainder_theorem(n1: int, r1: int, n2: int, r2: int) -> int:
-def invert_modulo(a: int, n: int) -> int:
-def chinese_remainder_theorem2(n1: int, r1: int, n2: int, r2: int) -> int:
+def merge(left_half: List, right_half: List) -> List:
+def merge_sort(array: List) -> List:
+def peak(lst: List[int]) -> int:
+def actual_power(a: int, b: int):
+def power(a: int, b: int) -> float:
+def default_matrix_multiplication(a: list, b: list) -> list:
+def matrix_addition(matrix_a: list, matrix_b: list):
+def matrix_subtraction(matrix_a: list, matrix_b: list):
+def split_matrix(a: list) -> tuple[list, list, list, list]:
+def matrix_dimensions(matrix: list) -> tuple[int, int]:
+def print_matrix(matrix: list) -> None:
+def actual_strassen(matrix_a: list, matrix_b: list) -> list:
+def strassen(matrix1: list, matrix2: list) -> list:
+def abbr(a: str, b: str) -> bool:
+def __init__(self, task_performed, total):
+def CountWaysUtil(self, mask, task_no):
+def countNoOfWays(self, task_performed):
+def catalan_numbers(upper_limit: int) -> "list[int]":
+def climb_stairs(n: int) -> int:
+def __init__(self):
+def __prepare__(self, N=0, M=0):
+def __solveDP(self, x, y):
+def solve(self, A, B):
+def min_distance_bottom_up(word1: str, word2: str) -> int:
+def factorial(num: int) -> int:
+def fibonacci(n: int) -> int:
+def _fib(n: int) -> tuple[int, int]:
+def __init__(self, N=None):
+def get(self, sequence_no=None):
+def __init__(self, N=0):
+def addEdge(self, u, v, w):
+def floyd_warshall(self):
+def showMin(self, u, v):
+def fracKnapsack(vl, wt, W, n):
+def partition(m):
+def list_of_submasks(mask: int) -> list[int]:
+def MF_knapsack(i, wt, val, j):
+def knapsack(W, wt, val, n):
+def knapsack_with_example_solution(W: int, wt: list, val: list):
+def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
+def longest_common_subsequence(x: str, y: str):
+def longest_subsequence(array: list[int]) -> list[int]:
+def CeilIndex(v, l, r, key):
+def LongestIncreasingSubsequenceLength(v: list[int]) -> int:
+def __init__(self, arr):
+def solve_sub_array(self):
+def MatrixChainOrder(array):
+def PrintOptimalSolution(OptimalSolution, i, j):
+def main():
+def maximum_non_adjacent_sum(nums: list[int]) -> int:
+def find_max_sub_array(A, low, high):
+def find_max_cross_sum(A, low, mid, high):
+def max_sub_array(nums: list[int]) -> int:
+def max_subarray_sum(nums: list) -> int:
+def dp_count(S, n):
+def minimum_cost_path(matrix: list[list[int]]) -> int:
+def findMin(arr):
+def min_steps_to_one(number: int) -> int:
+def __init__(self, key, freq):
+def __str__(self):
+def print_binary_search_tree(root, key, i, j, parent, is_left):
+def find_optimal_binary_search_tree(nodes):
+def main():
+def naive_cut_rod_recursive(n: int, prices: list):
+def top_down_cut_rod(n: int, prices: list):
+def _top_down_cut_rod_recursive(n: int, prices: list, max_rev: list):
+def bottom_up_cut_rod(n: int, prices: list):
+def _enforce_args(n: int, prices: list):
+def main():
+def combination_util(arr, n, r, index, data, i):
+def print_combination(arr, n, r):
+def isSumSubset(arr, arrLen, requiredSum):
+def electric_power(voltage: float, current: float, power: float) -> Tuple:
+def ohms_law(voltage: float, current: float, resistance: float) -> Dict[str, float]:
 def send_file(filename: str = "mytext.txt", testing: bool = False) -> None:
 def test_send_file_running_as_expected(file, sock):
-def quantum_entanglement(qubits: int = 2) -> qiskit.result.counts.Counts:
-def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
-def store_two_classics(val1: int, val2: int) -> tuple[QuantumCircuit, str, str]:
-def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
-def dj_algorithm(oracle: q.QuantumCircuit, num_qubits: int) -> q.QuantumCircuit:
-def deutsch_jozsa(case: str, num_qubits: int) -> q.result.counts.Counts:
-def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Counts:
-def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Counts:
-def add(a, b):
-def find_min(nums, left, right):
-def slow_primes(max: int) -> Generator[int, None, None]:
-def primes(max: int) -> Generator[int, None, None]:
-def prime_factors(n: int) -> list:
-def number_of_divisors(n: int) -> int:
-def sum_of_divisors(n: int) -> int:
-def euler_phi(n: int) -> int:
-def totient(n: int) -> list:
-def test_totient() -> None:
-def two_pointer(nums: list[int], target: int) -> list[int]:
-def exactPrimeFactorCount(n):
-def abs_val(num):
-def test_abs_val():
-def relu(vector: list[float]):
-def b_expo(a, b):
-def b_expo_mod(a, b, c):
-def factorial(n: int) -> int:
-def find_minimum_change(denominations: list[int], value: str) -> list[int]:
+def iterate(initial_vectors: list[numpy.ndarray], steps: int) -> list[numpy.ndarray]:
+def iteration_step(vectors: list[numpy.ndarray]) -> list[numpy.ndarray]:
+def rotate(vector: numpy.ndarray, angle_in_degrees: float) -> numpy.ndarray:
+def plot(vectors: list[numpy.ndarray]) -> None:
+def get_distance(x: float, y: float, max_step: int) -> float:
+def get_black_and_white_rgb(distance: float) -> tuple:
+def get_color_coded_rgb(distance: float) -> tuple:
+def getMid(p1, p2):
+def triangle(points, depth):
+def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, str]:
+def evaluate(item: str, main_target: str = target) -> tuple[str, float]:
+def select(parent_1: tuple[str, float]) -> list[str]:
+def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
+def mutate(child: str) -> str:
+def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+def __init__(self, list_of_points: list[tuple[float, float]]):
+def basis_function(self, t: float) -> list[float]:
+def bezier_curve_function(self, t: float) -> tuple[float, float]:
+def plot_curve(self, step_size: float = 0.01):
+def search(grid, init, goal, cost, heuristic):
+def computeAP(l):
+def dfs(root, at, parent, outEdgeCount):
+def _input(message):
+def dfs(G, s):
+def bfs(G, s):
+def dijk(G, s):
+def topo(G, ind=None, Q=None):
+def adjm():
+def floy(A_and_n):
+def prim(G, s):
+def edglist():
+def krusk(E_and_n):
+def find_isolated_nodes(graph):
+def print_distance(distance: list[float], src):
+def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
+def bfs_shortest_path_distance(graph: dict, start, target) -> int:
+def __init__(self, size: int):
+def __getitem__(self, vertex: int) -> Iterator[Edge]:
+def size(self):
+def add_edge(self, from_vertex: int, to_vertex: int, weight: int):
+def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> Optional[int]:
+def calculate_heuristic(self) -> float:
+def __lt__(self, other: Node) -> bool:
+def __init__(self, start: TPosition, goal: TPosition):
+def search(self) -> list[TPosition]:
+def get_successors(self, parent: Node) -> list[Node]:
+def retrace_path(self, node: Optional[Node]) -> list[TPosition]:
+def __init__(self, start: TPosition, goal: TPosition) -> None:
+def search(self) -> list[TPosition]:
+def __init__(self, start: tuple[int, int], goal: tuple[int, int]):
+def search(self) -> Optional[Path]:
+def get_successors(self, parent: Node) -> list[Node]:
+def retrace_path(self, node: Optional[Node]) -> Path:
+def __init__(self, start, goal):
+def search(self) -> Optional[Path]:
+def retrace_bidirectional_path(self, fwd_node: Node, bwd_node: Node) -> Path:
+def __init__(self) -> None:
+def print_graph(self) -> None:
+def add_edge(self, from_vertex: int, to_vertex: int) -> None:
+def bfs(self, start_vertex: int) -> Set[int]:
+def breadth_first_search(graph: dict, start: str) -> set[str]:
+def __init__(self, graph: dict[str, list[str]], source_vertex: str) -> None:
+def breath_first_search(self) -> None:
+def shortest_path(self, target_vertex: str) -> str:
+def checkBipartite(graph):
+def bfs():
+def check_bipartite_dfs(graph):
+def dfs(v, c):
+def dfs(graph: dict, vert: int, visited: list) -> list:
+def connected_components(graph: dict) -> list:
+def depth_first_search(graph: dict, start: str) -> Set[str]:
 def __init__(self):
-def roll(self):
-def _str_(self):
-def throw_dice(num_throws: int, num_dice: int = 2) -> list[float]:
-def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
-def prime_sieve(num: int) -> List[int]:
-def greatest_common_divisor(a: int, b: int) -> int:
-def gcd_by_iterative(x: int, y: int) -> int:
+def print_graph(self) -> None:
+def add_edge(self, from_vertex: int, to_vertex: int) -> None:
+def dfs(self) -> None:
+def dfs_recursive(self, start_vertex: int, visited: list) -> None:
+def dijkstra(graph, start, end):
+def printDist(dist, V):
+def minDist(mdist, vset, V):
+def Dijkstra(graph, V, src):
+def __init__(self):
+def isEmpty(self):
+def min_heapify(self, idx):
+def insert(self, tup):
+def extract_min(self):
+def left(self, i):
+def right(self, i):
+def par(self, i):
+def swap(self, i, j):
+def decrease_key(self, tup, new_d):
+def __init__(self, num):
+def add_edge(self, u, v, w):
+def show_graph(self):
+def dijkstra(self, src):
+def show_distances(self, src):
+def show_path(self, src, dest):
+def __init__(self, n):
+def add_edge(self, a, b, c, rcap=0):
+def depth_first_search(self, vertex, sink, flow):
+def max_flow(self, source, sink):
+def __init__(self):
+def add_pair(self, u, v, w=1):
+def all_nodes(self):
+def remove_pair(self, u, v):
+def dfs(self, s=-2, d=-1):
+def fill_graph_randomly(self, c=-1):
+def bfs(self, s=-2):
+def in_degree(self, u):
+def out_degree(self, u):
+def topological_sort(self, s=-2):
+def cycle_nodes(self):
+def has_cycle(self):
+def dfs_time(self, s=-2, e=-1):
+def bfs_time(self, s=-2):
+def __init__(self):
+def add_pair(self, u, v, w=1):
+def remove_pair(self, u, v):
+def dfs(self, s=-2, d=-1):
+def fill_graph_randomly(self, c=-1):
+def bfs(self, s=-2):
+def degree(self, u):
+def cycle_nodes(self):
+def has_cycle(self):
+def all_nodes(self):
+def dfs_time(self, s=-2, e=-1):
+def bfs_time(self, s=-2):
+def __init__(self, graph, sources, sinks):
+def _normalizeGraph(self, sources, sinks):
+def findMaximumFlow(self):
+def setMaximumFlowAlgorithm(self, Algorithm):
+def __init__(self, flowNetwork):
+def execute(self):
+def _algorithm(self):
+def __init__(self, flowNetwork):
+def getMaximumFlow(self):
+def __init__(self, flowNetwork):
+def _algorithm(self):
+def processVertex(self, vertexIndex):
+def push(self, fromIndex, toIndex):
+def relabel(self, vertexIndex):
+def dfs(u, graph, visited_edge, path=[]):
+def check_circuit_or_path(graph, max_node):
+def check_euler(graph, max_node):
 def main():
-def fx(x: float, a: float) -> float:
-def fx_derivative(x: float) -> float:
-def get_initial_point(a: float) -> float:
-def absMin(x):
-def main():
-def bin_exp_mod(a, n, b):
-def runge_kutta(f, y0, x0, h, x_end):
-def calculate_prob(text: str) -> None:
-def analyze_text(text: str) -> tuple[dict, dict]:
-def main():
-def armstrong_number(n: int) -> bool:
-def pluperfect_number(n: int) -> bool:
-def narcissistic_number(n: int) -> bool:
-def main():
-def combinations(n: int, k: int) -> int:
-def b_expo(a, b):
-def b_expo_mod(a, b, c):
-def sieve(n):
-def factorial(input_number: int) -> int:
-def zeller(date_input: str) -> str:
-def f(x):
-def __init__(self, x: float, y: float) -> None:
-def is_in_unit_circle(self) -> bool:
-def random_unit_square(cls):
-def estimate_pi(number_of_simulations: int) -> float:
-def quadratic_roots(a: int, b: int, c: int) -> tuple[complex, complex]:
-def main():
-def extended_euclidean_algorithm(a: int, b: int) -> Tuple[int, int]:
-def main():
-def mean(nums: List) -> float:
-def mode(input_list: list) -> list:
-def floor(x) -> int:
-def find_max(nums):
-def main():
-def binomial_coefficient(n, r):
-def prime_factors(n: int) -> list[int]:
-def surface_area_cube(side_length: float) -> float:
-def surface_area_sphere(radius: float) -> float:
-def area_rectangle(length: float, width: float) -> float:
-def area_square(side_length: float) -> float:
-def area_triangle(base: float, height: float) -> float:
-def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
-def area_parallelogram(base: float, height: float) -> float:
-def area_trapezium(base1: float, base2: float, height: float) -> float:
-def area_circle(radius: float) -> float:
-def area_ellipse(radius_x: float, radius_y: float) -> float:
-def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
-def __init__(self, x, y, z):
+def dfs(start: int) -> int:
+def even_tree():
+def computeBridges(graph):
+def dfs(at, parent, bridges, id):
+def get_distinct_edge(edge_array):
+def get_bitcode(edge_array, distinct_edge):
+def get_frequency_table(edge_array):
+def get_nodes(frequency_table):
+def get_cluster(nodes):
+def get_support(cluster):
+def print_all() -> None:
+def create_edge(nodes, graph, cluster, c1):
+def construct_graph(cluster, nodes):
+def myDFS(graph, start, end, path=[]):
+def find_freq_subgraph_given_support(s, cluster, graph):
+def freq_subgraphs_edge_list(paths):
+def preprocess(edge_array):
+def print_stack(stack, clothes):
+def depth_first_search(u, visited, graph):
+def topological_sort(graph, visited):
+def __init__(self, directed: bool = True) -> None:
 def __repr__(self) -> str:
-def distance(a: Point, b: Point) -> float:
-def test_distance() -> None:
-def is_prime(n, prec=1000):
-def timer_decorator(func):
-def timer_wrapper(*args, **kwargs):
-def _check_number_input(n, min_thresh, max_thresh=None):
-def fib_iterative(n):
-def fib_formula(n):
-def decimal_isolate(number, digitAmount):
-def check_valid_ip(ip: str) -> bool:
-def negative_exist(arr: list) -> int:
-def kadanes(arr: list) -> int:
-def res(x, y):
-def factors_of_a_number(num: int) -> list:
-def max_sub_array_sum(a: list, size: int = 0):
-def method_2(boundary, steps):
-def make_points(a, b, h):
-def f(x):
-def main():
-def find_max(nums, left, right):
-def karatsuba(a, b):
-def main():
-def prime_check(number: int) -> bool:
-def test_primes(self):
-def test_not_primes(self):
-def median(nums: Union[int, float]) -> Union[int, float]:
-def main():
-def binary_exponentiation(a, n):
-def __init__(self, arg):
-def __mul__(self, b):
-def modular_exponentiation(a, b):
-def fibonacci_with_matrix_exponentiation(n, f1, f2):
-def simple_fibonacci(n, f1, f2):
-def matrix_exponentiation_time():
-def simple_fibonacci_time():
-def main():
-def power(base: int, exponent: int) -> float:
-def double_factorial(n: int) -> int:
-def f(x):
-def mobius(n: int) -> int:
-def qr_householder(A):
-def sum_of_digits(n: int) -> int:
-def sum_of_digits_recursion(n: int) -> int:
-def sum_of_digits_compact(n: int) -> int:
-def benchmark() -> None:
-def euclidean_distance(vector_1: Vector, vector_2: Vector) -> VectorOut:
-def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
-def benchmark() -> None:
-def kthPermutation(k, n):
-def f(x: float) -> float:
-def simpson_integration(function, a: float, b: float, precision: int = 4) -> float:
-def softmax(vector):
-def evaluate_poly(poly: Sequence[float], x: float) -> float:
-def horner(poly: Sequence[float], x: float) -> float:
-def n31(a: int) -> tuple[list[int], int]:
-def test_n31():
-def binary_exponentiation(a, n, mod):
-def isPrime(number):
-def sieveEr(N):
-def getPrimeNumbers(N):
-def primeFactorization(number):
-def greatestPrimeFactor(number):
-def smallestPrimeFactor(number):
-def isEven(number):
-def isOdd(number):
-def goldbach(number):
-def gcd(number1, number2):
-def kgV(number1, number2):
-def getPrime(n):
-def getPrimesBetween(pNumber1, pNumber2):
-def getDivisors(n):
-def isPerfectNumber(number):
-def simplifyFraction(numerator, denominator):
-def factorial(n):
-def fib(n):
-def factorial(n: int) -> int:
-def jaccard_similariy(setA, setB, alternativeUnion=False):
-def sum_of_series(first_term, common_diff, num_of_terms):
-def main():
-def explicit_euler(ode_func, y0, x0, step_size, x_end):
-def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
-def abs_max(x: list[int]) -> int:
-def abs_max_sort(x):
-def main():
-def recursive_lucas_number(n_th_number: int) -> int:
-def dynamic_lucas_number(n_th_number: int) -> int:
-def vol_cube(side_length: Union[int, float]) -> float:
-def vol_cuboid(width: float, height: float, length: float) -> float:
-def vol_cone(area_of_base: float, height: float) -> float:
-def vol_right_circ_cone(radius: float, height: float) -> float:
-def vol_prism(area_of_base: float, height: float) -> float:
-def vol_pyramid(area_of_base: float, height: float) -> float:
-def vol_sphere(radius: float) -> float:
-def vol_circular_cylinder(radius: float, height: float) -> float:
-def main():
-def aliquot_sum(input_num: int) -> int:
-def num_digits(n: int) -> int:
-def num_digits_fast(n: int) -> int:
-def num_digits_faster(n: int) -> int:
-def benchmark() -> None:
-def pi_estimator(iterations: int):
-def is_in_circle(x: float, y: float) -> bool:
-def identity_function(x: float) -> float:
-def pi_estimator_using_area_under_curve(iterations: int) -> None:
-def function_to_integrate(x: float) -> float:
-def __init__(self, polyA=[0], polyB=[0]):
-def __DFT(self, which):
-def __multiply(self):
+def __init__(self, vertex):
+def add_edge(self, u, v):
+def show(self):
+def _print_dist(dist, v):
+def floyd_warshall(graph, v):
+def calculate_heuristic(self) -> float:
+def __lt__(self, other) -> bool:
+def __init__(self, start: tuple[int, int], goal: tuple[int, int]):
+def search(self) -> Optional[Path]:
+def get_successors(self, parent: Node) -> list[Node]:
+def retrace_path(self, node: Optional[Node]) -> Path:
+def longestDistance(graph):
+def topologicalSort(graph):
+def partition_graph(graph: dict[str, list[str]]) -> set[tuple[str, str]]:
+def __init__(self):
+def add_node(self, node: str) -> None:
+def get_nodes(self) -> list[str]:
+def transition(self, node: str) -> str:
+def __init__(self):
+def add_vertex(self, vertex):
+def add_edge(self, head, tail, weight):
+def distinct_weight(self):
 def __str__(self):
-def is_square_free(factors: list[int]) -> bool:
-def prime_sieve_eratosthenes(num):
-def f(x):
-def calc_derivative(f, a, h=0.001):
-def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=False):
-def gamma(num: float) -> float:
-def integrand(x: float, z: float) -> float:
-def modular_exponential(base: int, power: int, mod: int):
-def main():
-def max_sum_in_array(array: List[int], k: int) -> int:
-def binomial_distribution(successes: int, trials: int, prob: float) -> float:
-def two_sum(nums: list[int], target: int) -> list[int]:
-def least_common_multiple_slow(first_num: int, second_num: int) -> int:
-def greatest_common_divisor(a: int, b: int) -> int:
-def least_common_multiple_fast(first_num: int, second_num: int) -> int:
-def benchmark():
-def test_lcm_function(self):
-def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
-def collatz_sequence(n: int) -> list[int]:
-def main():
-def perfect_cube(n: int) -> bool:
-def lucas_lehmer_test(p: int) -> bool:
-def euclidean_gcd(a: int, b: int) -> int:
-def euclidean_gcd_recursive(a: int, b: int) -> int:
-def main():
-def perfect_square(num: int) -> bool:
-def perfect_square_binary_search(n: int) -> bool:
-def pi(precision: int) -> str:
-def method_1(boundary, steps):
-def make_points(a, b, h):
-def f(x):
-def main():
-def median_of_two_arrays(nums1: List[float], nums2: List[float]) -> float:
-def radians(degree: float) -> float:
-def make_dataset() -> tuple[list[int], int]:
-def triplet_sum1(arr: list[int], target: int) -> tuple[int, ...]:
-def triplet_sum2(arr: list[int], target: int) -> tuple[int, int, int]:
-def solution_times() -> tuple[float, float]:
-def ceil(x) -> int:
-def equation(x: float) -> float:
-def bisection(a: float, b: float) -> float:
-def perfect(number: int) -> bool:
-def find_min(nums):
-def main():
-def factorial(digit: int) -> int:
-def krishnamurthy(number: int) -> bool:
-def recur_fibo(n: int) -> int:
-def main() -> None:
-def ugly_numbers(n: int) -> int:
-def sigmoid(vector: np.array) -> np.array:
-def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> list:
-def harmonic_series(n_term: str) -> list:
-def is_geometric_series(series: list) -> bool:
-def geometric_mean(series: list) -> float:
-def is_arithmetic_series(series: list) -> bool:
-def arithmetic_mean(series: list) -> float:
-def p_series(nth_term: int, power: int) -> list:
-def calculate_waiting_times(duration_times: List[int]) -> List[int]:
-def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
-def calculate_average_waiting_time(waiting_times: List[int]) -> float:
-def calculate_waiting_times(burst_times: List[int]) -> List[int]:
-def position(self) -> tuple[float, float]:
-def velocity(self) -> tuple[float, float]:
-def update_position(self, delta_time: float) -> None:
+def get_edges(self):
+def get_vertices(self):
+def build(vertices=None, edges=None):
+def __init__(self):
+def __len__(self):
+def make_set(self, item):
+def find(self, item):
+def union(self, item1, item2):
+def boruvka_mst(graph):
+def find_parent(i):
+def __init__(self, data: T) -> None:
+def __init__(self) -> None:
+def make_set(self, data: T) -> None:
+def find_set(self, data: T) -> DisjointSetTreeNode[T]:
+def union(self, data1: T, data2: T) -> None:
+def __init__(self) -> None:
+def add_node(self, node: T) -> None:
+def add_edge(self, node1: T, node2: T, weight: int) -> None:
+def kruskal(self) -> GraphUndirectedWeighted[T]:
+def PrimsAlgorithm(l):
+def get_position(vertex):
+def set_position(vertex, pos):
+def top_to_bottom(heap, start, size, positions):
+def bottom_to_top(val, index, heap, position):
+def heapify(heap, positions):
+def deleteMinimum(heap, positions):
+def get_parent_position(position: int) -> int:
+def get_child_left_position(position: int) -> int:
+def get_child_right_position(position: int) -> int:
+def __init__(self) -> None:
 def __len__(self) -> int:
-def update_system(self, delta_time: float) -> None:
-def update(frame: int) -> list[plt.Circle]:
-def example_1() -> BodySystem:
-def example_2() -> BodySystem:
-def example_3() -> BodySystem:
-def BFS(graph, s, t, parent):
-def FordFulkerson(graph, source, sink):
-def BFS(graph, s, t, parent):
-def mincut(graph, source, sink):
-def __init__(self, text: str, pattern: str):
-def match_in_pattern(self, char: str) -> int:
-def mismatch_in_text(self, currentPos: int) -> int:
-def bad_character_heuristic(self) -> List[int]:
-def can_string_be_rearranged_as_palindrome(input_str: str = "") -> bool:
-def benchmark(input_str: str = "") -> None:
-def word_occurence(sentence: str) -> dict:
-def upper(word: str) -> str:
-def jaro_winkler(str1: str, str2: str) -> float:
-def get_matched_characters(_str1: str, _str2: str) -> str:
-def capitalize(sentence: str) -> str:
-def naive_pattern_search(s: str, pattern: str) -> list:
-def remove_duplicates(sentence: str) -> str:
-def loadDictionary():
-def getEnglishCount(message):
-def removeNonLetters(message):
-def isEnglish(message, wordPercentage=20, letterPercentage=85):
-def signature(word):
-def anagram(my_word):
-def alternative_string_arrange(first_str: str, second_str: str) -> str:
-def benchmark() -> None:
-def swap_case(sentence: str) -> str:
-def indian_phone_validator(phone: str) -> bool:
-def reverse_letters(input_str: str) -> str:
-def reverse_words(input_str: str) -> str:
-def is_palindrome(s: str) -> bool:
-def split(string: str, separator: str = " ") -> list:
-def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
-def check_anagrams(first_str: str, second_str: str) -> bool:
-def levenshtein_distance(first_word: str, second_word: str) -> int:
-def lower(word: str) -> str:
-def rabin_karp(pattern: str, text: str) -> bool:
-def test_rabin_karp() -> None:
-def get_word_pattern(word: str) -> str:
-def getLetterCount(message):
-def getItemAtIndexZero(x):
-def getFrequencyOrder(message):
-def englishFreqMatchScore(message):
-def palindromic_string(input_string: str) -> str:
-def kmp(pattern: str, text: str) -> bool:
-def get_failure_array(pattern: str) -> List[int]:
-def __init__(self, keywords: List[str]):
-def find_next_state(self, current_state: int, char: str) -> Union[int, None]:
-def add_keyword(self, keyword: str) -> None:
-def set_fail_transitions(self) -> None:
-def search_in(self, string: str) -> Dict[str, List[int]]:
-def prefix_function(input_string: str) -> list:
-def longest_prefix(input_str: str) -> int:
-def __init__(self):
-def insert_word(self, text):
-def find_word(self, prefix):
-def _elements(self, d):
-def autocomplete_using_trie(s):
-def main():
-def z_function(input_str: str) -> list:
-def go_next(i, z_result, s):
-def find_pattern(pattern: str, input_str: str) -> int:
-def is_palindrome(s: str) -> bool:
-def is_palindrome_recursive(s: str) -> bool:
-def is_palindrome_slice(s: str) -> bool:
-def floyd(n):
-def reverse_floyd(n):
-def pretty_print(n):
-def gauss_easter(year: int) -> datetime:
-def __init__(self, key: int, val: int):
-def __init__(self):
-def add(self, node: DoubleLinkedListNode) -> None:
-def _position_node(self, node: DoubleLinkedListNode) -> None:
-def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
-def __init__(self, capacity: int):
 def __repr__(self) -> str:
-def __contains__(self, key: int) -> bool:
-def get(self, key: int) -> Optional[int]:
-def set(self, key: int, value: int) -> None:
-def decorator(size: int = 128):
-def cache_decorator_inner(func: Callable):
-def cache_decorator_wrapper(*args, **kwargs):
-def cache_info():
-def __init__(self, key: int, val: int):
-def __init__(self):
-def add(self, node: DoubleLinkedListNode) -> None:
-def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
-def __init__(self, capacity: int):
+def is_empty(self) -> bool:
+def push(self, elem: T, weight: int) -> None:
+def extract_min(self) -> T:
+def update_key(self, elem: T, weight: int) -> None:
+def _bubble_up(self, elem: T) -> None:
+def _bubble_down(self, elem: T) -> None:
+def _swap_nodes(self, node1_pos: int, node2_pos: int) -> None:
+def __init__(self) -> None:
 def __repr__(self) -> str:
-def __contains__(self, key: int) -> bool:
-def get(self, key: int) -> Optional[int]:
-def set(self, key: int, value: int) -> None:
-def decorator(size: int = 128):
-def cache_decorator_inner(func: Callable):
-def cache_decorator_wrapper(*args, **kwargs):
-def cache_info():
-def __processes_resource_summation(self) -> list[int]:
-def __available_resources(self) -> list[int]:
-def __need(self) -> list[list[int]]:
-def __need_index_manager(self) -> dict[int, list[int]]:
-def main(self, **kwargs) -> None:
-def __pretty_data(self):
-def __init__(self, n: int):
-def refer(self, x):
-def display(self):
-def __init__(self, multiplier, increment, modulo, seed=int(time())):
-def next_number(self):
-def procentual_proximity(source_data: list, weights: list) -> list:
-def apply_table(inp, table):
-def left_shift(data):
-def XOR(a, b):
-def apply_sbox(s, data):
-def function(expansion, s0, s1, key, message):
-def is_balanced(S):
-def main():
-def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
-def angle_comparer(point: list[int, int], minx: int, miny: int) -> float:
-def printMaxActivities(start, finish):
-def password_generator(length=8):
-def alternative_password_generator(ctbi, i):
-def random(ctbi, i):
-def random_number(ctbi, i):
-def random_letters(ctbi, i):
-def random_characters(ctbi, i):
-def main():
-def __init__(self, name, value, weight):
+def __len__(self) -> int:
+def add_node(self, node: T) -> None:
+def add_edge(self, node1: T, node2: T, weight: int) -> None:
+def __init__(self):
+def minkey(self):
+def empty(self):
+def put(self, item, priority):
+def remove_element(self, item):
+def top_show(self):
+def get(self):
+def consistent_heuristic(P: TPos, goal: TPos):
+def heuristic_2(P: TPos, goal: TPos):
+def heuristic_1(P: TPos, goal: TPos):
+def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
+def do_something(back_pointer, goal, start):
+def valid(p: TPos):
+def make_common_ground():
+def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
+def __init__(self, name):
+def add_inbound(self, node):
+def add_outbound(self, node):
 def __repr__(self):
-def get_value(self):
-def get_name(self):
-def get_weight(self):
-def value_Weight(self):
-def build_menu(name, value, weight):
-def greedy(item, maxCost, keyFunc):
-def test_greedy():
-def __init__(self, literals: List[int]) -> None:
-def __str__(self) -> str:
-def __len__(self) -> int:
-def assign(self, model: Dict[str, bool]) -> None:
-def evaluate(self, model: Dict[str, bool]) -> bool:
-def __init__(self, clauses: List[Clause]) -> None:
-def __str__(self) -> str:
-def generate_clause() -> Clause:
-def generate_formula() -> Formula:
-def generate_parameters(formula: Formula) -> (List[Clause], List[str]):
-def moveTower(height, fromPole, toPole, withPole):
-def moveDisk(fp, tp):
+def page_rank(nodes, limit=3, d=0.85):
 def main():
-def get_week_day(year: int, month: int, day: int) -> str:
-def FYshuffle(list):
-def chunker(seq: Iterable[str], size: int) -> Generator[tuple[str, ...], None, None]:
-def prepare_input(dirty: str) -> str:
-def generate_table(key: str) -> list[str]:
-def encode(plaintext: str, key: str) -> str:
-def decode(ciphertext: str, key: str) -> str:
-def miller_rabin(n: int, allow_probable: bool = False) -> bool:
-def test_miller_rabin() -> None:
-def base64_encode(data: bytes) -> bytes:
-def base64_decode(encoded_data: str) -> bytes:
-def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
-def remove_duplicates(key: str) -> str:
-def create_cipher_map(key: str) -> dict[str, str]:
-def encipher(message: str, cipher_map: dict[str, str]) -> str:
-def decipher(message: str, cipher_map: dict[str, str]) -> str:
-def main() -> None:
-def main() -> None:
-def generateKey(keySize: int) -> tuple[tuple[int, int], tuple[int, int]]:
-def makeKeyFiles(name: str, keySize: int) -> None:
-def main() -> None:
-def __init__(self, key: int = 0):
-def encrypt(self, content: str, key: int) -> list[str]:
-def decrypt(self, content: str, key: int) -> list[str]:
-def encrypt_string(self, content: str, key: int = 0) -> str:
-def decrypt_string(self, content: str, key: int = 0) -> str:
-def encrypt_file(self, file: str, key: int = 0) -> bool:
-def decrypt_file(self, file: str, key: int) -> bool:
-def atbash_slow(sequence: str) -> str:
-def atbash(sequence: str) -> str:
-def benchmark() -> None:
-def encrypt(input_string: str, key: int) -> str:
-def decrypt(input_string: str, key: int) -> str:
-def bruteforce(input_string: str) -> dict[int, str]:
-def _plugboard(pbstring: str) -> dict[str, str]:
-def decrypt(message: str) -> None:
-def main() -> None:
-def main() -> None:
-def main() -> None:
-def encryptMessage(key: str, message: str) -> str:
-def decryptMessage(key: str, message: str) -> str:
-def translateMessage(key: str, message: str, mode: str) -> str:
-def encrypt(text: str) -> tuple[list[int], list[int]]:
-def decrypt(cipher: list[int], key: list[int]) -> str:
-def find_primitive(n: int) -> Optional[int]:
-def read_key_file(key_filename: str) -> tuple[int, int, int]:
-def read_from_file_and_decrypt(message_filename: str, key_filename: str) -> str:
-def main() -> None:
-def main() -> None:
-def checkValidKey(key: str) -> None:
-def encryptMessage(key: str, message: str) -> str:
-def decryptMessage(key: str, message: str) -> str:
-def translateMessage(key: str, message: str, mode: str) -> str:
-def getRandomKey() -> str:
-def dencrypt(s: str, n: int = 13) -> str:
-def main() -> None:
-def encode(plain: str) -> list[int]:
-def decode(encoded: list[int]) -> str:
-def main() -> None:
-def main() -> None:
-def generate_key(message: str, key: str) -> str:
-def cipher_text(message: str, key_new: str) -> str:
-def original_text(cipher_text: str, key_new: str) -> str:
-def main() -> None:
-def rsafactor(d: int, e: int, N: int) -> list[int]:
-def generate_table(key: str) -> list[tuple[str, str]]:
-def encrypt(key: str, words: str) -> str:
-def decrypt(key: str, words: str) -> str:
-def get_position(table: tuple[str, str], char: str) -> tuple[int, int]:
-def get_opponent(table: tuple[str, str], char: str) -> str:
-def encrypt(message: str) -> str:
-def decrypt(message: str) -> str:
-def main() -> None:
-def check_keys(keyA: int, keyB: int, mode: str) -> None:
-def encrypt_message(key: int, message: str) -> str:
-def decrypt_message(key: int, message: str) -> str:
-def get_random_key() -> int:
-def main() -> None:
-def __init__(self, passcode: Optional[str] = None) -> None:
-def __str__(self) -> str:
-def __neg_pos(self, iterlist: list[int]) -> list[int]:
-def __passcode_creator(self) -> list[str]:
-def __make_key_list(self) -> list[str]:
-def __make_shift_key(self) -> int:
-def decrypt(self, encoded_message: str) -> str:
-def encrypt(self, plaintext: str) -> str:
-def test_end_to_end(msg: str = "Hello, this is a modified Caesar cipher") -> str:
-def encrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
-def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
-def brute_force(input_string: str, alphabet: Optional[str] = None) -> Dict[int, str]:
-def main() -> None:
-def encryptMessage(key: int, message: str) -> str:
-def decryptMessage(key: int, message: str) -> str:
-def greatest_common_divisor(a: int, b: int) -> int:
-def __init__(self, encrypt_key: numpy.ndarray) -> None:
-def replace_letters(self, letter: str) -> int:
-def replace_digits(self, num: int) -> str:
-def check_determinant(self) -> None:
-def process_text(self, text: str) -> str:
-def encrypt(self, text: str) -> str:
-def make_decrypt_key(self) -> numpy.ndarray:
-def decrypt(self, text: str) -> str:
-def main() -> None:
-def primitive_root(p_val: int) -> int:
-def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, int]]:
-def make_key_files(name: str, keySize: int) -> None:
-def main() -> None:
-def __encryptPart(messagePart: str, character2Number: dict[str, str]) -> str:
-def encode_to_b16(inp: str) -> bytes:
-def rabinMiller(num: int) -> bool:
-def isPrime(num: int) -> bool:
-def generateLargePrime(keysize: int = 1024) -> int:
-def encrypt_message(key: str, message: str) -> str:
-def decrypt_message(key: str, message: str) -> str:
-def main() -> None:
-def __init__(self, group: int = 14) -> None:
-def get_private_key(self) -> str:
-def generate_public_key(self) -> str:
-def is_valid_public_key(self, key: int) -> bool:
-def generate_shared_key(self, other_key_str: str) -> str:
-def is_valid_public_key_static(remote_public_key_str: int, prime: int) -> bool:
-def gcd(a: int, b: int) -> int:
-def find_mod_inverse(a: int, m: int) -> int:
-def download_video(url: str) -> bytes:
-def imdb_top(imdb_top_n):
-def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") -> dict:
-def fetch_bbc_news(bbc_news_api_key: str) -> None:
-def login_using_recaptcha(request):
-def test_fetch_github_info(monkeypatch):
-def __init__(self, content) -> None:
-def json(self):
-def mock_response(*args, **kwargs):
-def save_image(image_url: str, image_title: str) -> None:
-def random_anime_character() -> tuple[str, str, str]:
-def current_weather(q: str = "Chicago", appid: str = APPID) -> dict:
-def weather_forecast(q: str = "Kolkata, India", appid: str = APPID) -> dict:
-def weather_onecall(lat: float = 55.68, lon: float = 12.57, appid: str = APPID) -> dict:
-def __init__(self, domain: str) -> None:
-def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
-def get_domain_name(url: str) -> str:
-def get_sub_domain_name(url: str) -> str:
-def emails_from_url(url: str = "https://github.com") -> list[str]:
-def fetch_last_half_hour() -> str:
-def fetch_from_to(start, end) -> list:
-def extract_user_profile(script) -> dict:
-def __init__(self, username):
-def get_json(self) -> dict:
-def __repr__(self) -> str:
-def __str__(self) -> str:
-def username(self) -> str:
-def fullname(self) -> str:
-def biography(self) -> str:
-def email(self) -> str:
-def website(self) -> str:
-def number_of_followers(self) -> int:
-def number_of_followings(self) -> int:
-def number_of_posts(self) -> int:
-def profile_picture_url(self) -> str:
-def is_verified(self) -> bool:
-def is_private(self) -> bool:
-def test_instagram_user(username: str = "github") -> None:
-def fetch_github_info(auth_token: str) -> Dict[Any, Any]:
-def stock_price(symbol: str = "AAPL") -> str:
-def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, None]:
-def get_imdb_top_250_movies(url: str = "") -> dict[str, float]:
-def write_movies(filename: str = "IMDb_Top_250_Movies.csv") -> None:
-def horoscope(zodiac_sign: int, day: str) -> str:
-def covid_stats(url: str = "https://www.worldometers.info/coronavirus/") -> covid_data:
-def get_citation(base_url: str, params: dict) -> str:
-def send_slack_message(message_body: str, slack_url: str) -> None:
-def is_hermitian(matrix: np.ndarray) -> bool:
-def rayleigh_quotient(A: np.ndarray, v: np.ndarray) -> Any:
-def tests() -> None:
-def scaling(scaling_factor: float) -> list[list[float]]:
-def rotation(angle: float) -> list[list[float]]:
-def projection(angle: float) -> list[list[float]]:
-def reflection(angle: float) -> list[list[float]]:
-def points_to_polynomial(coordinates: list[list[int]]) -> str:
-def test_component(self) -> None:
-def test_str(self) -> None:
-def test_size(self) -> None:
-def test_euclidLength(self) -> None:
-def test_add(self) -> None:
-def test_sub(self) -> None:
-def test_mul(self) -> None:
-def test_zeroVector(self) -> None:
-def test_unitBasisVector(self) -> None:
-def test_axpy(self) -> None:
-def test_copy(self) -> None:
-def test_changeComponent(self) -> None:
-def test_str_matrix(self) -> None:
-def test_determinate(self) -> None:
-def test__mul__matrix(self) -> None:
-def test_changeComponent_matrix(self) -> None:
-def test_component_matrix(self) -> None:
-def test__add__matrix(self) -> None:
-def test__sub__matrix(self) -> None:
-def test_squareZeroMatrix(self) -> None:
-def test_power_iteration() -> None:
+def __init__(self, id):
+def __lt__(self, other):
+def __repr__(self):
+def add_neighbor(self, vertex):
+def add_edge(self, vertex, weight):
+def connect(graph, a, b, edge):
+def prim(graph: list, root: Vertex) -> list:
+def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
+def test_vector() -> None:
+def dfs(u):
+def dfs2(u):
+def kosaraju():
+def strongly_connected_components(graph: dict[int, list[int]]) -> list[list[int]]:
+def tarjan(g):
+def strong_connect(v, index, components):
+def create_graph(n, edges):
+def test_kruskal_successful_result():
+def test_prim_successful_result():
+def adler32(plain_text: str) -> int:
+def push(seed):
+def pull():
+def xorshift(X, Y):
+def reset():
+def djb2(s: str) -> int:
+def rotator():
+def engine(input_character):
+def text_to_bits(text, encoding="utf-8", errors="surrogatepass"):
+def text_from_bits(bits, encoding="utf-8", errors="surrogatepass"):
+def emitterConverter(sizePar, data):
+def receptorConverter(sizePar, data):
+def is_luhn(string: str) -> bool:
+def rearrange(bitString32):
+def reformatHex(i):
+def pad(bitString):
+def getBlock(bitString):
+def not32(i):
+def sum32(a, b):
+def leftrot32(i, s):
+def md5me(testString):
+def test():
+def sdbm(plain_text: str) -> int:
+def __init__(self, data):
+def rotate(n, b):
+def padding(self):
+def split_blocks(self):
+def expand_block(self, block):
+def final_hash(self):
+def testMatchHashes(self):
+def main():
+def calc_profit(profit: list, weight: list, max_weight: int) -> int:
+def knapsack(capacity: int, weights: List[int], values: List[int], counter: int) -> int:
+def test_sorted(self):
+def test_negative_max_weight(self):
+def test_negative_profit_value(self):
+def test_negative_weight_value(self):
+def test_null_max_weight(self):
+def test_unequal_list_length(self):
+def test_base_case(self):
+def test_easy_case(self):
+def test_knapsack(self):
+def _is_matrix_spd(matrix: np.ndarray) -> bool:
+def _create_spd_matrix(dimension: int) -> Any:
+def test_conjugate_gradient() -> None:
 def __init__(self, components: Optional[Collection[float]] = None) -> None:
 def set(self, components: Collection[float]) -> None:
 def __str__(self) -> str:
@@ -1856,497 +1346,56 @@ def __add__(self, other: "Matrix") -> "Matrix":
 def __sub__(self, other: "Matrix") -> "Matrix":
 def squareZeroMatrix(N: int) -> Matrix:
 def randomMatrix(W: int, H: int, a: int, b: int) -> Matrix:
-def _is_matrix_spd(matrix: np.ndarray) -> bool:
-def _create_spd_matrix(dimension: int) -> Any:
-def test_conjugate_gradient() -> None:
-def hex_to_decimal(hex_string: str) -> int:
-def hex_to_bin(hex_num: str) -> int:
-def bin_to_octal(bin_string: str) -> str:
-def molarity_to_normality(nfactor: int, moles: float, volume: float) -> float:
-def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:
-def moles_to_volume(pressure: float, moles: float, temperature: float) -> float:
-def decimal_to_octal(num: int) -> str:
-def main() -> None:
-def hsv_to_rgb(hue: float, saturation: float, value: float) -> list[int]:
-def rgb_to_hsv(red: int, green: int, blue: int) -> list[float]:
-def approximately_equal_hsv(hsv_1: list[float], hsv_2: list[float]) -> bool:
-def oct_to_decimal(oct_string: str) -> int:
-def weight_conversion(from_type: str, to_type: str, value: float) -> float:
-def binary_recursive(decimal: int) -> str:
-def main(number: str) -> str:
-def decimal_to_binary(num: int) -> str:
-def decimal_to_any(num: int, base: int) -> str:
-def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
-def celsius_to_kelvin(celsius: float, ndigits: int = 2) -> float:
-def celsius_to_rankine(celsius: float, ndigits: int = 2) -> float:
-def fahrenheit_to_celsius(fahrenheit: float, ndigits: int = 2) -> float:
-def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
-def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
-def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
-def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
-def kelvin_to_rankine(kelvin: float, ndigits: int = 2) -> float:
-def rankine_to_celsius(rankine: float, ndigits: int = 2) -> float:
-def rankine_to_fahrenheit(rankine: float, ndigits: int = 2) -> float:
-def rankine_to_kelvin(rankine: float, ndigits: int = 2) -> float:
-def reaumur_to_kelvin(reaumur: float, ndigits: int = 2) -> float:
-def reaumur_to_fahrenheit(reaumur: float, ndigits: int = 2) -> float:
-def reaumur_to_celsius(reaumur: float, ndigits: int = 2) -> float:
-def reaumur_to_rankine(reaumur: float, ndigits: int = 2) -> float:
-def decimal_to_hexadecimal(decimal: float) -> str:
-def bin_to_decimal(bin_string: str) -> int:
-def roman_to_int(roman: str) -> int:
-def int_to_roman(number: int) -> str:
-def electric_power(voltage: float, current: float, power: float) -> Tuple:
-def ohms_law(voltage: float, current: float, resistance: float) -> Dict[str, float]:
-def catalan_numbers(upper_limit: int) -> "list[int]":
-def isSumSubset(arr, arrLen, requiredSum):
+def points_to_polynomial(coordinates: list[list[int]]) -> str:
+def test_power_iteration() -> None:
+def is_hermitian(matrix: np.ndarray) -> bool:
+def rayleigh_quotient(A: np.ndarray, v: np.ndarray) -> Any:
+def tests() -> None:
+def test_component(self) -> None:
+def test_str(self) -> None:
+def test_size(self) -> None:
+def test_euclidLength(self) -> None:
+def test_add(self) -> None:
+def test_sub(self) -> None:
+def test_mul(self) -> None:
+def test_zeroVector(self) -> None:
+def test_unitBasisVector(self) -> None:
+def test_axpy(self) -> None:
+def test_copy(self) -> None:
+def test_changeComponent(self) -> None:
+def test_str_matrix(self) -> None:
+def test_determinate(self) -> None:
+def test__mul__matrix(self) -> None:
+def test_changeComponent_matrix(self) -> None:
+def test_component_matrix(self) -> None:
+def test__add__matrix(self) -> None:
+def test__sub__matrix(self) -> None:
+def test_squareZeroMatrix(self) -> None:
+def scaling(scaling_factor: float) -> list[list[float]]:
+def rotation(angle: float) -> list[list[float]]:
+def projection(angle: float) -> list[list[float]]:
+def reflection(angle: float) -> list[list[float]]:
 def __init__(self):
-def __prepare__(self, N=0, M=0):
-def __solveDP(self, x, y):
-def solve(self, A, B):
-def min_distance_bottom_up(word1: str, word2: str) -> int:
-def find_max_sub_array(A, low, high):
-def find_max_cross_sum(A, low, mid, high):
-def max_sub_array(nums: list[int]) -> int:
-def MatrixChainOrder(array):
-def PrintOptimalSolution(OptimalSolution, i, j):
-def main():
-def factorial(num: int) -> int:
-def longest_common_subsequence(x: str, y: str):
-def __init__(self, arr):
-def solve_sub_array(self):
-def __init__(self, task_performed, total):
-def CountWaysUtil(self, mask, task_no):
-def countNoOfWays(self, task_performed):
-def min_steps_to_one(number: int) -> int:
-def list_of_submasks(mask: int) -> list[int]:
-def minimum_cost_path(matrix: list[list[int]]) -> int:
-def __init__(self, N=None):
-def get(self, sequence_no=None):
-def CeilIndex(v, l, r, key):
-def LongestIncreasingSubsequenceLength(v: list[int]) -> int:
-def climb_stairs(n: int) -> int:
-def fracKnapsack(vl, wt, W, n):
-def abbr(a: str, b: str) -> bool:
-def longest_subsequence(array: list[int]) -> list[int]:
-def naive_cut_rod_recursive(n: int, prices: list):
-def top_down_cut_rod(n: int, prices: list):
-def _top_down_cut_rod_recursive(n: int, prices: list, max_rev: list):
-def bottom_up_cut_rod(n: int, prices: list):
-def _enforce_args(n: int, prices: list):
-def main():
-def __init__(self, key, freq):
-def __str__(self):
-def print_binary_search_tree(root, key, i, j, parent, is_left):
-def find_optimal_binary_search_tree(nodes):
-def main():
-def maximum_non_adjacent_sum(nums: list[int]) -> int:
-def fibonacci(n: int) -> int:
-def _fib(n: int) -> tuple[int, int]:
-def combination_util(arr, n, r, index, data, i):
-def print_combination(arr, n, r):
-def max_subarray_sum(nums: list) -> int:
-def MF_knapsack(i, wt, val, j):
-def knapsack(W, wt, val, n):
-def knapsack_with_example_solution(W: int, wt: list, val: list):
-def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
-def findMin(arr):
-def __init__(self, N=0):
-def addEdge(self, u, v, w):
-def floyd_warshall(self):
-def showMin(self, u, v):
-def partition(m):
-def dp_count(S, n):
-def __init__(self, letter, freq):
-def __repr__(self):
-def __init__(self, freq, left, right):
-def parse_file(file_path):
-def build_tree(letters):
-def traverse_tree(root, bitstring):
-def huffman(file_path):
-def all_rotations(s: str) -> list[str]:
-def bwt_transform(s: str) -> dict:
-def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
-def read_file_binary(file_path: str) -> str:
-def compress_data(data_bits: str) -> str:
-def add_file_length(source_path: str, compressed: str) -> str:
-def write_file_binary(file_path: str, to_write: str) -> None:
-def compress(source_path, destination_path: str) -> None:
-def psnr(original, contrast):
-def main():
-def read_file_binary(file_path: str) -> str:
-def decompress_data(data_bits: str) -> str:
-def write_file_binary(file_path: str, to_write: str) -> None:
-def remove_prefix(data_bits: str) -> str:
-def compress(source_path: str, destination_path: str) -> None:
-def compare_string(string1: str, string2: str) -> str:
-def check(binary: List[str]) -> List[str]:
-def decimal_to_binary(no_of_variable: int, minterms: List[float]) -> List[str]:
-def is_for_table(string1: str, string2: str, count: int) -> bool:
-def selection(chart: List[List[int]], prime_implicants: List[str]) -> List[str]:
-def main():
-def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, str]:
-def evaluate(item: str, main_target: str = target) -> tuple[str, float]:
-def select(parent_1: tuple[str, float]) -> list[str]:
-def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
-def mutate(child: str) -> str:
-def dfs(u):
-def dfs2(u):
-def kosaraju():
-def __init__(self):
-def add_pair(self, u, v, w=1):
-def all_nodes(self):
-def remove_pair(self, u, v):
-def dfs(self, s=-2, d=-1):
-def fill_graph_randomly(self, c=-1):
-def bfs(self, s=-2):
-def in_degree(self, u):
-def out_degree(self, u):
-def topological_sort(self, s=-2):
-def cycle_nodes(self):
-def has_cycle(self):
-def dfs_time(self, s=-2, e=-1):
-def bfs_time(self, s=-2):
-def __init__(self):
-def add_pair(self, u, v, w=1):
-def remove_pair(self, u, v):
-def dfs(self, s=-2, d=-1):
-def fill_graph_randomly(self, c=-1):
-def bfs(self, s=-2):
-def degree(self, u):
-def cycle_nodes(self):
-def has_cycle(self):
-def all_nodes(self):
-def dfs_time(self, s=-2, e=-1):
-def bfs_time(self, s=-2):
-def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
-def bfs_shortest_path_distance(graph: dict, start, target) -> int:
-def __init__(self):
-def add_vertex(self, vertex):
-def add_edge(self, head, tail, weight):
-def distinct_weight(self):
-def __str__(self):
-def get_edges(self):
-def get_vertices(self):
-def build(vertices=None, edges=None):
-def __init__(self):
-def __len__(self):
-def make_set(self, item):
-def find(self, item):
-def union(self, item1, item2):
-def boruvka_mst(graph):
-def find_parent(i):
-def __init__(self):
-def add_node(self, node: str) -> None:
-def get_nodes(self) -> list[str]:
-def transition(self, node: str) -> str:
-def _input(message):
-def dfs(G, s):
-def bfs(G, s):
-def dijk(G, s):
-def topo(G, ind=None, Q=None):
-def adjm():
-def floy(A_and_n):
-def prim(G, s):
-def edglist():
-def krusk(E_and_n):
-def find_isolated_nodes(graph):
-def __init__(self):
-def print_graph(self) -> None:
-def add_edge(self, from_vertex: int, to_vertex: int) -> None:
-def dfs(self) -> None:
-def dfs_recursive(self, start_vertex: int, visited: list) -> None:
-def printDist(dist, V):
-def minDist(mdist, vset, V):
-def Dijkstra(graph, V, src):
-def computeAP(l):
-def dfs(root, at, parent, outEdgeCount):
-def __init__(self):
-def minkey(self):
-def empty(self):
-def put(self, item, priority):
-def remove_element(self, item):
-def top_show(self):
-def get(self):
-def consistent_heuristic(P: TPos, goal: TPos):
-def heuristic_2(P: TPos, goal: TPos):
-def heuristic_1(P: TPos, goal: TPos):
-def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
-def do_something(back_pointer, goal, start):
-def valid(p: TPos):
-def make_common_ground():
-def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
-def longestDistance(graph):
-def get_distinct_edge(edge_array):
-def get_bitcode(edge_array, distinct_edge):
-def get_frequency_table(edge_array):
-def get_nodes(frequency_table):
-def get_cluster(nodes):
-def get_support(cluster):
-def print_all() -> None:
-def create_edge(nodes, graph, cluster, c1):
-def construct_graph(cluster, nodes):
-def myDFS(graph, start, end, path=[]):
-def find_freq_subgraph_given_support(s, cluster, graph):
-def freq_subgraphs_edge_list(paths):
-def preprocess(edge_array):
-def breadth_first_search(graph: dict, start: str) -> set[str]:
-def __init__(self, n):
-def add_edge(self, a, b, c, rcap=0):
-def depth_first_search(self, vertex, sink, flow):
-def max_flow(self, source, sink):
-def checkBipartite(graph):
-def bfs():
-def computeBridges(graph):
-def dfs(at, parent, bridges, id):
-def __init__(self, name):
-def add_inbound(self, node):
-def add_outbound(self, node):
-def __repr__(self):
-def page_rank(nodes, limit=3, d=0.85):
-def main():
-def tarjan(g):
-def strong_connect(v, index, components):
-def create_graph(n, edges):
-def strongly_connected_components(graph: dict[int, list[int]]) -> list[list[int]]:
-def depth_first_search(graph: dict, start: str) -> Set[str]:
-def dijkstra(graph, start, end):
-def print_stack(stack, clothes):
-def depth_first_search(u, visited, graph):
-def topological_sort(graph, visited):
-def calculate_heuristic(self) -> float:
-def __lt__(self, other: Node) -> bool:
-def __init__(self, start: TPosition, goal: TPosition):
-def search(self) -> list[TPosition]:
-def get_successors(self, parent: Node) -> list[Node]:
-def retrace_path(self, node: Optional[Node]) -> list[TPosition]:
-def __init__(self, start: TPosition, goal: TPosition) -> None:
-def search(self) -> list[TPosition]:
-def dfs(graph: dict, vert: int, visited: list) -> list:
-def connected_components(graph: dict) -> list:
-def __init__(self):
-def isEmpty(self):
-def min_heapify(self, idx):
-def insert(self, tup):
-def extract_min(self):
-def left(self, i):
-def right(self, i):
-def par(self, i):
-def swap(self, i, j):
-def decrease_key(self, tup, new_d):
-def __init__(self, num):
-def add_edge(self, u, v, w):
-def show_graph(self):
-def dijkstra(self, src):
-def show_distances(self, src):
-def show_path(self, src, dest):
-def topologicalSort(graph):
-def __init__(self, data: T) -> None:
-def __init__(self) -> None:
-def make_set(self, data: T) -> None:
-def find_set(self, data: T) -> DisjointSetTreeNode[T]:
-def union(self, data1: T, data2: T) -> None:
-def __init__(self) -> None:
-def add_node(self, node: T) -> None:
-def add_edge(self, node1: T, node2: T, weight: int) -> None:
-def kruskal(self) -> GraphUndirectedWeighted[T]:
-def partition_graph(graph: dict[str, list[str]]) -> set[tuple[str, str]]:
-def PrimsAlgorithm(l):
-def get_position(vertex):
-def set_position(vertex, pos):
-def top_to_bottom(heap, start, size, positions):
-def bottom_to_top(val, index, heap, position):
-def heapify(heap, positions):
-def deleteMinimum(heap, positions):
-def _print_dist(dist, v):
-def floyd_warshall(graph, v):
-def __init__(self, graph: dict[str, list[str]], source_vertex: str) -> None:
-def breath_first_search(self) -> None:
-def shortest_path(self, target_vertex: str) -> str:
-def dfs(start: int) -> int:
-def even_tree():
-def search(grid, init, goal, cost, heuristic):
-def get_parent_position(position: int) -> int:
-def get_child_left_position(position: int) -> int:
-def get_child_right_position(position: int) -> int:
-def __init__(self) -> None:
-def __len__(self) -> int:
-def __repr__(self) -> str:
-def is_empty(self) -> bool:
-def push(self, elem: T, weight: int) -> None:
-def extract_min(self) -> T:
-def update_key(self, elem: T, weight: int) -> None:
-def _bubble_up(self, elem: T) -> None:
-def _bubble_down(self, elem: T) -> None:
-def _swap_nodes(self, node1_pos: int, node2_pos: int) -> None:
-def __init__(self) -> None:
-def __repr__(self) -> str:
-def __len__(self) -> int:
-def add_node(self, node: T) -> None:
-def add_edge(self, node1: T, node2: T, weight: int) -> None:
-def __init__(self, start: tuple[int, int], goal: tuple[int, int]):
-def search(self) -> Optional[Path]:
-def get_successors(self, parent: Node) -> list[Node]:
-def retrace_path(self, node: Optional[Node]) -> Path:
-def __init__(self, start, goal):
-def search(self) -> Optional[Path]:
-def retrace_bidirectional_path(self, fwd_node: Node, bwd_node: Node) -> Path:
-def check_bipartite_dfs(graph):
-def dfs(v, c):
-def print_distance(distance: list[float], src):
-def __init__(self, id):
-def __lt__(self, other):
-def __repr__(self):
-def add_neighbor(self, vertex):
-def add_edge(self, vertex, weight):
-def connect(graph, a, b, edge):
-def prim(graph: list, root: Vertex) -> list:
-def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
-def test_vector() -> None:
-def dfs(u, graph, visited_edge, path=[]):
-def check_circuit_or_path(graph, max_node):
-def check_euler(graph, max_node):
-def main():
-def calculate_heuristic(self) -> float:
-def __lt__(self, other) -> bool:
-def __init__(self, start: tuple[int, int], goal: tuple[int, int]):
-def search(self) -> Optional[Path]:
-def get_successors(self, parent: Node) -> list[Node]:
-def retrace_path(self, node: Optional[Node]) -> Path:
-def __init__(self, vertex):
-def add_edge(self, u, v):
+def __eq__(self, cell):
+def showcell(self):
+def __init__(self, world_size=(5, 5)):
 def show(self):
-def __init__(self, size: int):
-def __getitem__(self, vertex: int) -> Iterator[Edge]:
-def size(self):
-def add_edge(self, from_vertex: int, to_vertex: int, weight: int):
-def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> Optional[int]:
-def __init__(self) -> None:
-def print_graph(self) -> None:
-def add_edge(self, from_vertex: int, to_vertex: int) -> None:
-def bfs(self, start_vertex: int) -> Set[int]:
-def __init__(self, directed: bool = True) -> None:
-def __repr__(self) -> str:
-def __init__(self, graph, sources, sinks):
-def _normalizeGraph(self, sources, sinks):
-def findMaximumFlow(self):
-def setMaximumFlowAlgorithm(self, Algorithm):
-def __init__(self, flowNetwork):
-def execute(self):
-def _algorithm(self):
-def __init__(self, flowNetwork):
-def getMaximumFlow(self):
-def __init__(self, flowNetwork):
-def _algorithm(self):
-def processVertex(self, vertexIndex):
-def push(self, fromIndex, toIndex):
-def relabel(self, vertexIndex):
-def test_kruskal_successful_result():
-def test_prim_successful_result():
-def __init__(self, row: int, col: int, graph: list):
-def is_safe(self, i, j, visited) -> bool:
-def diffs(self, i, j, visited):
-def count_islands(self) -> int:
-def __init__(self, row: int, column: int, default_value: float = 0):
-def __str__(self):
-def single_line(row_vector):
-def __repr__(self):
-def validateIndices(self, loc: tuple):
-def __getitem__(self, loc: tuple):
-def __setitem__(self, loc: tuple, value: float):
-def __add__(self, another):
-def __neg__(self):
-def __sub__(self, another):
-def __mul__(self, another):
-def transpose(self):
-def ShermanMorrison(self, u, v):
-def test1():
-def test2():
-def multiply(matrix_a, matrix_b):
-def identity(n):
-def nth_fibonacci_matrix(n):
-def nth_fibonacci_bruteforce(n):
+def get_neigbours(self, cell):
+def astar(world, start, goal):
+def normalization(data: list, ndigits: int = 3) -> list:
+def standardization(data: list, ndigits: int = 3) -> list:
+def __init__(self, depth=5, min_leaf_size=5):
+def mean_squared_error(self, labels, prediction):
+def train(self, X, y):
+def predict(self, x):
+def helper_mean_squared_error_test(labels, prediction):
 def main():
-def make_matrix(row_size: int = 4) -> list[list]:
-def rotate_90(matrix: list[list]) -> list[list]:
-def rotate_180(matrix: list[list]) -> list[list]:
-def rotate_270(matrix: list[list]) -> list[list]:
-def transpose(matrix: list[list]) -> list[list]:
-def reverse_row(matrix: list[list]) -> list[list]:
-def reverse_column(matrix: list[list]) -> list[list]:
-def print_matrix(matrix: list[list]) -> None:
-def add(*matrix_s: list[list]) -> list[list]:
-def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
-def scalar_multiply(matrix: list[list], n: int) -> list[list]:
-def multiply(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
-def identity(n: int) -> list[list]:
-def transpose(matrix: list[list], return_map: bool = True) -> list[list]:
-def minor(matrix: list[list], row: int, column: int) -> list[list]:
-def determinant(matrix: list[list]) -> int:
-def inverse(matrix: list[list]) -> list[list]:
-def _check_not_integer(matrix: list[list]) -> bool:
-def _shape(matrix: list[list]) -> list:
-def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[list]:
+def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> float:
+def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> float:
+def interquartile_range_checker(train_user: list) -> float:
+def data_safety_checker(list_vote: list, actual_result: float) -> None:
 def main():
-def checkMatrix(a):
-def spiralPrint(a):
 def main():
-def __init__(self, rows):
-def columns(self):
-def num_rows(self):
-def num_columns(self):
-def order(self):
-def is_square(self):
-def identity(self):
-def determinant(self):
-def is_invertable(self):
-def get_minor(self, row, column):
-def get_cofactor(self, row, column):
-def minors(self):
-def cofactors(self):
-def adjugate(self):
-def inverse(self):
-def __repr__(self):
-def __str__(self):
-def add_row(self, row, position=None):
-def add_column(self, column, position=None):
-def __eq__(self, other):
-def __ne__(self, other):
-def __neg__(self):
-def __add__(self, other):
-def __sub__(self, other):
-def __mul__(self, other):
-def __pow__(self, other):
-def dot_product(cls, row, column):
-def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
-def test_addition(mat1, mat2):
-def test_subtraction(mat1, mat2):
-def test_multiplication(mat1, mat2):
-def test_scalar_multiply():
-def test_identity():
-def test_transpose(mat):
-def calc_profit(profit: list, weight: list, max_weight: int) -> int:
-def knapsack(capacity: int, weights: List[int], values: List[int], counter: int) -> int:
-def test_sorted(self):
-def test_negative_max_weight(self):
-def test_negative_profit_value(self):
-def test_negative_weight_value(self):
-def test_null_max_weight(self):
-def test_unequal_list_length(self):
-def test_base_case(self):
-def test_easy_case(self):
-def test_knapsack(self):
-def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
-def mae(predict, actual):
-def mse(predict, actual):
-def rmse(predict, actual):
-def rmsle(predict, actual):
-def mbd(predict, actual):
-def manual_accuracy(predict, actual):
-def viz_polymonial():
-def euclidean_distance(a, b):
-def classifier(train_data, train_target, classes, point, k=5):
 def _error(example_no, data_set="train"):
 def _hypothesis_value(data_input_tuple):
 def output(example_no, data_set):
@@ -2361,27 +1410,8 @@ def assign_clusters(data, centroids):
 def revise_centroids(data, k, cluster_assignment):
 def compute_heterogeneity(data, k, centroids, cluster_assignment):
 def plot_heterogeneity(heterogeneity, k):
-def main():
-def __init__(self, depth=5, min_leaf_size=5):
-def mean_squared_error(self, labels, prediction):
-def train(self, X, y):
-def predict(self, x):
-def helper_mean_squared_error_test(labels, prediction):
-def main():
-def main():
-def main():
-def sigmoid_function(z):
-def cost_function(h, y):
-def log_likelihood(X, Y, weights):
-def logistic_reg(alpha, X, y, max_iterations=70000):
-def predict_prob(X):
-def __init__(self):
-def __eq__(self, cell):
-def showcell(self):
-def __init__(self, world_size=(5, 5)):
-def show(self):
-def get_neigbours(self, cell):
-def astar(world, start, goal):
+def euclidean_distance(a, b):
+def classifier(train_data, train_target, classes, point, k=5):
 def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> list:
 def y_generator(class_count: int, instance_count: list) -> list:
 def calculate_mean(instance_count: int, items: list) -> float:
@@ -2389,19 +1419,26 @@ def calculate_probabilities(instance_count: int, total_count: int) -> float:
 def calculate_variance(items: list, means: list, total_count: int) -> float:
 def accuracy(actual_y: list, predicted_y: list) -> float:
 def main():
-def main():
-def normalization(data: list, ndigits: int = 3) -> list:
-def standardization(data: list, ndigits: int = 3) -> list:
-def term_frequency(term: str, document: str) -> int:
-def document_frequency(term: str, corpus: str) -> tuple[int, int]:
-def inverse_document_frequency(df: int, N: int, smoothing=False) -> float:
-def tf_idf(tf: int, idf: int) -> float:
-def wrapper(Y):
 def collect_dataset():
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
 def sum_of_square_error(data_x, data_y, len_data, theta):
 def run_linear_regression(data_x, data_y):
 def main():
+def sigmoid_function(z):
+def cost_function(h, y):
+def log_likelihood(X, Y, weights):
+def logistic_reg(alpha, X, y, max_iterations=70000):
+def predict_prob(X):
+def wrapper(Y):
+def viz_polymonial():
+def main():
+def main():
+def mae(predict, actual):
+def mse(predict, actual):
+def rmse(predict, actual):
+def rmsle(predict, actual):
+def mbd(predict, actual):
+def manual_accuracy(predict, actual):
 def fit(self):
 def predict(self, test_samples, classify=True):
 def _check_obey_kkt(self, index):
@@ -2433,23 +1470,785 @@ def test_cancel_data():
 def test_demonstration():
 def test_linear_kernel(ax, cost):
 def test_rbf_kernel(ax, cost):
+def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
 def NuSVC(train_x, train_y):
 def Linearsvc(train_x, train_y):
 def SVC(train_x, train_y):
 def test(X_new):
-def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> float:
-def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> float:
-def interquartile_range_checker(train_user: list) -> float:
-def data_safety_checker(list_vote: list, actual_result: float) -> None:
+def term_frequency(term: str, document: str) -> int:
+def document_frequency(term: str, corpus: str) -> tuple[int, int]:
+def inverse_document_frequency(df: int, N: int, smoothing=False) -> float:
+def tf_idf(tf: int, idf: int) -> float:
+def n31(a: int) -> tuple[list[int], int]:
+def test_n31():
+def abs_val(num):
+def test_abs_val():
+def abs_max(x: list[int]) -> int:
+def abs_max_sort(x):
+def main():
+def absMin(x):
+def main():
+def add(a, b):
+def aliquot_sum(input_num: int) -> int:
+def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
+def surface_area_cube(side_length: float) -> float:
+def surface_area_sphere(radius: float) -> float:
+def area_rectangle(length: float, width: float) -> float:
+def area_square(side_length: float) -> float:
+def area_triangle(base: float, height: float) -> float:
+def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
+def area_parallelogram(base: float, height: float) -> float:
+def area_trapezium(base1: float, base2: float, height: float) -> float:
+def area_circle(radius: float) -> float:
+def area_ellipse(radius_x: float, radius_y: float) -> float:
+def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
+def f(x):
+def armstrong_number(n: int) -> bool:
+def pluperfect_number(n: int) -> bool:
+def narcissistic_number(n: int) -> bool:
+def main():
+def mean(nums: List) -> float:
+def median(nums: list) -> Union[int, float]:
+def main():
+def mode(input_list: list) -> list:
+def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
+def prime_factors(n: int) -> list:
+def number_of_divisors(n: int) -> int:
+def sum_of_divisors(n: int) -> int:
+def euler_phi(n: int) -> int:
+def bin_exp_mod(a, n, b):
+def binary_exponentiation(a, n):
+def b_expo(a, b):
+def b_expo_mod(a, b, c):
+def b_expo(a, b):
+def b_expo_mod(a, b, c):
+def binomial_coefficient(n, r):
+def binomial_distribution(successes: int, trials: int, prob: float) -> float:
+def equation(x: float) -> float:
+def bisection(a: float, b: float) -> float:
+def ceil(x) -> int:
+def check_valid_ip(ip: str) -> bool:
+def pi(precision: int) -> str:
+def collatz_sequence(n: int) -> list[int]:
+def main():
+def combinations(n: int, k: int) -> int:
+def decimal_isolate(number, digitAmount):
+def double_factorial(n: int) -> int:
+def calculate_prob(text: str) -> None:
+def analyze_text(text: str) -> tuple[dict, dict]:
+def main():
+def euclidean_distance(vector_1: Vector, vector_2: Vector) -> VectorOut:
+def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
+def benchmark() -> None:
+def euclidean_gcd(a: int, b: int) -> int:
+def euclidean_gcd_recursive(a: int, b: int) -> int:
+def main():
+def explicit_euler(ode_func, y0, x0, step_size, x_end):
+def totient(n: int) -> list:
+def test_totient() -> None:
+def extended_euclidean_algorithm(a: int, b: int) -> Tuple[int, int]:
+def main():
+def factorial(n: int) -> int:
+def factorial(input_number: int) -> int:
+def factorial(n: int) -> int:
+def factors_of_a_number(num: int) -> list:
+def binary_exponentiation(a, n, mod):
+def timer_decorator(func):
+def timer_wrapper(*args, **kwargs):
+def _check_number_input(n, min_thresh, max_thresh=None):
+def fib_iterative(n):
+def fib_formula(n):
+def recur_fibo(n: int) -> int:
+def main() -> None:
+def find_max(nums):
+def main():
+def find_max(nums, left, right):
+def find_min(nums):
+def main():
+def find_min(nums, left, right):
+def floor(x) -> int:
+def gamma(num: float) -> float:
+def integrand(x: float, z: float) -> float:
+def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
+def greatest_common_divisor(a: int, b: int) -> int:
+def gcd_by_iterative(x: int, y: int) -> int:
+def main():
+def find_minimum_change(denominations: list[int], value: str) -> list[int]:
+def exactPrimeFactorCount(n):
+def f(x: float) -> float:
+def simpson_integration(function, a: float, b: float, precision: int = 4) -> float:
+def is_square_free(factors: list[int]) -> bool:
+def jaccard_similariy(setA, setB, alternativeUnion=False):
+def negative_exist(arr: list) -> int:
+def kadanes(arr: list) -> int:
+def karatsuba(a, b):
+def main():
+def factorial(digit: int) -> int:
+def krishnamurthy(number: int) -> bool:
+def kthPermutation(k, n):
+def res(x, y):
+def max_sub_array_sum(a: list, size: int = 0):
+def least_common_multiple_slow(first_num: int, second_num: int) -> int:
+def greatest_common_divisor(a: int, b: int) -> int:
+def least_common_multiple_fast(first_num: int, second_num: int) -> int:
+def benchmark():
+def test_lcm_function(self):
+def f(x):
+def lucas_lehmer_test(p: int) -> bool:
+def recursive_lucas_number(n_th_number: int) -> int:
+def dynamic_lucas_number(n_th_number: int) -> int:
+def __init__(self, arg):
+def __mul__(self, b):
+def modular_exponentiation(a, b):
+def fibonacci_with_matrix_exponentiation(n, f1, f2):
+def simple_fibonacci(n, f1, f2):
+def matrix_exponentiation_time():
+def simple_fibonacci_time():
+def main():
+def max_sum_in_array(array: List[int], k: int) -> int:
+def median_of_two_arrays(nums1: List[float], nums2: List[float]) -> float:
+def is_prime(n, prec=1000):
+def mobius(n: int) -> int:
+def modular_exponential(base: int, power: int, mod: int):
+def main():
+def pi_estimator(iterations: int):
+def is_in_circle(x: float, y: float) -> bool:
+def identity_function(x: float) -> float:
+def pi_estimator_using_area_under_curve(iterations: int) -> None:
+def function_to_integrate(x: float) -> float:
+def __init__(self):
+def roll(self):
+def _str_(self):
+def throw_dice(num_throws: int, num_dice: int = 2) -> list[float]:
+def calc_derivative(f, a, h=0.001):
+def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=False):
+def num_digits(n: int) -> int:
+def num_digits_fast(n: int) -> int:
+def num_digits_faster(n: int) -> int:
+def benchmark() -> None:
+def f(x):
+def perfect_cube(n: int) -> bool:
+def perfect(number: int) -> bool:
+def perfect_square(num: int) -> bool:
+def perfect_square_binary_search(n: int) -> bool:
+def __init__(self, x: float, y: float) -> None:
+def is_in_unit_circle(self) -> bool:
+def random_unit_square(cls):
+def estimate_pi(number_of_simulations: int) -> float:
+def evaluate_poly(poly: Sequence[float], x: float) -> float:
+def horner(poly: Sequence[float], x: float) -> float:
+def power(base: int, exponent: int) -> float:
+def prime_check(number: int) -> bool:
+def test_primes(self):
+def test_not_primes(self):
+def prime_factors(n: int) -> list[int]:
+def slow_primes(max: int) -> Generator[int, None, None]:
+def primes(max: int) -> Generator[int, None, None]:
+def prime_sieve_eratosthenes(num):
+def isPrime(number):
+def sieveEr(N):
+def getPrimeNumbers(N):
+def primeFactorization(number):
+def greatestPrimeFactor(number):
+def smallestPrimeFactor(number):
+def isEven(number):
+def isOdd(number):
+def goldbach(number):
+def gcd(number1, number2):
+def kgV(number1, number2):
+def getPrime(n):
+def getPrimesBetween(pNumber1, pNumber2):
+def getDivisors(n):
+def isPerfectNumber(number):
+def simplifyFraction(numerator, denominator):
+def factorial(n):
+def fib(n):
+def __init__(self, x, y, z):
+def __repr__(self) -> str:
+def distance(a: Point, b: Point) -> float:
+def test_distance() -> None:
+def qr_householder(A):
+def quadratic_roots(a: int, b: int, c: int) -> tuple[complex, complex]:
+def main():
+def radians(degree: float) -> float:
+def __init__(self, polyA=[0], polyB=[0]):
+def __DFT(self, which):
+def __multiply(self):
+def __str__(self):
+def relu(vector: list[float]):
+def runge_kutta(f, y0, x0, h, x_end):
+def sieve(n):
+def is_arithmetic_series(series: list) -> bool:
+def arithmetic_mean(series: list) -> float:
+def is_geometric_series(series: list) -> bool:
+def geometric_mean(series: list) -> float:
+def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> list:
+def harmonic_series(n_term: str) -> list:
+def p_series(nth_term: int, power: int) -> list:
+def prime_sieve(num: int) -> List[int]:
+def sigmoid(vector: np.array) -> np.array:
+def method_2(boundary, steps):
+def make_points(a, b, h):
+def f(x):
+def main():
+def softmax(vector):
+def fx(x: float, a: float) -> float:
+def fx_derivative(x: float) -> float:
+def get_initial_point(a: float) -> float:
+def sum_of_series(first_term, common_diff, num_of_terms):
+def main():
+def sum_of_digits(n: int) -> int:
+def sum_of_digits_recursion(n: int) -> int:
+def sum_of_digits_compact(n: int) -> int:
+def benchmark() -> None:
+def method_1(boundary, steps):
+def make_points(a, b, h):
+def f(x):
+def main():
+def make_dataset() -> tuple[list[int], int]:
+def triplet_sum1(arr: list[int], target: int) -> tuple[int, ...]:
+def triplet_sum2(arr: list[int], target: int) -> tuple[int, int, int]:
+def solution_times() -> tuple[float, float]:
+def two_pointer(nums: list[int], target: int) -> list[int]:
+def two_sum(nums: list[int], target: int) -> list[int]:
+def ugly_numbers(n: int) -> int:
+def vol_cube(side_length: Union[int, float]) -> float:
+def vol_cuboid(width: float, height: float, length: float) -> float:
+def vol_cone(area_of_base: float, height: float) -> float:
+def vol_right_circ_cone(radius: float, height: float) -> float:
+def vol_prism(area_of_base: float, height: float) -> float:
+def vol_pyramid(area_of_base: float, height: float) -> float:
+def vol_sphere(radius: float) -> float:
+def vol_circular_cylinder(radius: float, height: float) -> float:
+def main():
+def zeller(date_input: str) -> str:
+def __init__(self, row: int, col: int, graph: list):
+def is_safe(self, i, j, visited) -> bool:
+def diffs(self, i, j, visited):
+def count_islands(self) -> int:
+def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
+def __init__(self, rows):
+def columns(self):
+def num_rows(self):
+def num_columns(self):
+def order(self):
+def is_square(self):
+def identity(self):
+def determinant(self):
+def is_invertable(self):
+def get_minor(self, row, column):
+def get_cofactor(self, row, column):
+def minors(self):
+def cofactors(self):
+def adjugate(self):
+def inverse(self):
+def __repr__(self):
+def __str__(self):
+def add_row(self, row, position=None):
+def add_column(self, column, position=None):
+def __eq__(self, other):
+def __ne__(self, other):
+def __neg__(self):
+def __add__(self, other):
+def __sub__(self, other):
+def __mul__(self, other):
+def __pow__(self, other):
+def dot_product(cls, row, column):
+def add(*matrix_s: list[list]) -> list[list]:
+def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
+def scalar_multiply(matrix: list[list], n: int) -> list[list]:
+def multiply(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
+def identity(n: int) -> list[list]:
+def transpose(matrix: list[list], return_map: bool = True) -> list[list]:
+def minor(matrix: list[list], row: int, column: int) -> list[list]:
+def determinant(matrix: list[list]) -> int:
+def inverse(matrix: list[list]) -> list[list]:
+def _check_not_integer(matrix: list[list]) -> bool:
+def _shape(matrix: list[list]) -> list:
+def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[list]:
+def main():
+def multiply(matrix_a, matrix_b):
+def identity(n):
+def nth_fibonacci_matrix(n):
+def nth_fibonacci_bruteforce(n):
+def main():
+def make_matrix(row_size: int = 4) -> list[list]:
+def rotate_90(matrix: list[list]) -> list[list]:
+def rotate_180(matrix: list[list]) -> list[list]:
+def rotate_270(matrix: list[list]) -> list[list]:
+def transpose(matrix: list[list]) -> list[list]:
+def reverse_row(matrix: list[list]) -> list[list]:
+def reverse_column(matrix: list[list]) -> list[list]:
+def print_matrix(matrix: list[list]) -> None:
+def main():
+def __init__(self, row: int, column: int, default_value: float = 0):
+def __str__(self):
+def single_line(row_vector):
+def __repr__(self):
+def validateIndices(self, loc: tuple):
+def __getitem__(self, loc: tuple):
+def __setitem__(self, loc: tuple, value: float):
+def __add__(self, another):
+def __neg__(self):
+def __sub__(self, another):
+def __mul__(self, another):
+def transpose(self):
+def ShermanMorrison(self, u, v):
+def test1():
+def test2():
+def checkMatrix(a):
+def spiralPrint(a):
+def test_addition(mat1, mat2):
+def test_subtraction(mat1, mat2):
+def test_multiplication(mat1, mat2):
+def test_scalar_multiply():
+def test_identity():
+def test_transpose(mat):
+def BFS(graph, s, t, parent):
+def FordFulkerson(graph, source, sink):
+def BFS(graph, s, t, parent):
+def mincut(graph, source, sink):
+def __init__(self, input_array: numpy.ndarray, output_array: numpy.ndarray) -> None:
+def feedforward(self) -> numpy.ndarray:
+def back_propagation(self) -> None:
+def train(self, output: numpy.ndarray, iterations: int, give_loss: bool) -> None:
+def predict(self, input: numpy.ndarray) -> int:
+def sigmoid(value: numpy.ndarray) -> numpy.ndarray:
+def sigmoid_derivative(value: numpy.ndarray) -> numpy.ndarray:
+def example() -> int:
+def sigmoid(x):
+def initializer(self, back_units):
+def cal_gradient(self):
+def forward_propagation(self, xdata):
+def back_propagation(self, gradient):
+def __init__(self):
+def add_layer(self, layer):
+def build(self):
+def summary(self):
+def train(self, xdata, ydata, train_round, accuracy):
+def cal_loss(self, ydata, ydata_):
+def plot_loss(self):
+def example():
+def save_model(self, save_path):
+def ReadModel(cls, model_path):
+def sig(self, x):
+def do_round(self, x):
+def convolute(self, data, convs, w_convs, thre_convs, conv_step):
+def pooling(self, featuremaps, size_pooling, type="average_pool"):
+def _expand(self, data):
+def _expand_mat(self, data_mat):
+def draw_error():
+def predict(self, datas_test):
+def convolution(self, data):
+def training(self) -> None:
+def sort(self, sample: list[float]) -> None:
+def sign(self, u: float) -> int:
+def printMaxActivities(start, finish):
+def date_to_weekday(inp_date: str) -> str:
+def __init__(self, literals: List[int]) -> None:
+def __str__(self) -> str:
+def __len__(self) -> int:
+def assign(self, model: Dict[str, bool]) -> None:
+def evaluate(self, model: Dict[str, bool]) -> bool:
+def __init__(self, clauses: List[Clause]) -> None:
+def __str__(self) -> str:
+def generate_clause() -> Clause:
+def generate_formula() -> Formula:
+def generate_parameters(formula: Formula) -> (List[Clause], List[str]):
+def __processes_resource_summation(self) -> list[int]:
+def __available_resources(self) -> list[int]:
+def __need(self) -> list[list[int]]:
+def __need_index_manager(self) -> dict[int, list[int]]:
+def main(self, **kwargs) -> None:
+def __pretty_data(self):
+def get_week_day(year: int, month: int, day: int) -> str:
+def FYshuffle(list):
+def gauss_easter(year: int) -> datetime:
+def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
+def angle_comparer(point: list[int, int], minx: int, miny: int) -> float:
+def __init__(self, name, value, weight):
+def __repr__(self):
+def get_value(self):
+def get_name(self):
+def get_weight(self):
+def value_Weight(self):
+def build_menu(name, value, weight):
+def greedy(item, maxCost, keyFunc):
+def test_greedy():
+def __init__(self, n: int):
+def refer(self, x):
+def display(self):
+def __init__(self, key: int, val: int):
+def __init__(self):
+def add(self, node: DoubleLinkedListNode) -> None:
+def _position_node(self, node: DoubleLinkedListNode) -> None:
+def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
+def __init__(self, capacity: int):
+def __repr__(self) -> str:
+def __contains__(self, key: int) -> bool:
+def get(self, key: int) -> Optional[int]:
+def set(self, key: int, value: int) -> None:
+def decorator(size: int = 128):
+def cache_decorator_inner(func: Callable):
+def cache_decorator_wrapper(*args, **kwargs):
+def cache_info():
+def __init__(self, multiplier, increment, modulo, seed=int(time())):
+def next_number(self):
+def __init__(self, key: int, val: int):
+def __init__(self):
+def add(self, node: DoubleLinkedListNode) -> None:
+def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
+def __init__(self, capacity: int):
+def __repr__(self) -> str:
+def __contains__(self, key: int) -> bool:
+def get(self, key: int) -> Optional[int]:
+def set(self, key: int, value: int) -> None:
+def decorator(size: int = 128):
+def cache_decorator_inner(func: Callable):
+def cache_decorator_wrapper(*args, **kwargs):
+def cache_info():
+def floyd(n):
+def reverse_floyd(n):
+def pretty_print(n):
+def is_balanced(S):
+def main():
+def password_generator(length=8):
+def alternative_password_generator(ctbi, i):
+def random(ctbi, i):
+def random_number(ctbi, i):
+def random_letters(ctbi, i):
+def random_characters(ctbi, i):
+def main():
+def procentual_proximity(source_data: list, weights: list) -> list:
+def apply_table(inp, table):
+def left_shift(data):
+def XOR(a, b):
+def apply_sbox(s, data):
+def function(expansion, s0, s1, key, message):
+def moveTower(height, fromPole, toPole, withPole):
+def moveDisk(fp, tp):
+def main():
+def position(self) -> tuple[float, float]:
+def velocity(self) -> tuple[float, float]:
+def update_position(self, delta_time: float) -> None:
+def __len__(self) -> int:
+def update_system(self, delta_time: float) -> None:
+def update(frame: int) -> list[plt.Circle]:
+def example_1() -> BodySystem:
+def example_2() -> BodySystem:
+def example_3() -> BodySystem:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 4000000) -> int:
+def solution(n: int = 4000000) -> int:
+def solution(n: int = 4000000) -> int:
+def solution(n: int = 4000000) -> int:
+def solution(n: int = 4000000) -> int:
+def isprime(num: int) -> bool:
+def solution(n: int = 600851475143) -> int:
+def solution(n: int = 600851475143) -> int:
+def solution(n: int = 600851475143) -> int:
+def solution(n: int = 998001) -> int:
+def solution(n: int = 998001) -> int:
+def solution(n: int = 20) -> int:
+def gcd(x: int, y: int) -> int:
+def lcm(x: int, y: int) -> int:
+def solution(n: int = 20) -> int:
+def solution(n: int = 100) -> int:
+def solution(n: int = 100) -> int:
+def solution(n: int = 100) -> int:
+def solution(n: int = 100) -> int:
+def is_prime(num: int) -> bool:
+def solution(nth: int = 10001) -> int:
+def isprime(number: int) -> bool:
+def solution(nth: int = 10001) -> int:
+def prime_check(number: int) -> bool:
+def prime_generator():
+def solution(nth: int = 10001) -> int:
+def solution(n: str = N) -> int:
+def solution(n: str = N) -> int:
+def str_eval(s: str) -> int:
+def solution(n: str = N) -> int:
+def solution() -> int:
+def solution_fast() -> int:
+def benchmark() -> None:
+def solution(n: int = 1000) -> int:
+def solution() -> int:
+def is_prime(n: int) -> bool:
+def solution(n: int = 2000000) -> int:
+def is_prime(number: int) -> bool:
+def prime_generator() -> Iterator[int]:
+def solution(n: int = 2000000) -> int:
+def solution(n: int = 2000000) -> int:
+def largest_product(grid):
+def solution():
+def solution():
+def count_divisors(n):
+def solution():
+def triangle_number_generator():
+def count_divisors(n):
+def solution():
+def solution():
+def solution(n: int = 1000000) -> int:
+def collatz_sequence(n: int) -> List[int]:
+def solution(n: int = 1000000) -> int:
+def solution(n: int = 20) -> int:
+def solution(power: int = 1000) -> int:
+def solution(power: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution():
+def solution():
+def factorial(num: int) -> int:
+def split_and_add(number: int) -> int:
+def solution(num: int = 100) -> int:
+def solution(num: int = 100) -> int:
+def solution(num: int = 100) -> int:
+def solution(num: int = 100) -> int:
+def sum_of_divisors(n: int) -> int:
+def solution(n: int = 10000) -> int:
+def solution():
+def solution():
+def solution(limit=28123):
+def solution():
+def fibonacci(n: int) -> int:
+def fibonacci_digits_index(n: int) -> int:
+def solution(n: int = 1000) -> int:
+def fibonacci_generator() -> int:
+def solution(n: int = 1000) -> int:
+def solution(n: int = 1000) -> int:
+def solution(numerator: int = 1, digit: int = 1000) -> int:
+def is_prime(k: int) -> bool:
+def solution(a_limit: int = 1000, b_limit: int = 1000) -> int:
+def solution(n: int = 1001) -> int:
+def solution(n: int = 100) -> int:
+def digitsum(s: str) -> int:
+def solution() -> int:
+def one_pence() -> int:
+def two_pence(x: int) -> int:
+def five_pence(x: int) -> int:
+def ten_pence(x: int) -> int:
+def twenty_pence(x: int) -> int:
+def fifty_pence(x: int) -> int:
+def one_pound(x: int) -> int:
+def two_pound(x: int) -> int:
+def solution(n: int = 200) -> int:
+def solution(pence: int = 200) -> int:
+def isCombinationValid(combination):
+def solution():
+def is_digit_cancelling(num: int, den: int) -> bool:
+def fraction_list(digit_len: int) -> List[str]:
+def solution(n: int = 2) -> int:
+def sum_of_digit_factorial(n: int) -> int:
+def solution() -> int:
+def is_prime(n: int) -> bool:
+def contains_an_even_digit(n: int) -> bool:
+def find_circular_primes(limit: int = 1000000) -> list[int]:
+def solution() -> int:
+def is_palindrome(n: Union[int, str]) -> bool:
+def solution(n: int = 1000000):
+def is_prime(n: int) -> bool:
+def list_truncated_nums(n: int) -> list[int]:
+def validate(n: int) -> bool:
+def compute_truncated_primes(count: int = 11) -> list[int]:
+def solution() -> int:
+def is_9_pandigital(n: int) -> bool:
+def solution() -> Union[int, None]:
+def pythagorean_triple(max_perimeter: int) -> typing.Counter[int]:
+def solution(n: int = 1000) -> int:
+def solution():
+def is_prime(n: int) -> bool:
+def solution(n: int = 7) -> int:
+def solution():
+def is_substring_divisible(num: tuple) -> bool:
+def solution(n: int = 10) -> int:
+def is_pentagonal(n: int) -> bool:
+def solution(limit: int = 5000) -> int:
+def hexagonal_num(n: int) -> int:
+def is_pentagonal(n: int) -> bool:
+def solution(start: int = 144) -> int:
+def is_prime(n: int) -> bool:
+def compute_nums(n: int) -> list[int]:
+def solution() -> int:
+def unique_prime_factors(n: int) -> set:
+def upf_len(num: int) -> int:
+def equality(iterable: list) -> bool:
+def run(n: int) -> list:
+def solution(n: int = 4) -> int:
+def solution():
+def is_prime(number: int) -> bool:
+def search(target: int, prime_list: list) -> bool:
+def solution():
+def prime_sieve(limit: int) -> List[int]:
+def solution(ceiling: int = 1_000_000) -> int:
+def prime_sieve(n: int) -> List[int]:
+def digit_replacements(number: int) -> List[List[int]]:
+def solution(family_length: int = 8) -> int:
+def solution():
+def combinations(n, r):
+def solution():
+def __init__(self, hand: str) -> None:
+def hand(self):
+def compare_with(self, other: "PokerHand") -> str:
+def hand_name(self) -> str:
+def _compare_cards(self, other: "PokerHand") -> str:
+def _get_hand_type(self) -> int:
+def _is_flush(self) -> bool:
+def _is_five_high_straight(self) -> bool:
+def _is_straight(self) -> bool:
+def _is_same_kind(self) -> int:
+def _internal_state(self) -> tuple[list[int], set[str]]:
+def __repr__(self):
+def __str__(self):
+def __eq__(self, other):
+def __lt__(self, other):
+def __le__(self, other):
+def __gt__(self, other):
+def __ge__(self, other):
+def __hash__(self):
+def solution() -> int:
+def generate_random_hand():
+def generate_random_hands(number_of_hands: int = 100):
+def test_hand_is_flush(hand, expected):
+def test_hand_is_straight(hand, expected):
+def test_hand_is_five_high_straight(hand, expected, card_values):
+def test_hand_is_same_kind(hand, expected):
+def test_hand_values(hand, expected):
+def test_compare_simple(hand, other, expected):
+def test_compare_random(hand, other, expected):
+def test_hand_sorted():
+def test_custom_sort_five_high_straight():
+def test_multiple_calls_five_high_straight():
+def test_euler_project():
+def is_palindrome(n: int) -> bool:
+def sum_reverse(n: int) -> int:
+def solution(limit: int = 10000) -> int:
+def solution(a: int = 100, b: int = 100) -> int:
+def solution(n: int = 1000) -> int:
+def isprime(d: int) -> int:
+def solution(ratio: float = 0.1) -> int:
+def try_key(ciphertext: List[int], key: Tuple[int, ...]) -> Optional[str]:
+def filter_valid_chars(ciphertext: List[int]) -> List[str]:
+def filter_common_word(possibles: List[str], common_word: str) -> List[str]:
+def solution(filename: str = "p059_cipher.txt") -> int:
+def solution(max_base: int = 5) -> int:
+def get_digits(num: int) -> str:
+def solution(max_base: int = 10, max_power: int = 22) -> int:
+def continuous_fraction_period(n: int) -> int:
+def solution(n: int = 10000) -> int:
+def sum_digits(num: int) -> int:
+def solution(max: int = 100) -> int:
+def solution():
+def solution(n: int = 10 ** 6) -> int:
+def get_totients(max_one: int) -> List[int]:
+def has_same_digits(num1: int, num2: int) -> bool:
+def solution(max: int = 10000000) -> int:
+def solution(numerator: int = 3, denominator: int = 7, limit: int = 1000000) -> int:
+def solution(limit: int = 1_000_000) -> int:
+def solution(limit: int = 1000000) -> int:
+def sum_digit_factorials(n: int) -> int:
+def chain_length(n: int, previous: set = None) -> int:
+def solution(num_terms: int = 60, max_start: int = 1000000) -> int:
+def factorial(a: int) -> int:
+def factorial_sum(a: int) -> int:
+def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
+def solution(limit: int = 1500000) -> int:
+def solution(m: int = 100) -> int:
+def partition(number_to_partition: int) -> Set[int]:
+def solution(number_unique_partitions: int = 5000) -> Optional[int]:
+def solution() -> int:
+def solution(filename: str = "matrix.txt") -> int:
+def solution(target: int = 2000000) -> int:
+def solution(limit: int = 1000000) -> int:
+def solution(limit: int = 50000000) -> int:
+def parse_roman_numerals(numerals: str) -> int:
+def generate_roman_numerals(num: int) -> str:
+def solution(roman_numerals_filename: str = "/p089_roman.txt") -> int:
+def is_right(x1: int, y1: int, x2: int, y2: int) -> bool:
+def solution(limit: int = 50) -> int:
+def solution(n: int = 10) -> str:
+def solution(data_file: str = "base_exp.txt") -> int:
+def solve(matrix: Matrix, vector: Matrix) -> Matrix:
+def interpolate(y_list: List[int]) -> Callable[[int], int]:
+def interpolated_func(var: int) -> int:
+def question_function(variable: int) -> int:
+def solution(func: Callable[[int], int] = question_function, order: int = 10) -> int:
+def vector_product(point1: Tuple[int, int], point2: Tuple[int, int]) -> int:
+def contains_origin(x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> bool:
+def solution(filename: str = "p102_triangles.txt") -> int:
+def __init__(self, vertices: Set[int], edges: Mapping[EdgeT, int]) -> None:
+def add_edge(self, edge: EdgeT, weight: int) -> None:
+def prims_algorithm(self) -> "Graph":
+def solution(filename: str = "p107_network.txt") -> int:
+def solution(limit: int = 100) -> int:
+def check_bouncy(n: int) -> bool:
+def solution(percent: float = 99) -> int:
+def choose(n: int, r: int) -> int:
+def non_bouncy_exact(n: int) -> int:
+def non_bouncy_upto(n: int) -> int:
+def solution(num_digits: int = 100) -> int:
+def digit_sum(n: int) -> int:
+def solution(n: int = 30) -> int:
+def solution(n: int = 1000) -> int:
+def solution(num_turns: int = 15) -> int:
+def sieve() -> Generator[int, None, None]:
+def solution(limit: float = 1e10) -> int:
+def is_palindrome(n: int) -> bool:
+def solution() -> int:
+def least_divisible_repunit(divisor: int) -> int:
+def solution(limit: int = 1000000) -> int:
+def solution(limit: int = 1000000) -> int:
+def solution(first_x_coord: float = 1.4, first_y_coord: float = -9.6) -> int:
+def solution(limit: int = 1000000) -> int:
+def solution(t_limit: int = 1000000, n_limit: int = 10) -> int:
+def is_sq(number: int) -> bool:
+def solution(order: int = 35) -> int:
+def _modexpt(base: int, exponent: int, modulo_value: int) -> int:
+def solution(base: int = 1777, height: int = 1855, digits: int = 8) -> int:
+def _calculate(days: int, absent: int, late: int) -> int:
+def solution(days: int = 30) -> int:
+def get_pascal_triangle_unique_coefficients(depth: int) -> Set[int]:
+def get_primes_squared(max_number: int) -> List[int]:
+def solution(n: int = 51) -> int:
+def is_square_form(num: int) -> bool:
+def solution() -> int:
+def check_partition_perfect(positive_integer: int) -> bool:
+def solution(max_proportion: float = 1 / 12345) -> int:
+def prime_sieve(n: int) -> list:
+def solution(limit: int = 999_966_663_333) -> int:
+def solution(exponent: int = 30) -> int:
+def next_term(a_i, k, i, n):
+def compute(a_i, k, i, n):
+def add(digits, k, addend):
+def solution(n: int = 10 ** 15) -> int:
+def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
+def dj_algorithm(oracle: q.QuantumCircuit, num_qubits: int) -> q.QuantumCircuit:
+def deutsch_jozsa(case: str, num_qubits: int) -> q.result.counts.Counts:
+def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
+def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Counts:
+def quantum_entanglement(qubits: int = 2) -> qiskit.result.counts.Counts:
+def store_two_classics(val1: int, val2: int) -> tuple[QuantumCircuit, str, str]:
+def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Counts:
+def calculate_waiting_times(duration_times: List[int]) -> List[int]:
+def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
+def calculate_average_waiting_time(waiting_times: List[int]) -> float:
+def calculate_waiting_times(burst_times: List[int]) -> List[int]:
+def good_file_paths(top_dir: str = ".") -> Iterator[str]:
+def md_prefix(i):
+def print_path(old_path: str, new_path: str) -> str:
+def print_directory_md(top_dir: str = ".") -> None:
+def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
+def all_solution_file_paths() -> list[pathlib.Path]:
+def get_files_url() -> str:
+def added_solution_file_path() -> list[pathlib.Path]:
+def collect_solution_file_paths() -> list[pathlib.Path]:
+def test_project_euler(solution_path: pathlib.Path) -> None:
 def binary_search(sorted_collection: List[int], item: int) -> Optional[int]:
 def binary_search_std_lib(sorted_collection: List[int], item: int) -> Optional[int]:
-def generate_neighbours(path):
-def generate_first_solution(path, dict_of_neighbours):
-def find_neighborhood(solution, dict_of_neighbours):
-def main(args=None):
-def _partition(data: list, pivot) -> tuple:
-def quick_select(items: list, index: int):
-def sentinel_linear_search(sequence, target):
 def __init__(self, data):
 def build_tree():
 def pre_order(node: TreeNode) -> None:
@@ -2461,22 +2260,10 @@ def pre_order_iter(node: TreeNode) -> None:
 def in_order_iter(node: TreeNode) -> None:
 def post_order_iter(node: TreeNode) -> None:
 def prompt(s: str = "", width=50, char="*") -> str:
+def double_linear_search(array: list[int], search_item: int) -> int:
+def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
 def fibonacci(k: int) -> int:
 def fibonacci_search(arr: list, val: int) -> int:
-def double_linear_search(array: list[int], search_item: int) -> int:
-def jump_search(arr: list, x: int) -> int:
-def lin_search(left: int, right: int, array: List[int], target: int) -> int:
-def ite_ternary_search(array: List[int], target: int) -> int:
-def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> int:
-def interpolation_search(sorted_collection, item):
-def interpolation_search_by_recursion(sorted_collection, item, left, right):
-def __assert_sorted(collection):
-def linear_search(sequence: list, target: int) -> int:
-def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
-def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
-def test_f1(x, y):
-def test_f2(x, y):
-def binary_search(a_list: list[int], item: int) -> bool:
 def __init__(self, x: int, y: int, step_size: int, function_to_optimize):
 def score(self) -> int:
 def get_neighbors(self):
@@ -2485,16 +2272,230 @@ def __eq__(self, obj):
 def __str__(self):
 def test_f1(x, y):
 def test_f2(x, y):
-def getMid(p1, p2):
-def triangle(points, depth):
-def iterate(initial_vectors: list[numpy.ndarray], steps: int) -> list[numpy.ndarray]:
-def iteration_step(vectors: list[numpy.ndarray]) -> list[numpy.ndarray]:
-def rotate(vector: numpy.ndarray, angle_in_degrees: float) -> numpy.ndarray:
-def plot(vectors: list[numpy.ndarray]) -> None:
-def get_distance(x: float, y: float, max_step: int) -> float:
-def get_black_and_white_rgb(distance: float) -> tuple:
-def get_color_coded_rgb(distance: float) -> tuple:
-def mean_threshold(image: Image) -> Image:
-def __init__(self, k: float, window_size: int):
-def __str__(self):
-def detect(self, img_path: str):
+def interpolation_search(sorted_collection, item):
+def interpolation_search_by_recursion(sorted_collection, item, left, right):
+def __assert_sorted(collection):
+def jump_search(arr: list, x: int) -> int:
+def linear_search(sequence: list, target: int) -> int:
+def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
+def _partition(data: list, pivot) -> tuple:
+def quick_select(items: list, index: int):
+def sentinel_linear_search(sequence, target):
+def binary_search(a_list: list[int], item: int) -> bool:
+def test_f1(x, y):
+def test_f2(x, y):
+def generate_neighbours(path):
+def generate_first_solution(path, dict_of_neighbours):
+def find_neighborhood(solution, dict_of_neighbours):
+def main(args=None):
+def lin_search(left: int, right: int, array: List[int], target: int) -> int:
+def ite_ternary_search(array: List[int], target: int) -> int:
+def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> int:
+def bead_sort(sequence: list) -> list:
+def comp_and_swap(array: List[int], index1: int, index2: int, direction: int) -> None:
+def bitonic_merge(array: List[int], low: int, length: int, direction: int) -> None:
+def bitonic_sort(array: List[int], low: int, length: int, direction: int) -> None:
+def bogo_sort(collection):
+def is_sorted(collection):
+def bubble_sort(collection):
+def bucket_sort(my_list: list) -> list:
+def cocktail_shaker_sort(unsorted: list) -> list:
+def comb_sort(data: list) -> list:
+def counting_sort(collection):
+def counting_sort_string(string):
+def cycle_sort(array: list) -> list:
+def double_sort(lst):
+def exchange_sort(numbers: list[int]) -> list[int]:
+def __init__(self, filename):
+def write_block(self, data, block_number):
+def get_block_filenames(self):
+def split(self, block_size, sort_key=None):
+def cleanup(self):
+def select(self, choices):
+def __init__(self, files):
+def get_dict(self):
+def refresh(self):
+def unshift(self, index):
+def __init__(self, merge_strategy):
+def merge(self, filenames, outfilename, buffer_size):
+def get_file_handles(self, filenames, buffer_size):
+def __init__(self, block_size):
+def sort(self, filename, sort_key=None):
+def get_number_blocks(self, filename, block_size):
+def parse_memory(string):
+def main():
+def gnome_sort(lst: list) -> list:
+def heapify(unsorted, index, heap_size):
+def heap_sort(unsorted):
+def insertion_sort(collection: list) -> list:
+def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
+def heapify(array: list, index: int, heap_size: int) -> None:
+def heap_sort(array: list) -> list:
+def partition(array: list, low: int, high: int, pivot: int) -> int:
+def sort(array: list) -> list:
+def merge(input_list: list, low: int, mid: int, high: int) -> list:
+def iter_merge_sort(input_list: list) -> list:
+def merge_insertion_sort(collection: list[int]) -> list[int]:
+def binary_search_insertion(sorted_list, item):
+def sortlist_2d(list_2d):
+def merge(left, right):
+def merge_sort(collection: list) -> list:
+def merge(left: list, right: list) -> list:
+def _merge():
+def msd_radix_sort(list_of_ints: List[int]) -> List[int]:
+def _msd_radix_sort(list_of_ints: List[int], bit_position: int) -> List[int]:
+def msd_radix_sort_inplace(list_of_ints: List[int]):
+def natural_sort(input_list: list[str]) -> list[str]:
+def alphanum_key(key):
+def odd_even_sort(input_list: list) -> list:
+def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
+def OddEvenTransposition(arr):
+def main():
+def odd_even_transposition(arr: list) -> list:
+def pancake_sort(arr):
+def __lt__(self, other):
+def __eq__(self, other):
+def patience_sort(collection: list) -> list:
+def pigeon_sort(array: List[int]) -> List[int]:
+def pigeonhole_sort(a):
+def main():
+def quick_sort(collection: list) -> list:
+def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
+def quick_sort_lomuto_partition(sorting: list, left: int, right: int) -> None:
+def lomuto_partition(sorting: list, left: int, right: int) -> int:
+def three_way_radix_quicksort(sorting: list) -> list:
+def radix_sort(list_of_ints: List[int]) -> List[int]:
+def _inPlaceQuickSort(A, start, end):
+def _inPlacePartition(A, start, end):
+def partition(A, left_index, right_index):
+def quick_sort_random(A, left, right):
+def main():
+def bubble_sort(list_data: list, length: int = 0) -> list:
+def rec_insertion_sort(collection: list, n: int):
+def insert_next(collection: list, index: int):
+def merge(arr: list[int]) -> list[int]:
+def quick_sort(data: list) -> list:
+def selection_sort(collection):
+def shell_sort(collection):
+def stooge_sort(arr):
+def stooge(arr, i, h):
+def strand_sort(arr: list, reverse: bool = False, solution: list = None) -> list:
+def binary_search(lst, item, start, end):
+def insertion_sort(lst):
+def merge(left, right):
+def tim_sort(lst):
+def main():
+def topological_sort(start, visited, sort):
+def __init__(self, val):
+def insert(self, val):
+def inorder(root, res):
+def tree_sort(arr):
+def merge_sort(collection):
+def wiggle_sort(nums: list) -> list:
+def __init__(self, keywords: List[str]):
+def find_next_state(self, current_state: int, char: str) -> Union[int, None]:
+def add_keyword(self, keyword: str) -> None:
+def set_fail_transitions(self) -> None:
+def search_in(self, string: str) -> Dict[str, List[int]]:
+def alternative_string_arrange(first_str: str, second_str: str) -> str:
+def signature(word):
+def anagram(my_word):
+def __init__(self):
+def insert_word(self, text):
+def find_word(self, prefix):
+def _elements(self, d):
+def autocomplete_using_trie(s):
+def main():
+def __init__(self, text: str, pattern: str):
+def match_in_pattern(self, char: str) -> int:
+def mismatch_in_text(self, currentPos: int) -> int:
+def bad_character_heuristic(self) -> List[int]:
+def can_string_be_rearranged_as_palindrome(input_str: str = "") -> bool:
+def benchmark(input_str: str = "") -> None:
+def capitalize(sentence: str) -> str:
+def check_anagrams(first_str: str, second_str: str) -> bool:
+def benchmark() -> None:
+def loadDictionary():
+def getEnglishCount(message):
+def removeNonLetters(message):
+def isEnglish(message, wordPercentage=20, letterPercentage=85):
+def getLetterCount(message):
+def getItemAtIndexZero(x):
+def getFrequencyOrder(message):
+def englishFreqMatchScore(message):
+def indian_phone_validator(phone: str) -> bool:
+def is_palindrome(s: str) -> bool:
+def jaro_winkler(str1: str, str2: str) -> float:
+def get_matched_characters(_str1: str, _str2: str) -> str:
+def kmp(pattern: str, text: str) -> bool:
+def get_failure_array(pattern: str) -> List[int]:
+def levenshtein_distance(first_word: str, second_word: str) -> int:
+def lower(word: str) -> str:
+def palindromic_string(input_string: str) -> str:
+def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
+def naive_pattern_search(s: str, pattern: str) -> list:
+def is_palindrome(s: str) -> bool:
+def is_palindrome_recursive(s: str) -> bool:
+def is_palindrome_slice(s: str) -> bool:
+def prefix_function(input_string: str) -> list:
+def longest_prefix(input_str: str) -> int:
+def rabin_karp(pattern: str, text: str) -> bool:
+def test_rabin_karp() -> None:
+def remove_duplicates(sentence: str) -> str:
+def reverse_letters(input_str: str) -> str:
+def reverse_words(input_str: str) -> str:
+def split(string: str, separator: str = " ") -> list:
+def swap_case(sentence: str) -> str:
+def upper(word: str) -> str:
+def word_occurence(sentence: str) -> dict:
+def get_word_pattern(word: str) -> str:
+def z_function(input_str: str) -> list:
+def go_next(i, z_result, s):
+def find_pattern(pattern: str, input_str: str) -> int:
+def fetch_last_half_hour() -> str:
+def fetch_from_to(start, end) -> list:
+def covid_stats(url: str = "https://www.worldometers.info/coronavirus/") -> covid_data:
+def get_citation(base_url: str, params: dict) -> str:
+def stock_price(symbol: str = "AAPL") -> str:
+def current_weather(q: str = "Chicago", appid: str = APPID) -> dict:
+def weather_forecast(q: str = "Kolkata, India", appid: str = APPID) -> dict:
+def weather_onecall(lat: float = 55.68, lon: float = 12.57, appid: str = APPID) -> dict:
+def horoscope(zodiac_sign: int, day: str) -> str:
+def __init__(self, domain: str) -> None:
+def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
+def get_domain_name(url: str) -> str:
+def get_sub_domain_name(url: str) -> str:
+def emails_from_url(url: str = "https://github.com") -> list[str]:
+def fetch_bbc_news(bbc_news_api_key: str) -> None:
+def fetch_github_info(auth_token: str) -> Dict[Any, Any]:
+def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, None]:
+def get_imdb_top_250_movies(url: str = "") -> dict[str, float]:
+def write_movies(filename: str = "IMDb_Top_250_Movies.csv") -> None:
+def imdb_top(imdb_top_n):
+def extract_user_profile(script) -> dict:
+def __init__(self, username):
+def get_json(self) -> dict:
+def __repr__(self) -> str:
+def __str__(self) -> str:
+def username(self) -> str:
+def fullname(self) -> str:
+def biography(self) -> str:
+def email(self) -> str:
+def website(self) -> str:
+def number_of_followers(self) -> int:
+def number_of_followings(self) -> int:
+def number_of_posts(self) -> int:
+def profile_picture_url(self) -> str:
+def is_verified(self) -> bool:
+def is_private(self) -> bool:
+def test_instagram_user(username: str = "github") -> None:
+def download_video(url: str) -> bytes:
+def save_image(image_url: str, image_title: str) -> None:
+def random_anime_character() -> tuple[str, str, str]:
+def login_using_recaptcha(request):
+def send_slack_message(message_body: str, slack_url: str) -> None:
+def test_fetch_github_info(monkeypatch):
+def __init__(self, content) -> None:
+def json(self):
+def mock_response(*args, **kwargs):
+def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") -> dict:

@@ -1,0 +1,64 @@
+def longestCommonSubstring(lhs, rhs):
+def __show_recode(rec, lhs, rhs):
+def echo(name):
+def echo(name):
+def store(db, filename=default_filename):
+def load(filename=default_filename)->dict:
+def storedb(db: dict, filename=default_name):
+def loaddb(filename=default_name) -> dict:
+def insertrec(name: str, data: dict, force=None, verbose=None):
+def enfilename(name: str)->str:
+def defilename(filename: str)->str:
+def rebuilddb(dirname=DEFAULT_BIN_DIR, extname=DEFAULT_BIN_EXT, verbose=None):
+def insertdata(people: list(Person), database=prognconfig.default_db_name):
+def __init__(self, name, age, pay, job):
+def __str__(self):
+def callname(self):
+def fact(n):
+def exp(base, n):
+def taylor_series(general_term):
+def _f(x):
+def e(n):
+def sin(n):
+def cos(n):
+def shorten(text, length=20, indicator='...') -> bool:
+def simplify(text, whitespace=string.whitespace, deletechar=""):
+def is_balanced(text, backetmap={'(': ')', '[': ']', '{': '}', '<': '>'}):
+def __init__(self, f):
+def __call__(self, *args):
+def __str__(self):
+def calltimes(self):
+def countable(f):
+def balanceIt(subset1, subset2=[]):
+def __post(rez, term):
+def q():
+def q_(term):
+def __init__(self, data, left=None, right=None, parent=None):
+def __str__(self):
+def __init__(self):
+def insert(self, data):
+def __init__(self, value, repeatTime: int):
+def __iter__(self):
+def __next__(self):
+def constant(value, repeatTime: int):
+def show_digits(numbers):
+def ch2idx(c):
+def parse(expr: str) -> int:
+def __reduce_stack(originalStack: list) -> int:
+def clean_cache(self):
+def __init__(self, limit):
+def __iter__(self):
+def __next__(self):
+def __len__(self):
+def __getitem__(self, idx):
+def __str__(self):
+def __get_next(self, idx):
+def __new_item(self):
+def insert_sort(xs: list):
+def showMeDir(path, deep = 0):
+def __showMeFiles(lst, deep):
+def parseArgv():
+def print_with_more(text: str, numlines=15):
+def to(name: str, end: str = '!'):
+def yesorno(x: int, y=None, z = None, *, **args)-> str:
+def fix_u(self, who):

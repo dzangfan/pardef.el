@@ -1,0 +1,1152 @@
+def solution(n: int = 600851475143) -> int:
+def __init__(self, data):
+def __init__(self):
+def Insert_At_Beginning(self, new_data):
+def Add_two_no(self, First, Second):
+def Display(self):
+def __init__(self):
+def __init__(self, token, t):
+def loadFile(fileName):
+def scanner(string):
+def scan():
+def parser():
+def registerLabels():
+def resetInterpreter():
+def main():
+def search():
+def pascal_triangle(lineNumber):
+def binomial_coef(n, k):
+def Binary_Search(Test_arr, low, high, k):
+def Insertion_Sort(Test_arr):
+def binarySearch(arr, l, r, x):
+def binaryToDecimal(binary):
+def dealer_choice():
+def __init__(self, suit, rank):
+def __str__(self):
+def __init__(self):
+def __str__(self):
+def shuffle(self):
+def deal(self):
+def __init__(self):
+def add_card(self, card):
+def adjust_for_ace(self):
+def __init__(self):
+def win_bet(self):
+def lose_bet(self):
+def take_bet(chips):
+def hit(deck, hand):
+def hit_or_stand(deck, hand):
+def show_some(player, dealer):
+def show_all(player, dealer):
+def player_busts(player, dealer, chips):
+def player_wins(player, dealer, chips):
+def dealer_busts(player, dealer, chips):
+def dealer_wins(player, dealer, chips):
+def push(player, dealer):
+def findPassword(chars, function, show=50, format_="%s"):
+def getChars():
+def testFunction(password):
+def crc_check(data, div):
+def get_row_col_mouse (pos):
+def __init__(self, window):
+def update (self):
+def _init(self):
+def reset (self):
+def selectrc(self, row, col):
+def _move(self, row, col):
+def draw_moves (self, moves):
+def chg_turn (self):
+def __init__(self):
+def draw_cubes(self, window):
+def move (self, piece, row, col):
+def get_piece (self, row, col):
+def create_board(self):
+def draw (self, window):
+def get_valid_moves(self, piece):
+def remove (self, pieces):
+def winner (self):
+def _traverse_l (self, start, stop, step, color, l, skip = []):
+def _traverse_r (self, start, stop, step, color, right, skip = []):
+def __init__(self, row, col, color):
+def calculate_pos (self):
+def make_king (self):
+def draw (self, window):
+def move (self, row, col):
+def __repr__(self):
+def hit(key):
+def isCollide(data):
+def __init__(self):
+def showTitle(self):
+def showStreams(self):
+def chooseStream(self):
+def validateChooseValue(self):
+def getStream(self):
+def getFileSize(self):
+def getPermisionToContinue(self):
+def download(self):
+def onProgress(stream=None, chunk=None,  remaining=None):
+def main(self):
+def __init__(self):
+def showTitle(self):
+def showStreams(self):
+def chooseStream(self):
+def validateChooseValue(self):
+def getStream(self):
+def getFileSize(self):
+def getPermisionToContinue(self):
+def download(self):
+def onProgress(stream=None, chunk=None,  remaining=None):
+def main(self):
+def createDataSet(val = 0 , data = []) :
+def generateColors(c_sorted,frame,row) :
+def measure(count,row,col,height,width) :
+def step (bgr,repetitions=1):
+def findThreshold(lst , add) :
+def makeVideo() :
+def main() :
+def diff(a, b):
+def simpleColor(r,g,b):
+def printc(color, message):
+def Representational(r, g, b):
+def calculate(img):
+def main():
+def main():
+def count_chars(filename):
+def main():
+def counting_sort(tlist, k, n):
+def __init__(self, card_no):
+def company(self):
+def first_check(self):
+def validate(self):
+def checksum(self):
+def set_card(cls, card_to_check):
+def process_date(user_input):
+def find_day(date):
+def dtbconverter(num):
+def DecimalToBinary(num):
+def __init__(self, data):
+def __init__(self):
+def Insert_At_End(self, new_data):
+def Delete(self, key):
+def Display(self):
+def __init__(self, data):
+def __init__(self):
+def Insert_At_End(self, new_data):
+def Detect_and_Remove_Loop(self):
+def Remove_loop(self, Loop_node):
+def Display(self):
+def add_to_dir(ex, src_path, path):
+def rename(search, ex, dest_path):
+def watcher(path):
+def on_created(self,event):
+def __init__(self,state,depth = 0,moves = None,optimizer=0):
+def getAvailableActions(self):
+def getResultFromAction(self,action):
+def isGoalState(self):
+def getManhattanDistance(self):
+def getHammingDistance(self):
+def __hash__(self):
+def __gt__(self, other):
+def __ge__(self, other):
+def __lt__(self, other):
+def __le__(self, other):
+def __eq__(self, other):
+def __init__(self,state):
+def isSolvable(self):
+def breadth_first_search(self):
+def depth_first_search(self):
+def uniform_cost_search(self,optimizer=0):
+def a_star(self):
+def toWord(action):
+def ohms_law(v=0, i=0, r=0):
+def encryptChar(target):
+def decryptChar(target):
+def encrypt(input_text):
+def decrypt(enc_text):
+def readAndDecrypt(filename):
+def readAndEncrypt(filename):
+def readAndEncryptAndSave(inp_file, out_file):
+def readAndDecryptAndSave(inp_file, out_file):
+def FizzBuzz():
+def __init__(self, tk_instance, *geometry, fp="background.png", animation_speed=50):
+def getBackgroundID(self):
+def getPhotoImage(image=None, image_path=None, width=None, height=None, closeAfter=False):
+def reset(self):
+def run(self):
+def stop(self):
+def __init__(self, background, gameover_function, *screen_geometry, fp="bird.png", event="<Up>", descend_speed=5):
+def birdIsAlive(self):
+def checkCollision(self):
+def getTag(self):
+def getPhotoImage(image=None, image_path=None, width=None, height=None, closeAfter=False):
+def jumps(self, event=None):
+def kill(self):
+def run(self):
+def __init__(self):
+def changeFullscreenOption(self, event=None):
+def close(self, event=None):
+def createMenuButtons(self):
+def createScoreBoard(self):
+def createTitleImage(self):
+def deleteMenuButtons(self):
+def gameOver(self):
+def increaseScore(self):
+def init(self):
+def loadScore(self):
+def saveScore(self):
+def start(self, event=None):
+def setOptions(self):
+def createNewTubes(self):
+def deleteAll(self):
+def getPhotoImage(image=None, image_path=None, width=None, height=None, closeAfter=False):
+def move(self):
+def run(self):
+def stop(self):
+def create_directory(name):
+def delete_directory(name):
+def rename_directory(direct, name):
+def set_working_directory():
+def backup_files(name_dir, folder):
+def move_folder(filename, name_dir, folder):
+def search_for_image():
+def download_wallpapers_1080p():
+def view_images_directory():
+def set_directory():
+def quit():
+def news(xml_news_url,counter):
+def is_leap(year):
+def new_game():
+def range_of_100():
+def range_of_1000():
+def input_guess(guess):
+def menu():
+def add():
+def modify():
+def search():
+def remove():
+def view():
+def exit():
+def exit_menu():
+def ImageDownloader(url):
+def __init__(self, capacity):
+def isEmpty(self):
+def peek(self):
+def pop(self):
+def push(self, op):
+def isOperand(self, ch):
+def notGreater(self, i):
+def infixToPostfix(self, exp):
+def __init__(self, data):
+def __init__(self):
+def Insert_At_Beginning(self, new_data):
+def Insert_After(self, node, new_data):
+def Insert_At_End(self, new_data):
+def Display(self):
+def speak_news():
+def sendEmail(to, content):
+def voice(p):
+def __init__(self, Q):
+def sub_call(self, exe_file):
+def get_dict(self):
+def get_app(self):
+def get_app(Q):
+def __init__(self, jobs: List[int]) -> None:
+def schedule(self, total_jobs: int, deadline: List[int]) -> List[int]:
+def feasible(self, profit_jobs: List[int], deadline: List[int]) -> bool:
+def main():
+def convert_json_to_python(self, par_json_file):
+def convert_python_to_json(self, par_data_dic, par_json_file=""):
+def get_json_value(self, par_value, par_json_file):
+def __init__(self, query, location, file_name, progressbar, label_progress):
+def inner_html(element):
+def get_name(body):
+def which_digit(html):
+def get_phone_number(self, body):
+def get_rating(body):
+def get_rating_count(body):
+def get_address(body):
+def get_location(body):
+def start_scrapping_logic(self):
+def __init__(self, master):
+def start_scrapping(self):
+def start(self):
+def snowflake(lengthSide, levels):
+def printt():
+def Linear_Search(Test_arr, val):
+def Insertion_Sort(Test_arr):
+def new_game():
+def create(card):
+def mouseclick(pos):
+def draw(canvas):
+def merge( ori_lst, left, mid, right ):
+def merge_sort( L, left, right ):
+def __init__(self, data):
+def __init__(self):
+def printList(self):
+def append(self, new_data):
+def mergeLists(head1, head2):
+def is_square_free(factors):
+def prime_factors(n):
+def mobius_function(n):
+def directorychooser():
+def updatelabel():
+def nextsong(event):
+def prevsong(event):
+def stopsong(event):
+def ChangeDirectory(dir):
+def Organize(dirs, name):
+def header(self):
+def footer(self):
+def gen_password(sequence, passlength=8):
+def change_has_characters(cls, change):
+def show_has_characters(cls):
+def generate_password(self, lenght):
+def list_to_vertical_string(list):
+def decide_operation(self):
+def run(self):
+def click(pos):
+def clear():
+def draw(canvas):
+def __init__(self, *args, **kwargs):
+def update(self, win_size: Tuple, border: Tuple, other_object, dt) -> None:
+def load_balls(win_size : Tuple, radius : float, speed : Tuple, batch=None):
+def load_paddles(paddle_pos : Tuple, width : float, height : float, acc : Tuple, batch=None):
+def load_rectangles(win_size : Tuple, border : float, batch=None):
+def __init__(self, *args, **kwargs):
+def update(self, win_size : Tuple, border : float, other_object, dt):
+def __init__(self, *args, **kwargs):
+def __init__(self, *args, **kwargs):
+def on_draw(self):
+def update(dt):
+def paddleaup():
+def paddleadown():
+def paddlebup():
+def paddlebdown():
+def recieve():
+def Write():
+def Client_Handler(cli):
+def BroadCasating(msg):
+def recieve():
+def findLinear(numbers):
+def partition(arr, low, high):
+def quickSort(arr, low, high):
+def roll():
+def tree(i):
+def __init__(self, data):
+def __init__(self):
+def Insert_At_End(self, new_data):
+def Reverse_list_Groups(self, head, k):
+def Display(self):
+def __init__(self, data):
+def __init__(self):
+def Insert_At_Beginning(self, new_data):
+def Rotation(self, key):
+def Display(self):
+def SOUNDEX(TERM: str):
+def show1():
+def show2():
+def add(a, b):
+def subtract(a, b):
+def multiply(a, b):
+def divide(a, b):
+def power(a,b):
+def main():
+def __init__(self, data):
+def __init__(self):
+def Sorted_Insert(self, new_node):
+def Display(self):
+def bubble_sort(Lists):
+def counting_sort(array1, max_val):
+def insertionSort(arr, left, right):
+def merge(arr, l, m, r):
+def timSort(arr, n):
+def printArray(arr, n):
+def heapify(nums, heap_size, root_index):
+def heap_sort(nums):
+def insertion_sort(nums):
+def merge(left_list, right_list):
+def merge_sort(nums):
+def pigeonhole_sort(a):
+def partition(nums, low, high):
+def quick_sort(nums):
+def _quick_sort(items, low, high):
+def selection_sort(nums):
+def stooge_sort_(arr, l, h):
+def sortInWave(arr, n):
+def __init__(self, data):
+def __init__(self):
+def Insert_At_End(self, new_data):
+def Sort(self):
+def Display(self):
+def __init__(self, data):
+def __init__(self):
+def Push(self, data):
+def Split_List(self, head1, head2):
+def Display(self):
+def text2Speech():
+def __init__(self, master):
+def home(self):
+def newformat(self):
+def forget_home(self):
+def retrieve_home(self):
+def cpy(self):
+def done(self, output):
+def display(self):
+def try_forget(self):
+def get_t(self, r):
+def get_n(self, r):
+def get_m(self, r):
+def get_k(self, r):
+def get_a(self, r):
+def get_b(self, r):
+def get_char_list(self, r):
+def show_button(self, r):
+def submit(self):
+def forget_testcase_take_input_screen(self, check=0):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def __init__(self, master):
+def take_input(self):
+def generate(self):
+def introduction():
+def draw_board(board):
+def input_player_letter():
+def frist_player():
+def play_again():
+def make_move(board, letter, move):
+def is_winner(bo, le):
+def get_board_copy(board):
+def is_space_free(board, move):
+def get_player_move(board):
+def choose_random_move_from_list(board, moveslist):
+def get_computer_move(board, computer_letter):
+def is_board_full(board):
+def num(a):
+def find_Triplets_with_zero_sum(arr, num):
+def angle_type():
+def angle_type():
+def time():
+def last_digit(a, b):
+def callback(recognizer, audio):
+def getWeather():
+def wiki():
+def fullPage(page):
+def randomWiki():
+def time_gap(string):
+def copy_wallpapers():
+def change_ext():
+def extract_wall():
+def arr_desk_wallpapers():
+def exec_all():
+def __init__(self, key=0):
+def encrypt(self, content, key):
+def decrypt(self, content, key):
+def encrypt_string(self, content, key=0):
+def decrypt_string(self, content, key=0):
+def encrypt_file(self, file, key=0):
+def decrypt_file(self, file, key):
+def setUp(self):
+def test__init__(self, mock__init__):
+def test_encrypt(self, mock_encrypt):
+def test_decrypt(self, mock_decrypt):
+def test_encrypt_string(self, mock_encrypt_string):
+def test_decrypt_string(self, mock_decrypt_string):
+def test_encrypt_file(self, mock_encrypt_file):
+def test_decrypt_file(self, mock_decrypt_file):
+def progress(stream=None, chunk=None,  remaining=None):
+def startDownload():
+def startDownloadthread():
+def Repeat(x):
+def get_headlines():
+def homepage():
+def start_skill():
+def share_headlines():
+def no_intent():
+def download(ways):
+def test():
+def __init__(self):
+def push(self, item):
+def pop(self):
+def is_empty(self):
+def peek(self):
+def display(self):
+def is_same(p1, p2):
+def is_balanced(check_string):
+def connect_database():
+def check_admin(name, password):
+def create_employee(name, password, salary, positon):
+def check_employee(name, password):
+def create_customer(name, age, address, balance, acc_type, mobile_number):
+def check_acc_no(acc_no):
+def get_details(acc_no):
+def update_balance(new_money, acc_no):
+def deduct_balance(new_money, acc_no):
+def check_balance(acc_no):
+def update_name_in_bank_table(new_name, acc_no):
+def update_age_in_bank_table(new_name, acc_no):
+def update_address_in_bank_table(new_name, acc_no):
+def list_all_customers():
+def delete_acc(acc_no):
+def show_employees():
+def all_money():
+def show_employees_for_update():
+def update_employee_name(new_name, old_name):
+def update_employee_password(new_pass, old_name):
+def update_employee_salary(new_salary, old_name):
+def update_employee_position(new_pos, old_name):
+def get_detail(acc_no):
+def check_name_in_staff(name):
+def check_string_in_account_no(check_acc_no):
+def create():
+def create_customer_in_database():
+def delete_create():
+def search_acc():
+def show():
+def clear_show_frame():
+def back_page2():
+def add():
+def search_in_database():
+def back_page2():
+def update_money():
+def search_acc():
+def withdraw():
+def search_in_database():
+def go_page2():
+def deduct_money():
+def search_acc():
+def check():
+def search_in_database():
+def back_page2():
+def delete_check_frame():
+def search_acc():
+def update():
+def back_to_page2():
+def show_all_updateble_content():
+def back_to_page2_from_update():
+def update_name():
+def update_name_in_database():
+def update_age():
+def update_age_in_database():
+def update_address():
+def update_address_in_database():
+def allmembers():
+def clear_list_frame():
+def delete():
+def search_in_database():
+def back_page2():
+def search_acc():
+def page2():
+def back_to_main_from_page2():
+def create_employee():
+def create_emp_in_database():
+def back_to_main_page1_from_create_emp():
+def update_employee():
+def update_details_of_staff_member():
+def back_to_page1():
+def update_that_particular_employee():
+def back_to_page1_from_update():
+def update_name_in_database():
+def database_calling():
+def update_password_in_database():
+def database_calling():
+def update_salary_in_database():
+def database_calling():
+def update_position_in_database():
+def database_calling():
+def show_employee():
+def back_to_main_page1():
+def Total_money():
+def back_to_main_page1_from_total_money():
+def back_to_main():
+def page1():
+def back_to_main2():
+def employee_login():
+def back_to_main3():
+def check_emp():
+def admin_login():
+def batch_rename(work_dir, old_ext, new_ext):
+def get_parser():
+def main():
+def __init__(self, info):
+def __str__(self):
+def __del__(self):
+def __init__(self):
+def insert(self, val):
+def search(self, val, to_delete=False):
+def delete(self, val):
+def __str__(self):
+def is_bst(node, lower_lim=None, upper_lim=None):
+def postorder(node):
+def inorder(node):
+def preorder(node):
+def bfs(node):
+def preorder_itr(node):
+def inorder_itr(node):
+def postorder_itr(node):
+def bst_frm_pre(pre_list):
+def lca(t_node, c1, c2):
+def vertical_middle_level(t_node):
+def get_level(n, val):
+def depth(node):
+def checkBinod(file):
+def __init__(self, suit, rank):
+def __str__(self):
+def get_suit(self):
+def get_rank(self):
+def draw(self, canvas, pos):
+def string_list_join(string, string_list):
+def __init__(self):
+def __str__(self):
+def add_card(self, card):
+def get_value(self):
+def draw(self, canvas, pos):
+def __init__(self):
+def shuffle(self):
+def deal_card(self):
+def __str__(self):
+def deal():
+def stand():
+def hit():
+def draw(canvas):
+def dealer_choice():
+def  DBZ():
+def separator():
+def end_separator():
+def   login():
+def ViewAll():
+def  CNB1():
+def  CNB2():
+def __init__(self, screen, radius, x, y):
+def getXVel(self):
+def getYVel(self):
+def draw(self):
+def update(self, paddle, brickwall):
+def __init__(self, screen, width, height, x, y):
+def draw(self):
+def update(self):
+def __init__(self, screen, width, height, x, y):
+def draw(self):
+def add(self, group):
+def remove(self, group):
+def alive(self):
+def collide(self, ball):
+def __init__(self, screen, x, y, width, height):
+def add(self, brick):
+def remove(self, brick):
+def draw(self):
+def update(self, ball):
+def hasWin(self):
+def collide(self, ball):
+def bubbleSort(arr):
+def main():
+def __init__(self, parent):
+def output_box(self):
+def press_7(self):
+def press_8(self):
+def press_9(self):
+def press_4(self):
+def press_5(self):
+def press_6(self):
+def press_1(self):
+def press_2(self):
+def press_3(self):
+def press_0(self):
+def press_clear(self):
+def press_reset(self):
+def press_plus(self):
+def press_min(self):
+def press_mul(self):
+def press_div(self):
+def press_equal(self):
+def cal_buttons(self):
+def __init__(self, *args, **kwargs):
+def geometry_settings(self):
+def calc(term):
+def result(term):
+def main():
+def cret(command):
+def randmac():
+def retrandmac(mac):
+def main():
+def usage():
+def readfile(filename):
+def main():
+def isSQLite3(filename):
+def get_user_input(start, end):
+def checkInternetConnectivity():
+def solve(num_heads, num_legs):
+def __init__(self, suit, rank):
+def __str__(self):
+def getRank(self):
+def getSuit(self):
+def __init__(self):
+def shuffle(self):
+def dealCard(self):
+def __str__(self):
+def slice(mink, maxk):
+def pi(n):
+def slice(mink, maxk):
+def pi(n):
+def slice(mink, maxk):
+def pi(n):
+def count_con(string):
+def convert_time(input_str):
+def world():
+def indiac():
+def choices():
+def speak(audio):
+def clear_screen():
+def print_docs():
+def putty_sessions(conffilename):
+def rdp_sessions():
+def euroclear_docs():
+def main():
+def check_sign():
+def horoscope(zodiac_sign: int, day: str) -> str:
+def process_date(user_input):
+def find_day(date):
+def printt():
+def draw_diamond(n):
+def __init__(self):
+def set_sides(self, sides_change):
+def roll(self):
+def __init__(self):
+def setSides(self, sides):
+def roll(self):
+def checkInput(sides):
+def pickNumber(item, question_string, lower_limit):
+def getDices():
+def output():
+def start():
+def bye():
+def result():
+def dice6():
+def dice8():
+def dice12():
+def user_exit_checker():
+def speak(audio):
+def takeCommand():
+def translate(word):
+def def_time():
+def dig_clock():
+def main():
+def __init__(self, *args, **kwargs):
+def geometry_settings(self):
+def __init__(self, parent):
+def page1_inside(self):
+def encrypt_now(self):
+def page2_inside(self):
+def decrypt_now(self):
+def backend_work(self, todo, text_coming):
+def decrypt():
+def encrypt():
+def print_all(f):
+def rewind(f):
+def print_a_line(line_count, f):
+def create_form():
+def function(email,passw,i):
+def welcome():
+def speak(text):
+def factorial(n):
+def factorial(n):
+def factorial(n):
+def permutation(n, r):
+def combination(n, r):
+def main():
+def read_root():
+def get_courses():
+def get_a_course(course_id: int):
+def add_course(course: Course):
+def delete_course(course_id: int):
+def fetch_bbc_news(bbc_news_api_key: str) -> None:
+def getFibonacciIterative(n: int) -> int:
+def getFibonacciRecursive(n: int) -> int:
+def step(n: int) -> int:
+def getFibonacciDynamic(n: int,fib: list) -> int:
+def main():
+def compareFibonacciCalculators(n: int) -> None:
+def cubeRoot():
+def find_prime(num):
+def __init__(self, x, y, ms_to_up, images):
+def update(self, delta_frames=1):
+def image(self):
+def mask(self):
+def rect(self):
+def __init__(self, pipe_end_img, pipe_body_img):
+def top_height_px(self):
+def bottom_height_px(self):
+def visible(self):
+def rect(self):
+def update(self, delta_frames=1):
+def collides_with(self, bird):
+def load_images():
+def load_image(img_file_name):
+def frames_to_msec(frames, fps=FPS):
+def msec_to_frames(milliseconds, fps=FPS):
+def gameover(display, score):
+def main():
+def __init__(self, window_width, window_height):
+def generateClosedPolygons(self):
+def run(self):
+def update(self, events):
+def inBounds(self, coord):
+def four_digit_combinations():
+def one_line_combinations():
+def receive_file(filename='example.txt'):
+def send_file(filename='example.txt'):
+def mixed_sorting(nums):
+def test_1(self):
+def test_2(self):
+def create_canvas(size):
+def seed(canvas):
+def run(canvas):
+def __judge_point(pt, neighbours):
+def getprice(symbol, exchange_id):
+def main():
+def calc1():
+def calc2():
+def calc3():
+def calc4():
+def calc5():
+def calc6():
+def calc7():
+def calc8():
+def calc9():
+def calc0():
+def add():
+def subtract():
+def get():
+def equals():
+def cls():
+def multiply():
+def divide():
+def refineHeap(arr, n, i):
+def heapSort(arr):
+def __init__(self):
+def filter(self, item):
+def sortFiles(self):
+def getPictures(self):
+def isEmpty(self, items):
+def convertPictures(self):
+def save(self):
+def input_list():
+def insertion_sort(list,n):
+def insertion_sort_desc(list,n):
+def background_task(self, user, tags, type, productId):
+def get(self):
+def get(self):
+def get(self):
+def get(self):
+def get(self):
+def __init__(self):
+def __call__(self, function_to_call_for_appling_proxy):
+def wrapper_function(url):
+def __init__(self, user, tags, type, productId):
+def _dataProcessing(self, data):
+def _insertFunction(self, record):
+def _lastProcess(self, userdata, media_post, top_post):
+def request_data_from_instagram(self):
+def reqest_pull(url):
+def __del__(self):
+def hashtags(user, tags, type, productId):
+def __init__(self, user, tags, type, productId):
+def run(self):
+def _dbProcessReader(self, user, tags, productId):
+def _processstart(self, user, tags, productId):
+def startprocess(self, user, tags, type, productId):
+def deletProcess(self, user, tags, productId):
+def statusCheck(self, user, tags, productId):
+def __init__(self, user, tags, type, productId):
+def dbFetcher(self, limit=20):
+def DBFetcherGreater(self, limit, date):
+def DBFetcherLess(self, limit, date):
+def __del__(self):
+def main():
+def instasubprocess(user, tags, type, productId):
+def kmp(pattern, text, len_p=None, len_t=None):
+def lcm(x, y):
+def levenshtein_dis(wordA, wordB):
+def scaling(scaling_factor):
+def rotation(angle):
+def projection(angle):
+def reflection(angle):
+def __init__(self, components):
+def set(self, components):
+def __str__(self):
+def component(self, i):
+def size(self):
+def eulidLength(self):
+def __add__(self, other):
+def __sub__(self, other):
+def __mul__(self, other):
+def copy(self):
+def changeComponent(self, pos, value):
+def norm(self):
+def __eq__(self, other):
+def zeroVector(dimension):
+def unitBasisVector(dimension, pos):
+def axpy(scalar, x, y):
+def randomVector(N, a, b):
+def __init__(self, matrix, w, h):
+def __str__(self):
+def changeComponent(self, x, y, value):
+def component(self, x, y):
+def width(self):
+def height(self):
+def __mul__(self, other):
+def __add__(self, other):
+def __sub__(self, other):
+def __eq__(self, other):
+def squareZeroMatrix(N):
+def randomMatrix(W, H, a, b):
+def test_component(self):
+def test_str(self):
+def test_size(self):
+def test_euclidLength(self):
+def test_add(self):
+def test_sub(self):
+def test_mul(self):
+def test_zeroVector(self):
+def test_unitBasisVector(self):
+def test_axpy(self):
+def test_copy(self):
+def test_changeComponent(self):
+def test_str_matrix(self):
+def test__mul__matrix(self):
+def test_changeComponent_matrix(self):
+def test_component_matrix(self):
+def test__add__matrix(self):
+def test__sub__matrix(self):
+def test_squareZeroMatrix(self):
+def test_norm_vector(self):
+def test__eq__vector(self):
+def test__eq__matrix(self):
+def sketch(image):
+def logo():
+def login():
+def lis(a):
+def magic8Ball():
+def tryAgain():
+def input_par():
+def main():
+def square(x, y):
+def index(x, y):
+def xy(count):
+def tap(x, y):
+def draw():
+def merge():
+def main():
+def missing_number(num_list):
+def __init__(self):
+def crawl_html_page(self, sub_url):
+def crawl_phone_urls(self):
+def crawl_phones_models_specification(self, li):
+def table(rows, columns):
+def nDigitCombinations(n):
+def Times_of_India(userInput, ua):
+def india_today(userInput, ua):
+def nmapScan(tgtHost, tgtPort):
+def main():
+def vp_start_gui():
+def create_Notepads_managment(root, *args, **kwargs):
+def destroy_Notepads_managment():
+def __init__(self, top=None):
+def delete_button(p1):
+def create_button(p1):
+def add_button(p1):
+def back_button(p1):
+def clear_button(p1):
+def exit_button(p1):
+def search_button(p1):
+def next_button(p1):
+def init(top, gui, *args, **kwargs):
+def destroy_window():
+def get_array(x, y):
+def testPass(cryptPass):
+def main():
+def get_password(service_):
+def add_password(service_, username_, password_):
+def update_password(service_, password_):
+def delete_service(service_):
+def get_all():
+def is_service_present(service_):
+def text_translator(Text):
+def eng2punj_translator(Text):
+def eng2beng_translator(Text):
+def connScan(tgtHost, tgtPort):
+def portScan(tgtHost, tgtPorts):
+def main():
+def windows():
+def linux():
+def windows():
+def linux():
+def get_servers(query):
+def main():
+def pi(maxK=70, prec=1008, disp=1007):
+def isPrime(number):
+def sieveEr(N):
+def getPrimeNumbers(N):
+def primeFactorization(number):
+def greatestPrimeFactor(number):
+def smallestPrimeFactor(number):
+def isEven(number):
+def isOdd(number):
+def goldbach(number):
+def gcd(number1, number2):
+def kgV(number1, number2):
+def getPrime(n):
+def getPrimesBetween(pNumber1, pNumber2):
+def getDivisors(n):
+def isPerfectNumber(number):
+def simplifyFraction(numerator, denominator):
+def factorial(n):
+def fib(n):
+def download_files(links, idx):
+def main():
+def ps():
+def main():
+def get_video_links():
+def download_video_series(video_links):
+def return_quote():
+def random_int():
+def random_sentence():
+def check_ratio(x):
+def __init__(self):
+def make_folder_and_return_name(self, foldername):
+def check_folder_existance(self):
+def fib(n):
+def quick_sort(l):
+def sid2user(sid):
+def returnDir():
+def main():
+def replacetext(string):
+def name_to_number(name):
+def number_to_name(number):
+def game(player_choice):
+def left_rotate(s,val):
+def right_rotate(s,val):
+def circular_rotate(s):
+def swap_case(s):
+def score(source_data: list, weights: list, *args) -> list:
+def score_columns(source_data: list, columns: list, weights: list) -> list:
+def download(url):
+def download_2(url):
+def clear_screen():
+def github():
+def development():
+def get_credentials():
+def SendMessage(sender, to, subject, msgHtml, msgPlain, attachmentFile=None):
+def SendMessageInternal(service, user_id, message):
+def CreateMessageHtml(sender, to, subject, msgHtml, msgPlain):
+def main():
+def python_version():
+def ip_addresses():
+def cpu_load():
+def ram_available():
+def ac_connected():
+def show_sensors():
+def command_line(argv):
+def ListAvailablePorts():
+def __init__(self, data):
+def rotate(n, b):
+def padding(self):
+def split_blocks(self):
+def expand_block(self, block):
+def final_hash(self):
+def testMatchHashes(self):
+def main():
+def getMid(p1, p2):
+def triangle(points, depth):
+def jpeg_res(filename):
+def soundex_al(word):
+def randomName(size=10, chars=string.ascii_letters + string.digits):
+def randomPassword(size=14, chars=string.ascii_letters + string.digits):
+def update(self):
+def get_proxy(self):
+def FormatProxy(self):
+def __init__(self):
+def creator():
+def createStack():
+def size(stack):
+def isEmpty(stack):
+def push(stack,item):
+def pop(stack):
+def reverse(string):
+def createStack():
+def isEmpty(stack):
+def push(stack, item):
+def pop(stack):
+def peek(stack):
+def validate(hand):
+def print_hand(hand, name='Guest'):
+def judge(player, computer):
+def rotate(n):
+def solve(bo):
+def valid(bo, num, pos):
+def print_board(bo):
+def find_empty(bo):
+def write_to_file(filename, txt):
+def text_file_replace(file, encoding, old, new):
+def paint(str, color='r'):
+def find_tf_idf(file_names=['./../test/testdata'], prev_file_path=None, dump_path=None):
+def image_resize(image, width=None, height=None, inter=cv2.INTER_AREA):
+def __init__(self, capture, filepath, res="480p", *args, **kwargs):
+def change_res(self, width, height):
+def get_dims(self, res='480p'):
+def get_video_type(self):
+def __init__(self, event):
+def run(self):
+def handler_thread(event):
+def handler(signum, frame):
+def DrawBoard():
+def CheckPosition(x):
+def CheckWin():
+def create_board():
+def possibilities(board):
+def random_place(board, player):
+def row_win(board, player):
+def col_win(board, player):
+def diag_win(board, player):
+def evaluate(board):
+def play_game():
+def print_board():
+def enter_number(p1_sign, p2_sign):
+def checkwin():
+def play():
+def toh(n,s,t,d):
+def my_found(req):
+def getStatus():
+def tweetthis(type):
+def initialize():
+def main():
+def tweeter_scrapper():
+def twoSum(nums, target):
+def checkVowels(letter):
+def summary():
+def load():
+def search_wiki() :
