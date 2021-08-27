@@ -3,6 +3,7 @@
 ;; Copyright (C) 2021  Lifoz
 
 ;; Author: Lifoz <li-fn@outlook.com>
+;; Maintainer: Lifoz <li-fn@outlook.com>
 ;; Package-Version: 1.0
 ;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
