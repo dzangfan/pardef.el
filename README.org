@@ -12,7 +12,7 @@ Install [[file:pardef.el][pardef.el]] and put following code in your init.el:
   ;; This package doesn't depend `python-mode', but load after python
   ;; can speed up your initialization time.
   (with-eval-after-load 'python
-    (add-to-list 'load-path "path/to/your/pardef.el")
+    (add-to-list 'load-path "path/to/your/pardef")
     (require 'pardef)
     (define-key python-mode-map (kbd "M-d M-d") #'pardef-sphinx)
     (define-key python-mode-map (kbd "M-d M-n") #'pardef-do-jump-forward)
@@ -27,7 +27,7 @@ Install [[file:pardef.el][pardef.el]] and put following code in your init.el:
   ;; Or `use-package'
   (use-package pardef
     :after python
-    :load-path "/path/2/your/pardef.el"
+    :load-path "/path/2/your/pardef"
     :bind (:map python-mode-map
                 ("M-d M-d" . pardef-sphinx)
                 ("M-d M-n" . pardef-do-jump-forward)
