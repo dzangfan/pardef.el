@@ -4,7 +4,7 @@
 
 ;; Author: Lifoz <li-fn@outlook.com>
 ;; Maintainer: Lifoz <li-fn@outlook.com>
-;; Package-Version: 1.0
+;; Package-Version: 1.1
 ;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((dash "2.19.0"))
@@ -286,7 +286,7 @@ a short message which indicates the reason of failure with tag
     (let ((rezseq nil)
           (commap 0)
           (commac (pardef--find-next-outside-par parlist ?\, 0))
-          (ignored-regexp (--> (list "\\*\\|/"
+          (ignored-regexp (--> (list "\\*\\|/\\|\\s-*"
                                      (when pardef-sphinx-ignore-self "self")
                                      (when pardef-sphinx-ignore-rest
                                        "\\*[a-zA-Z0-9_]+")
