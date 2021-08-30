@@ -4,7 +4,7 @@
 
 ;; Author: Lifoz <li-fn@outlook.com>
 ;; Maintainer: Lifoz <li-fn@outlook.com>
-;; Package-Version: 1.1
+;; Package-Version: 1.2
 ;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((dash "2.19.0"))
@@ -62,6 +62,12 @@
   :group 'pardef
   :type '(radio (const :tag "Single quotes" "'''")
                 (const :tag "Double quotes" "\"\"\"")))
+
+(defcustom pardef-enable-class-docstring t
+  "Inserting and updating class constructor(__init__)'s docstring
+to its class definition, defaults to t."
+  :group 'pardef
+  :type 'boolean)
 
 (defcustom pardef-sphinx-list-indent 0
   "Indent of list items in Sphinx-formatted documentation.
@@ -226,7 +232,8 @@ sure that any `OPENERS' in your source string are matched to
     (source char start &optional openers closers)
   "Find next `CHAR' in `SOURCE' outside any parentheses.
 The definition of 'parentheses' is in alist `PARALIST', which is
-a ALIST consists of opening and closing."
+a ALIST consists of opening and closing.  Returns index of the
+character, otherwise returns nil if fail to found."
   (setq openers (or openers (string ?\( ?\[ ?\{ ?\" ?\'))
         closers (or closers (string ?\) ?\] ?\} ?\" ?\')))
   (cl-do* ((stack nil)
@@ -458,6 +465,69 @@ returns nil."
     `(user-error ,tagged-format ,@args)))
 
 
+(defun pardef--detect-class-above ()
+  "Detect method's class.
+Returns the line number that contains class keyword, or returns
+nil if no class is found.  Current point will be changed to the
+beginning of line just mentioned if that class is found,
+otherwise nothing will be changed."
+  (let ((curpos (point))
+        (curind (current-indentation))
+        (class-line-regexp "^\\s-*class\\(?:\\s-\\|\\\\\\)"))
+    (cl-do ((curln (buffer-substring-no-properties (line-beginning-position)
+                                                   (line-end-position))
+                   (buffer-substring-no-properties (line-beginning-position)
+                                                   (line-end-position))))
+        ((bobp) (progn (goto-char curpos) nil))
+      (when (string-match class-line-regexp curln)
+        (let ((indent (current-indentation)))
+          (when (< indent curind)
+            (beginning-of-line)
+            (cl-return (line-number-at-pos)))))
+      (previous-line))))
+
+
+(defun pardef--end-of-class-definition ()
+  "Goto the end of class definition of current method.
+
+Note that cursor must be placed on the line which contains method
+definition keyword `def', and it will detect its class and move
+to the end of class definition.  For example, if buffer looks
+like:
+
+--- BUFFER ---
+
+class C(B):
+
+  def __init__(self):...
+                        ^
+                        cursor
+--- BUFFER ---
+
+Use this function to move to the end of class definition's colon:
+
+--- BUFFER ---
+
+class C(B):
+           ^
+           cursor
+  def __init__(self):...
+--- BUFFER ---
+
+It ignores any class inner C and works intuitively.  A
+`pardef--user-error' will be raised if cannot find class of the
+method.
+See also `pardef--detect-class-above'."
+  (-if-let (lino (pardef--detect-class-above))
+      (cl-multiple-value-bind (line fst-lino lst-lino ignored-count)
+          (pardef-load-python-line)
+        (-if-let (end (pardef--find-next-outside-par line ?\: 0))
+            (forward-char (+ 1 end ignored-count))
+          (pardef--user-error "Unable to parse class definition in line %d"
+                              lino)))
+    (pardef--user-error "Cannot detect this method's class.")))
+
+
 ;; FIXME
 ;; This function assume that there is no more continued line after the
 ;; end of defun. So in this case:
@@ -539,8 +609,14 @@ will update it automatically."
         (let* ((definition (substring-no-properties line defi-begin defi-end))
                (parez (pardef-load-python-defun definition)))
           (when (stringp parez) (pardef--user-error "%s" parez))
-          (beginning-of-line)
-          (forward-char (+ defi-end ignored-count))
+          (cond ((and pardef-enable-class-docstring
+                      (string= "__init__" (assoc-default 'name parez)))
+                 (pardef--end-of-class-definition))
+                (t (beginning-of-line)
+                   (forward-char (+ defi-end ignored-count))))
+          ;; Now cursor is after colon, namely the end of
+          ;; function/class definition.  And a correctly parsed
+          ;; definition is storing in `parez'
           (let ((curdoc (pardef--load-docstring)))
             (cl-multiple-value-bind (lines row col)
                 (funcall renderer parez (and curdoc (cl-first curdoc)))

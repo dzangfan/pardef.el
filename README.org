@@ -87,6 +87,21 @@ Parameter list part also has its structure, refer to [[https://sphinx-rtd-tutori
 
 Use double or single quotes as docstring's bound to output.  This value will not affect parsing existed docstring.
 
+*** ~pardef-enable-class-docstring~: Boolean
+
+Whether to inserting/updating constructor ~__init__~'s docstring to class's definition.
+
+#+begin_src python
+  class CL:
+  # ^
+  # (setq pardef-enable-class-docstring nil) ;; default
+
+      def __init__(self):
+  #   ^
+  #   (setq pardef-enable-class-docstring nil)
+          raise NotImplementedError()
+#+end_src
+
 *** ~pardef-sphinx-list-indent~: non-negative integer
 
 Indentations of lines like ~:param x:~, defaults to zero.
