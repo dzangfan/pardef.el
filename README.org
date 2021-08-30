@@ -94,7 +94,7 @@ Whether to inserting/updating constructor ~__init__~'s docstring to class's defi
 #+begin_src python
   class CL:
   # ^
-  # (setq pardef-enable-class-docstring nil) ;; default
+  # (setq pardef-enable-class-docstring t) ;; default
 
       def __init__(self):
   #   ^
