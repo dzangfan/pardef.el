@@ -484,7 +484,7 @@ otherwise nothing will be changed."
           (when (< indent curind)
             (beginning-of-line)
             (cl-return (line-number-at-pos)))))
-      (previous-line))))
+      (forward-line -1))))
 
 
 (defun pardef--end-of-class-definition ()
@@ -519,7 +519,7 @@ It ignores any class inner C and works intuitively.  A
 method.
 See also `pardef--detect-class-above'."
   (-if-let (lino (pardef--detect-class-above))
-      (cl-multiple-value-bind (line fst-lino lst-lino ignored-count)
+      (cl-multiple-value-bind (line _fst-lino _lst-lino ignored-count)
           (pardef-load-python-line)
         (-if-let (end (pardef--find-next-outside-par line ?\: 0))
             (forward-char (+ 1 end ignored-count))
@@ -541,9 +541,7 @@ See also `pardef--detect-class-above'."
 
 To generate docstring for a function, place cursor on the line
 contains keyword `def', then call this function with a particular
-`RENDERER'.  Note that this function is not `interactive', so you
-should wrap it in `lambda' or use `pardef-make-gen' in key
-binding.
+`RENDERER'.  Note that this function is not `interactive'.
 
 `RENDERER' is a callback who can produce or update a docstring by
 a parsed function definition.  It should be a function accepts a
@@ -597,7 +595,7 @@ Then we should return
 Finally, you can use custom variable `pardef-docstring-style' as
 docstring's quotes. If docstring already exists, `pardef-gen'
 will update it automatically."
-  (cl-multiple-value-bind (line first-lino last-lino ignored-count)
+  (cl-multiple-value-bind (line _first-lino _last-lino ignored-count)
       (pardef-load-python-line)
     (if (not (string-match "^\\s-*\\(def\\)" line)) ; `def' must in current line
         (pardef--user-error "Unable to parse Current line as a python defun")
@@ -637,19 +635,6 @@ will update it automatically."
                 (beginning-of-line)
                 (forward-line row)
                 (forward-char (+ indent-level col))))))))))
-
-
-(defun pardef-make-gen (renderer)
-  "Create a generator function with `RENDERER'.
-Creating a non-parameter function which will call
-(pardef-gen `RENDERER') `interactive'-ly. It can be used to
-define key bindings in your init.el:
-
-  (define-key xx-mode-map (kbd ..) (pardef-make-gen `RENDERER'))
-
-See `pardef-gen' for more details."
-  (lambda () (interactive)
-    (pardef-gen renderer)))
 
 
 (defun pardef-util-split-docstring-blocks (docstring)
@@ -711,8 +696,9 @@ by `-flatten' before used."
                                (let ((dds (split-string
                                            pardef-sphinx-default-param "\n")))
                                  (if (or nodefault (string-blank-p value)) dds
-                                   (--map-last t (format
-                                                  "%s, defaults to %s" it value)
+                                   (--map-last (progn (ignore it) t)
+                                               (format "%s, defaults to %s"
+                                                       it value)
                                                dds)))))
                       (doc (if (listp doc) doc (list doc)))
                       (rest (cl-rest doc))
@@ -720,8 +706,7 @@ by `-flatten' before used."
                               ":param %s:%s" name (cl-first doc))))
                  (push (cons first rest) result))
                (unless (string-blank-p type)
-                 (let* ((default (format " %s" type))
-                        (doc (or (assoc-default name type-alist 'string-equal)
+                 (let* ((doc (or (assoc-default name type-alist 'string-equal)
                                  (list (string))))
                         (rest (cl-rest doc))
                         (first (pardef--rsph-format
@@ -760,7 +745,8 @@ return-specifiers. It will be insert between that two directly."
 (defun pardef--rsph-create (alist)
   (let ((blank-line (string)))
     (-flatten (list (->> (split-string pardef-sphinx-default-summary "\n")
-                         (--map-first t (concat pardef-docstring-style it)))
+                         (--map-first (progn (ignore it) t)
+                                      (concat pardef-docstring-style it)))
                     blank-line
                     (pardef--rsph-create-params-and-return alist nil nil)
                     pardef-docstring-style))))
@@ -961,7 +947,7 @@ See `pardef-do-jump-backward'"
   (interactive "p")
   (setq arg (or arg 1))
   (cond ((cl-minusp arg) (pardef-do-jump-backward (- arg)))
-        ((cl-plusp arg) (dotimes (i arg)
+        ((cl-plusp arg) (dotimes (_i arg)
                           (pardef--do-jump #'re-search-forward)))))
 
 
@@ -975,7 +961,7 @@ See `pardef-do-jump-forward'"
   (interactive "p")
   (setq arg (or arg 1))
   (cond ((cl-minusp arg) (pardef-do-jump-forward (- arg)))
-        ((cl-plusp arg) (dotimes (i arg)
+        ((cl-plusp arg) (dotimes (_i arg)
                           (pardef--do-jump #'re-search-backward)))))
 
 
