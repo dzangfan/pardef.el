@@ -6,7 +6,7 @@ A Python docstring generator, uses [[https://sphinx-rtd-tutorial.readthedocs.io/
 
 ** Installation
 
-Install [[file:pardef.el][pardef.el]] and put following code in your init.el:
+Install [[file:pardef.el][pardef.el]] and put following code in your ~init.el~ or ~.emacs~:
 
 #+begin_src emacs-lisp
   ;; This package doesn't depend `python-mode', but load after python
@@ -177,7 +177,7 @@ Finally, do not define tag whose name likes ~str~, ~int~, and so on, otherwise c
 
 ** Development
 
-~pardef~ is extensible, you can write a plugin to define your own docstring format.  A plugin is a function who take specified parameters and produce specified values, we call it ~renderer~.  In particular, ~renderer~ has sign(pseudo-code):
+~pardef~ is extensible, you can write a plugin to define your own docstring format.  A plugin is a function who take specified parameters and produce specified values, we call it ~renderer~.  In particular, ~renderer~ has sign (pseudo-code):
 
 #+begin_src python
 def rerderer(defun: DefunSpecifier,
@@ -213,7 +213,7 @@ You can use function ~pardef-load-python-defun~ to load a string as a python fun
   ;;  (return . "R"))
 #+end_src
 
-This structure will be passed to your ~renderer~.  The latter parameter indicates we need you create a new docstring or update a present docstring.  It's ~nil~ if a new docstring is required, or a list of ~string~ which represents each line of a present docstring(note that the first element and the last element contains bound of docstring, both ~﻿'''﻿~ and ~﻿"""﻿~ are possible).  
+This structure will be passed to your ~renderer~.  The latter parameter indicates we need you create a new docstring or update a present docstring.  It's ~nil~ if a new docstring is required, or a list of ~string~ which represents each line of a present docstring and you should return a new docstring base on it (note that the first element and the last element contains bound of docstring, both ~﻿'''﻿~ and ~﻿"""﻿~ are possible).  
 
 The you can do arbitrary funny computation on them (and only on them, do not modify the buffer) and return a docstring specifier, which is a 3-tuple (or ~list~, in Emacs Lisp) consists of
 
