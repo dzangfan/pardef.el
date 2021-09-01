@@ -175,6 +175,84 @@ Tags that can be searched by function ~pardef-do-jump-*[-and-kill]~, where \* is
 
 Finally, do not define tag whose name likes ~str~, ~int~, and so on, otherwise character sequence like ~List[str]~ may suffer from friendly fire.
 
+** Development
+
+~pardef~ is extensible, you can write a plugin to define your own docstring format.  A plugin is a function who take specified parameters and produce specified values, we call it ~renderer~.  In particular, ~renderer~ has sign(pseudo-code):
+
+#+begin_src python
+def rerderer(defun: DefunSpecifier,
+             docstring: Optional[List[str]]) \
+          -> Tuple[List[str], int, int]: ...
+#+end_src
+
+where ~DefunSpecifier~ is a [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Association-Lists.html][association list]] has fixed form:
+
+- *name* Name of function (~string~)
+- *params* Parameter list (~list~)
+- *return* Return type (~string~)
+
+All keys (i.e. *name*, *params*) are symbol.  Furthermore, *params* corresponds to parameter list, which is a list of list and each elements has form
+
+#+begin_src emacs-lisp
+  (list "parameter_name" 
+        "parameter_type"                  ; May be empty
+        "parameter_default_value")        ; May be empty
+#+end_src
+
+You can use function ~pardef-load-python-defun~ to load a string as a python function definition:
+
+#+begin_src emacs-lisp
+  (pardef-load-python-defun "def F(x, y: int, z = 0) -> R:") ; Note the colon
+  ;; RESULT:
+  ;; 
+  ;; ((name . "F")
+  ;;  (params
+  ;;   ("x" ""    "" )
+  ;;   ("y" "int" "" )
+  ;;   ("z" ""    "0"))
+  ;;  (return . "R"))
+#+end_src
+
+This structure will be passed to your ~renderer~.  The latter parameter indicates we need you create a new docstring or update a present docstring.  It's ~nil~ if a new docstring is required, or a list of ~string~ which represents each line of a present docstring(note that the first element and the last element contains bound of docstring, both ~﻿'''﻿~ and ~﻿"""﻿~ are possible).  
+
+The you can do arbitrary funny computation on them (and only on them, do not modify the buffer) and return a docstring specifier, which is a 3-tuple (or ~list~, in Emacs Lisp) consists of
+
+- *docstring* A list of string like the second parameter we just mentioned, but it shouldn't be ~nil~
+- *row index* A non-negative integer indicates the cursor's position relative to the first line of new docstring, based on zero
+- *column index* A integer like *row index*, indicates cursor's column
+
+Both of *row index* and *column index* are relative position and you needn't consider the indentation.  Finally, let's implement a simple ~renderer~:
+
+#+begin_src emacs-lisp
+  (defun ultimate-renderer (_defun-definition origional-docstring)
+    (if (null origional-docstring)
+        ;; Create a new docstring
+        (list (list (concat pardef-docstring-style ; Not ''' or """
+                            "Amazing physics going on...")
+                    pardef-docstring-style)
+              ;; Move to the beginning of our new docstring
+              0 (length pardef-docstring-style))
+
+      ;; If `origional-docstring' isn't `nil', it contains the present
+      ;; docstring and is in the form of list of string, whose each
+      ;; element represents a line of docstring (trimmed indentation).
+      (list (append (list (car origional-docstring)
+                          "Successfully flipped one bit!")
+                    (cdr origional-docstring))
+            ;; Move to the end of our updated docstring
+            (length origional-docstring)
+            (length pardef-docstring-style))))
+#+end_src
+
+After that, you can pass this ~renderer~ to ~pardef-gen~, who is the major function to generate docstring.  Note that ~pardef-gen~ is not ~interactive~, so we need to wrap our ~renderer~ with ~defun~ or ~lambda~:
+
+#+begin_src emacs-lisp
+  (define-key python-mode-map (kbd "M-d M-d")
+    (lambda () (interactive) (pardef-gen #'ultimate-renderer)))
+#+end_src
+
+[[file:example/example-dev.gif]]
+
 ** Known Issues
 
 ~pardef~ assume that there is no more continuous line after the line that contains function definition terminate notation ~:~. Specifically, ~pardef~ will not generate a correct docstring for following code:
