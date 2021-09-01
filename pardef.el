@@ -187,6 +187,12 @@ and `pardef-do-jump-backward'.  In docstring, its format [TAG]."
   "Regexp which used to parse a single python parameter
 specifier.  See `pardef--parse-python-parameter'")
 
+
+(defmacro pardef--user-error (format &rest args)
+  (let ((tagged-format (concat "[PARDEF] " format)))
+    `(user-error ,tagged-format ,@args)))
+
+
 (defun pardef--split-python-defun (definition)
   "Splitting python's function `DEFINITION' into list.
 Returned a list has three elements if succeed in parsing,
@@ -321,7 +327,7 @@ a short message which indicates the reason of failure with tag
   "Trim `RET'-'s prefix (->)."
   (if (string-match "^\\s-*\\(?:->\\s-*\\(.+\\)\\|\\(\\)\\)\\s-*:\\s-*$" ret)
       (or (match-string-no-properties 1 ret) "")
-    (user-error "[PARDEF] Internal error raised when parsing %s" ret)))
+    (pardef--user-error "Internal error raised when parsing %s" ret)))
 
 
 (defun pardef-load-python-defun (definition)
@@ -460,9 +466,17 @@ returns nil."
           (cl-values lines begin (point)))))))
 
 
-(defmacro pardef--user-error (format &rest args)
-  (let ((tagged-format (concat "[PARDEF] " format)))
-    `(user-error ,tagged-format ,@args)))
+(defun pardef-util-split-docstring-blocks (docstring)
+  "Split `DOCSTRING' by blank line.
+`DOCSTRING' should be a list of string which represent lines of
+text, and it will be split into sublists bounded by blank lines."
+  (--split-when (string-blank-p it) docstring))
+
+
+(defun pardef-util-indent-of (string)
+  "Returns number of space prefixed in `STRING'."
+  (if (not (string-match "^\\s-*" string)) 0
+    (match-end 0)))
 
 
 (defun pardef--detect-class-above ()
@@ -541,60 +555,15 @@ See also `pardef--detect-class-above'."
 
 To generate docstring for a function, place cursor on the line
 contains keyword `def', then call this function with a particular
-`RENDERER'.  Note that this function is not `interactive'.
+RENDERER.  Note that this function is not `interactive'.
 
-`RENDERER' is a callback who can produce or update a docstring by
-a parsed function definition.  It should be a function accepts a
-`ALIST' as parameter, and returns a specifier which `pardef-gen'
-can use to generate docstring.  In particular, `RENDERER' will
-receive a `ALIST' has following fields:
-
-  `name'   Function's name, as a non-empty string.
-  `return' Function's return type, is a string and may be empty.
-  `params' Parameter list, a list of list in Lisp data.
-
-Parameter list is represented by list which consists of fix form:
-
-  (list <param-name> <param-type> <param-default-value>)
-
-Both param-type and param-default-value may be empty.  You can use
-`cl-multiple-value-bind' to destructuralize them.
-
-`RENDERER' should return a list has three elements, first one is
-a list of string, whose each element specifies a single line of
-docstring.  You don't need consider the absolute indentation of
-them, and local indent is acceptable.  For example, part of the
-list may like
-
-'(\":param length:\"
-  \"  The length of the rectangle.\")
-
-Both of the rest return values are non-negative integer represent
-row index and column index, used to specify location of cursor
-after docstring is inserted into buffer.  Both of them are based
-on zero, and similarly, don't need to consider the absolute
-indent.  Consider that we want to generate following docstring:
-
---- DOCSTRING ---
-'''This is my favorite function.
-You should call it carefully.
-                ^
-'''
----    END    ---
-(Character '^' means cursor)
-
-Then we should return
-
-(list '(\"'''This is my favorite function.\" ; 0
-        \"You should call it carefully.\"    ; 1
-        ; 0               16
-        \"'''\")
-      1
-      16)
-
-Finally, you can use custom variable `pardef-docstring-style' as
-docstring's quotes. If docstring already exists, `pardef-gen'
-will update it automatically."
+RENDERER is a callback who can produce or update a docstring from
+a parsed function definition and a null-able present docstring.
+It should be a function takes a association list and simple list
+as parameter, and return a 3 tuple (i.e. `list') that
+`pardef-gen' can use to generate a docstring.  See URL
+`https://github.com/FloatingLion/pardef.el' for more complete
+document."
   (cl-multiple-value-bind (line _first-lino _last-lino ignored-count)
       (pardef-load-python-line)
     (if (not (string-match "^\\s-*\\(def\\)" line)) ; `def' must in current line
@@ -635,19 +604,6 @@ will update it automatically."
                 (beginning-of-line)
                 (forward-line row)
                 (forward-char (+ indent-level col))))))))))
-
-
-(defun pardef-util-split-docstring-blocks (docstring)
-  "Split `DOCSTRING' by blank line.
-`DOCSTRING' should be a list of string which represent lines of
-text, and it will be split into sublists bounded by blank lines."
-  (--split-when (string-blank-p it) docstring))
-
-
-(defun pardef-util-indent-of (string)
-  "Returns number of space prefixed in `STRING'."
-  (if (not (string-match "^\\s-*" string)) 0
-    (match-end 0)))
 
 
 ;; A simple renderer, uses Sphinx docstring format.
