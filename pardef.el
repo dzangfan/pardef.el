@@ -1,4 +1,4 @@
-;;; pardef.el --- A Python docstring generator.      -*- lexical-binding: t; -*-
+;;; pardef.el --- A Python docstring generator      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021  Lifoz
 
@@ -7,7 +7,7 @@
 ;; Package-Version: 1.3
 ;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
-;; Package-Requires: ((dash "2.19.0"))
+;; Package-Requires: ((emacs "24.4") (dash "2.19.0"))
 
 ;; This file is not part of GNU Emacs
 
@@ -64,13 +64,16 @@
                 (const :tag "Double quotes" "\"\"\"")))
 
 (defcustom pardef-enable-class-docstring t
-  "Inserting and updating class constructor(__init__)'s docstring
-to its class definition, defaults to t."
+  "Control where to insert constructor's docstring.
+
+Inserting and updating class constructor(__init__)'s docstring to
+its class definition, defaults to t."
   :group 'pardef
   :type 'boolean)
 
 (defcustom pardef-sphinx-list-indent 0
   "Indent of list items in Sphinx-formatted documentation.
+
 It's used to specify indentations of parameter, return-type, etc.
 For example, it defaults zero, which means no indentations:
 
@@ -97,13 +100,14 @@ return (and type) specifiers, and it become operative when
   :type 'integer)
 
 (defcustom pardef-sphinx-add-defaults t
-  "Whether to add a ', defaults to xx' for parameters who
-has default values."
+  "Whether to add a ', defaults to xx' for default values."
   :group 'pardef
   :type 'boolean)
 
 (defcustom pardef-sphinx-ignored-parameters '("self" "cls")
-  " Parameter who is exactly matched name in this list will be
+  "Ignore parameter by name.
+
+Parameter who is exactly matched name in this list will be
 ignored, defaults to ignore instance method's self and class
 method's cls.
 
@@ -120,7 +124,8 @@ value, namely only name is provided, it will be ignored."
   :type '(repeat string))
 
 (defcustom pardef-sphinx-ignore-rest nil
-  " Whether to ignore rest parameter like *args.
+  "Whether to ignore rest parameter like *args.
+
 Name of rest parameter doesn't limit, but it cannot have neither
 type annotation nor default value."
   :group 'pardef
@@ -128,6 +133,7 @@ type annotation nor default value."
 
 (defcustom pardef-sphinx-ignore-keyword nil
   "Whether to ignore keyword parameter like **args.
+
 Name of rest parameter doesn't limit, but it cannot have neither
 type annotation nor default value."
   :group 'pardef
@@ -142,7 +148,7 @@ type annotation nor default value."
   '''
 
 It's able to be multiline, but note that it shouldn't contain
-blank line. It means that it shouldn't contain continuous \\n."
+blank line.  It means that it shouldn't contain continuous \\n."
   :group 'pardef
   :type 'string)
 
@@ -156,7 +162,7 @@ blank line. It means that it shouldn't contain continuous \\n."
   '''
 
 It's able to be multiline, but note that it shouldn't contain
-blank line. It means that it shouldn't contain continuous \\n."
+blank line.  It means that it shouldn't contain continuous \\n."
   :group 'pardef
   :type 'string)
 
@@ -170,38 +176,45 @@ blank line. It means that it shouldn't contain continuous \\n."
   '''
 
 It's able to be multiline, but note that it shouldn't contain
-blank line. It means that it shouldn't contain continuous \\n."
+blank line.  It means that it shouldn't contain continuous \\n."
   :group 'pardef
   :type 'string)
 
 (defcustom pardef-do-jumpable-tags '("ParamDescription"
                                      "ReturnDescription"
                                      "Summary")
-  " List of tag that is able to jump by `pardef-do-jump-forward'
-and `pardef-do-jump-backward'.  In docstring, its format [TAG]."
+  "List of tags used to jump as a placeholder.
+
+Tags that are able to jump by `pardef-do-jump-forward' and
+`pardef-do-jump-backward'.  In docstring, it looks like [TAG]."
   :group 'pardef
   :type '(repeat string))
 
 (defconst pardef--python-parameter-name
   "\\*\\{0,2\\}[a-zA-Z0-9_]+"
-  "Parameter's identifier, includes *args and **args")
+  "Parameter's identifier, includes *args and **args.")
 
 (defconst pardef--single-parameter-regexp
   (string-join `(,(format "^\\s-*\\(%s\\)" pardef--python-parameter-name)
                  "\\(:\\s-*[^=]+\\|\\)" ; parameter type
                  "\\(=\\s-*.+\\|\\)$")  ; parameter default value
                "\\s-*")
-  "Regexp which used to parse a single python parameter
-specifier.  See `pardef--parse-python-parameter'")
+  "Regexp which used to parse a single python parameter specifier.
+
+See `pardef--parse-python-parameter'.")
 
 
 (defmacro pardef--user-error (format &rest args)
+  "Raise a `user-error' with [PARDEF] prefix.
+
+FORMAT and ARGS are passed to `user-error' directly."
   (let ((tagged-format (concat "[PARDEF] " format)))
     `(user-error ,tagged-format ,@args)))
 
 
 (defun pardef--split-python-defun (definition)
   "Splitting python's function `DEFINITION' into list.
+
 Returned a list has three elements if succeed in parsing,
 elements are bound to function's name, parameter list and
 return-specification respectively.  Otherwise, namely fail to
@@ -224,15 +237,15 @@ parse, function will raise an exception with tag
 
 
 (defun pardef--adjust-par-stack (stack cc openers closers)
-  "Adjust stack to maintains balance of `OPENERS' and `CLOSERS'.
+  "Adjust stack to maintains balance of OPENERS and CLOSERS.
 
-Stack is a list, but you may not modify it manually.  `OPENERS'
-and `CLOSERS' are matched parentheses, such as () [] '' etc. and
-both of them are string, whose index a corresponds in match to
-another.  You can scan a string and pass a originally nil list to
-this function, and reset stack to its return value. You can be
-sure that any `OPENERS' in your source string are matched to
-`CLOSERS' if stack is still nil any time."
+STACK is a list, but you may not modify it manually.  OPENERS and
+CLOSERS are matched parentheses, such as () [] '' etc.  and both
+of them are string, whose index a corresponds in match to
+another.  You can scan a string to produce CC and pass a
+originally nil list to this function, and reset stack to its
+return value.  You can be sure that any OPENERS in your source
+string are matched to CLOSERS if stack is still nil any time."
   (cond ((and stack (char-equal cc (aref closers (car stack))))
          (cdr stack))
         ((string-match (regexp-opt-charset (list cc)) openers)
@@ -243,9 +256,10 @@ sure that any `OPENERS' in your source string are matched to
 
 (defun pardef--find-next-outside-par
     (source char start &optional openers closers)
-  "Find next `CHAR' in `SOURCE' outside any parentheses.
-The definition of 'parentheses' is in alist `PARALIST', which is
-a ALIST consists of opening and closing.  Returns index of the
+  "Find next CHAR in SOURCE outside any parentheses.
+
+The definition of 'parentheses' is in alist PARALIST, which is a
+ALIST consists of opening and closing.  Returns index of the
 character, otherwise returns nil if fail to found."
   (setq openers (or openers (string ?\( ?\[ ?\{ ?\" ?\'))
         closers (or closers (string ?\) ?\] ?\} ?\" ?\')))
@@ -259,6 +273,7 @@ character, otherwise returns nil if fail to found."
 
 
 (defun pardef--parse-python-parameter-split-regex (parelt)
+  "Parse plain-text PARELT as a field of python parameter list."
   (if (not (string-match pardef--single-parameter-regexp parelt))
       (throw 'pardef--parsing-par-err
              (format "Unable to parse parameter %s" parelt))
@@ -268,7 +283,8 @@ character, otherwise returns nil if fail to found."
   
 
 (defun pardef--parse-python-parameter (parelt)
-  "Parsing a single python-style parameter specifier `PARELT'.
+  "Parsing a single python-style parameter specifier PARELT.
+
 If success to parsing, function returns a list has three
 elements: parameter's name, parameter's type and parameter's
 default value.  Otherwise a string which is indicating a error
@@ -292,15 +308,16 @@ will be throwed with tag `pardef--parsing-par-err'."
 
 
 (defun pardef--parse-python-parlist (parlist)
-  "Parsing python-style function's parameter list(`PARLIST').
+  "Parsing python-style function's parameter list(PARLIST).
+
 Returns the result as a list, whose each element is a list has 3
 elements, each component corresponds name, type and default
 value.  First element(i.e. name) will be a non-empty string, but
-both type and value can be empty.  If `PARLIST' is empty or only
+both type and value can be empty.  If PARLIST is empty or only
 contains white-space, empty list(i.e. nil) will be returned.  If
-`PARLIST' has illegal form, or contains some features are
-unsupported currently, function will raise a exception contains
-a short message which indicates the reason of failure with tag
+PARLIST has illegal form, or contains some features are
+unsupported currently, function will raise a exception contains a
+short message which indicates the reason of failure with tag
 `pardef--parsing-par-err'"
   (unless (string-match "^\\s-*$" parlist)
     (let ((rezseq nil)
@@ -332,30 +349,31 @@ a short message which indicates the reason of failure with tag
 
 
 (defun pardef--trim-python-defun-retype (ret)
-  "Trim `RET'-'s prefix (->)."
+  "Trim RET's prefix (->)."
   (if (string-match "^\\s-*\\(?:->\\s-*\\(.+\\)\\|\\(\\)\\)\\s-*:\\s-*$" ret)
       (or (match-string-no-properties 1 ret) "")
     (pardef--user-error "Internal error raised when parsing %s" ret)))
 
 
 (defun pardef-load-python-defun (definition)
-  "Parsing python-style function `DEFINITION'.
-Splitting and extracting `DEFINITION' to a `alist', which has field
+  "Parsing python-style function DEFINITION.
 
-  - `name'   A non-empty string represent function's name.
-  - `params' List represent Function's parameters.
-  - `return' A string may be empty, represent function's return
+Splitting and extracting DEFINITION to a alist, which has field
+
+  - name   A non-empty string represent function's name.
+  - params List represent Function's parameters.
+  - return A string may be empty, represent function's return
     type (i.e. -> ..)
 
-Field `params' is a list of list, each element is string and has
+Field params is a list of list, each element is string and has
 form:
 
-  (`param-name' `param-type' `param-defaule-value')
+  (param-name param-type param-defaule-value)
 
-And in these three components, only `param-name' always has
-positive length, both `param-type' and `param-default-value' may
-be empty if doesn't provide in `DEFINITION'.
-If `DEFINITION' are illegal formed or contains any features which
+And in these three components, only param-name always has
+positive length, both param-type and param-default-value may
+be empty if doesnt provide in DEFINITION.
+If DEFINITION are illegal formed or contains any features which
 are unsupported now, a string contains a short message about the
 reason of failure will be returned."
   (catch 'pardef--unable-to-split
@@ -368,14 +386,15 @@ reason of failure will be returned."
 
 
 (defun pardef-util-split-docstring-blocks (docstring)
-  "Split `DOCSTRING' by blank line.
-`DOCSTRING' should be a list of string which represent lines of
+  "Split DOCSTRING by blank line.
+
+DOCSTRING should be a list of string which represent lines of
 text, and it will be split into sublists bounded by blank lines."
   (--split-when (string-blank-p it) docstring))
 
 
 (defun pardef-util-indent-of (string)
-  "Returns number of space prefixed in `STRING'."
+  "Return number of space prefixed in STRING."
   (if (not (string-match "^\\s-*" string)) 0
     (match-end 0)))
 
@@ -389,6 +408,7 @@ text, and it will be split into sublists bounded by blank lines."
 
 (defun pardef-load-python-line ()
   "Get line at point in current buffer as a string.
+
 This function read a python-style line at point.  In detail, all
 following code blocks it's a single python line:
 
@@ -400,7 +420,7 @@ def g(x: int) \\
 def h(x     # www!
 ,     y):
 
-It's return four value. 
+It's return four value.
 
   (line-content begin-line-number end-line-number ignored-count)
 
@@ -460,21 +480,22 @@ when concat lines into single."
 
 (defun pardef--load-docstring ()
   "Try to load docstring after current point.
+
 This function assume that there is a correct function definition,
-and current point is after the terminate notation (:). In
+and current point is after the terminate notation (:).  In
 particular, when this function is called, the buffer looks like:
 
 --- BUFFER ---
 def __init__(self):
                    ^
 ---   END  ---
-(Character (^) means current point)
+\(Character (^) means current point)
 
 Both of single-quotes-style and double-quotes-style are
-accept. If docstring is found, multiple values formed (<content>
+accept.  If docstring is found, multiple values formed (<content>
 <begin-point> <end-point>) will be returned, content is a list of
 string, each element is a line of docstring and prefix indent has
-been trimmed. Otherwise, namely no docstring is found, function
+been trimmed.  Otherwise, namely no docstring is found, function
 returns nil."
   (save-excursion
     (while (looking-at-p "\\s-*#")
@@ -495,6 +516,7 @@ returns nil."
 
 (defun pardef--detect-class-above ()
   "Detect method's class.
+
 Returns the line number that contains class keyword, or returns
 nil if no class is found.  Current point will be changed to the
 beginning of line just mentioned if that class is found,
@@ -516,7 +538,7 @@ otherwise nothing will be changed."
   "Goto the end of class definition of current method.
 
 Note that cursor must be placed on the line which contains method
-definition keyword `def', and it will detect its class and move
+definition keyword def, and it will detect its class and move
 to the end of class definition.  For example, if buffer looks
 like:
 
@@ -550,7 +572,7 @@ See also `pardef--detect-class-above'."
             (forward-char (+ 1 end ignored-count))
           (pardef--user-error "Unable to parse class definition in line %d"
                               lino)))
-    (pardef--user-error "Cannot detect this method's class.")))
+    (pardef--user-error "Cannot detect this method's class.? ")))
 
 
 ;; FIXME
@@ -565,7 +587,7 @@ See also `pardef--detect-class-above'."
   "Generate docstring for python-style defun.
 
 To generate docstring for a function, place cursor on the line
-contains keyword `def', then call this function with a particular
+contains keyword def, then call this function with a particular
 RENDERER.  Note that this function is not `interactive'.
 
 RENDERER is a callback who can produce or update a docstring from
@@ -577,7 +599,7 @@ as parameter, and return a 3 tuple (i.e. `list') that
 document."
   (cl-multiple-value-bind (line _first-lino _last-lino ignored-count)
       (pardef-load-python-line)
-    (if (not (string-match "^\\s-*\\(def\\)" line)) ; `def' must in current line
+    (if (not (string-match "^\\s-*\\(def\\)" line)) ; def must in current line
         (pardef--user-error "Unable to parse Current line as a python defun")
       (let* ((defi-begin (match-beginning 1))
              (defi-end (pardef--find-next-outside-par line ?\: defi-begin)))
@@ -628,25 +650,36 @@ document."
                  "\\(.*\\)$")
                (string ?\:))
   "Parameter specifier line's regexp.
+
 See `pardef--rsph-destruct-line'.")
 
 (defconst pardef--rsph-keywords
   (regexp-opt '("param" "type" "return" "rtype"))
   "Sphinx document's keywords.
+
 See https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
 for more details.")
 
 
 (defun pardef--rsph-format (string &rest objects)
+  "Format STRING and OBJECTS use `format'.
+
+This function will add lead space to line, it's used to generate
+line like
+
+:param x: ...
+
+and indent it correctly by `pardef-sphinx-list-indent'."
   (concat (make-string pardef-sphinx-list-indent ?\ )
           (apply 'format string objects)))
 
 
 (defun pardef--rsph-create-params (param-alist doc-alist type-alist)
-  "Creating parameter specifier lines from `PARAM-ALIST'.
-`PARAM-ALIST' is the primitive alist returned by
-`pardef-load-python-defun', both of `DOC-ALIST' and `TYPE-ALIST'
-is alist and has form:
+  "Creating parameter specifier lines from PARAM-ALIST.
+
+PARAM-ALIST is the primitive alist returned by
+`pardef-load-python-defun', both of DOC-ALIST and TYPE-ALIST is
+alist and has form:
 
   ((\"function_name\": . (\"user document content\"))
   ...)
@@ -686,9 +719,10 @@ by `-flatten' before used."
 (defun pardef--rsph-create-params-and-return
     (alist &optional doc-alist type-alist raises-list)
   "Combine parameter generate and return generate.
-See `pardef--rsph-create-params' for more details about
-arguments. Special key for only `DOC-ALIST' is \"return\", which
-used to specify documentation of return value. `RAISES-LIST' is a
+
+See `pardef--rsph-create-params' for more details about ALIST and
+TYPE-ALIST.  Special key for only DOC-ALIST is \"return\", which
+used to specify documentation of return value. RAISES-LIST is a
 list of lines which are between param-specifiers and
 return-specifiers. It will be insert between that two directly."
   (-flatten (list (pardef--rsph-create-params alist doc-alist type-alist)
@@ -710,6 +744,7 @@ return-specifiers. It will be insert between that two directly."
 
 
 (defun pardef--rsph-create (alist)
+  "Create a new docstring from ALIST."
   (let ((blank-line (string)))
     (-flatten (list (->> (split-string pardef-sphinx-default-summary "\n")
                          (--map-first (progn (ignore it) t)
@@ -720,7 +755,7 @@ return-specifiers. It will be insert between that two directly."
 
 
 (defun pardef--rsph-group-lines (param-block)
-  "Returns a list of list from `PARAM-BLOCK'.
+  "Return a list of list from PARAM-BLOCK.
 A line will be considered belong to previous line if its
 indentation is greater than previous line.  Lines are grouped
 directly, will not do any other modify."
@@ -741,7 +776,8 @@ directly, will not do any other modify."
 
 
 (defun pardef--rsph-destruct-line (grouped-line)
-  "Returns destructed `GROUPED-LINE'.
+  "Return destructed GROUPED-LINE.
+
 If succeed in destructing, return multiple value
 
   (type name rest)
@@ -758,7 +794,7 @@ name and rest may be empty in this case:
 
 If failed to parse, NIL will be returned.
 See `pardef--rsph-group-lines' for more details about
-`GROUPED-LINE'"
+GROUPED-LINE"
   (unless (null grouped-line)
     (let ((first-line (cl-first grouped-line)))
       (when (string-match pardef--rsph-destructing-regexp first-line)
@@ -771,9 +807,9 @@ See `pardef--rsph-group-lines' for more details about
 
 
 (defun pardef--rsph-rebuild-line (limbs)
-  "Rebuild line from `LIMBS' and perfixed with `PREFIX'.
-Returns lines as a list.
+  "Rebuild line from LIMBS and perfixed with PREFIX.
 
+Returns lines as a list.
 See `pardef--rsph-destruct-line' for more details."
   (cl-multiple-value-bind (type name rest) limbs
       (let ((spec (pardef--rsph-format ":%s %s:" type name))
@@ -784,7 +820,8 @@ See `pardef--rsph-destruct-line' for more details."
 
 
 (defun pardef--rsph-collect-docs (compiled)
-  "Collect existed documents from `SPECS-BLOCK'.
+  "Collect existed documents from COMPILED.
+
 Returns multiple value DOC-ALIST and TYPE-ALIST and both of them
 are formed like:
 
@@ -798,7 +835,9 @@ DOC-ALIST collects items have tag:
 TYPE-ALIST collects items have tag:
   - :type x:
   - :rtype:
-Every documents for type must prefixed with (,)"
+Every documents for type must prefixed with (,)
+
+See `pardef--rsph-destruct-line' for more detail."
   (let ((doc-alist nil)
         (type-alist nil))
     (dolist (destructed compiled (cl-values doc-alist type-alist))
@@ -817,8 +856,7 @@ Every documents for type must prefixed with (,)"
 
 
 (defun pardef--rsph-collect-raises (compiled-lines)
-  "Collects lines from `COMPILED-LINES' which don't have type in
-`pardef--rsph-keywords'."
+  "Collects lines from COMPILED-LINES aren't defined `pardef--rsph-keywords'."
   (let ((raises nil))
     (dolist (lines compiled-lines)
       (when lines
@@ -828,6 +866,7 @@ Every documents for type must prefixed with (,)"
 
 
 (defun pardef--rsph-update (alist docstring)
+  "Update DOCSTRING by ALIST use Sphinx format."
   (let ((i 0)
         (result nil)
         (z (- (length docstring) 1)))
@@ -876,7 +915,9 @@ Every documents for type must prefixed with (,)"
 
 See `pardef-gen' for more information about renderer.
 See <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>
-for the Sphinx docstring format."
+for the Sphinx docstring format.
+
+See `pardef-gen' for more details about ALIST and DOCSTRING."
   (cl-values
    ;; Docstring's content
    (if (null docstring)
@@ -887,13 +928,15 @@ for the Sphinx docstring format."
 
 
 (defun pardef--do-jump (search-function)
-  "Search tags defined in `pardef-do-jumpable-tags' or bound of
-python docstring by `SEARCH-FUNCTION'.
+  "Search tags defined in `pardef-do-jumpable-tags' or bound.
 
 If succeed in search and result is a tag (See
 `pardef-do-jumpable-tags'), then the tag's begin position and end
-position are returned as a multiple value. Otherwise, namely
-search is fail or got bound of docstring, nil will be returned."
+position are returned as a multiple value.  Otherwise, namely
+search is fail or got bound of docstring, nil will be returned.
+
+SEARCH-FUNCTION may be one of `re-search-forward' or
+`re-search-backward'."
   (let ((tags (format "'''\\|\"\"\"\\|\\[%s\\]"
                       (regexp-opt pardef-do-jumpable-tags))))
     (when (funcall search-function tags nil t)
@@ -907,8 +950,10 @@ search is fail or got bound of docstring, nil will be returned."
 ;;;###autoload
 (defun pardef-do-jump-forward (&optional arg)
   "Jump forward tag and docstring's bound.
+
 Tag is a string that enclosed by bracket ([]), customize optional
-tags by `pardef-do-jumpable-tags'.
+tags by `pardef-do-jumpable-tags'.  If provided ARG, repeat same
+action ARG times
 
 See `pardef-do-jump-backward'"
   (interactive "p")
@@ -921,8 +966,10 @@ See `pardef-do-jump-backward'"
 ;;;###autoload
 (defun pardef-do-jump-backward (&optional arg)
   "Jump backward tag and docstring's bound.
+
 Tag is a string that enclosed by bracket ([]), customize optional
-tags by `pardef-do-jumpable-tags'.
+tags by `pardef-do-jumpable-tags'.  If ARG is provided, repeat
+the same action ARV times.
 
 See `pardef-do-jump-forward'"
   (interactive "p")
@@ -934,6 +981,7 @@ See `pardef-do-jump-forward'"
 
 ;;;###autoload
 (defun pardef-do-jump-forward-and-kill ()
+  "Jump to next tag and delete it."
   (interactive)
   (-when-let (reg (pardef--do-jump #'re-search-forward))
     (delete-region (cl-first reg) (cl-second reg))))
@@ -941,6 +989,7 @@ See `pardef-do-jump-forward'"
 
 ;;;###autoload
 (defun pardef-do-jump-backward-and-kill ()
+  "Jump to previous tag and delete it."
   (interactive)
   (-when-let (reg (pardef--do-jump #'re-search-backward))
     (delete-region (cl-first reg) (cl-second reg))))
@@ -950,11 +999,11 @@ See `pardef-do-jump-forward'"
 (defun pardef-sphinx ()
   "Generate Sphinx formatted Python docstring.
 
-Move your cursor to the line that contains keyword `def' and call
-this function as a command (M-x) or a key binding, then your
-docstring will be generated, or a error message will be reported
-if something is wrong.  We suggest binding this function to
-`python-mode-map':
+Move your cursor to the line that contains keyword def and call
+this function as a command or a key binding, then your docstring
+will be generated, or a error message will be reported if
+something is wrong.  We suggest binding this function to
+python-mode-map:
 
   (with-eval-after-load 'python
     (define-key python-mode-map (kbd \"M-d M-d\") #'pardef-sphinx))
