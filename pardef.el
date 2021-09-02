@@ -4,7 +4,7 @@
 
 ;; Author: Lifoz <li-fn@outlook.com>
 ;; Maintainer: Lifoz <li-fn@outlook.com>
-;; Package-Version: 1.2
+;; Package-Version: 1.3
 ;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((dash "2.19.0"))
@@ -102,15 +102,22 @@ has default values."
   :group 'pardef
   :type 'boolean)
 
-(defcustom pardef-sphinx-ignore-self t
-  "Whether to ignore parameter exactly named self, defaults
-to t. For example, method like
+(defcustom pardef-sphinx-ignored-parameters '("self" "cls")
+  " Parameter who is exactly matched name in this list will be
+ignored, defaults to ignore instance method's self and class
+method's cls.
 
-  def __init__(self, a, b): ...
+def IM(self, x, y):
+       ^
 
-will only generate parameter items for a and b."
+@classmethod
+def CM(cls, x, y):
+       ^
+
+Note that only if parameter has no type annotation and default
+value, namely only name is provided, it will be ignored."
   :group 'pardef
-  :type 'boolean)
+  :type '(repeat string))
 
 (defcustom pardef-sphinx-ignore-rest nil
   " Whether to ignore rest parameter like *args.
@@ -300,7 +307,8 @@ a short message which indicates the reason of failure with tag
           (commap 0)
           (commac (pardef--find-next-outside-par parlist ?\, 0))
           (ignored-regexp (--> (list "\\*\\|/\\|\\s-*"
-                                     (when pardef-sphinx-ignore-self "self")
+                                     (regexp-opt
+                                      pardef-sphinx-ignored-parameters)
                                      (when pardef-sphinx-ignore-rest
                                        "\\*[a-zA-Z0-9_]+")
                                      (when pardef-sphinx-ignore-keyword
@@ -311,7 +319,7 @@ a short message which indicates the reason of failure with tag
       (let ((forward!
              (lambda ()
                (let ((par (substring-no-properties parlist commap commac)))
-                 (unless (string-match ignored-regexp par)
+                 (unless (string-match-p ignored-regexp par)
                    (let ((parserez (pardef--parse-python-parameter par)))
                      (push parserez rezseq)))
                  (when commac
@@ -357,6 +365,26 @@ reason of failure will be returned."
         (list (cons 'name name)
               (cons 'params (pardef--parse-python-parlist parlist))
               (cons 'return (pardef--trim-python-defun-retype ret)))))))
+
+
+(defun pardef-util-split-docstring-blocks (docstring)
+  "Split `DOCSTRING' by blank line.
+`DOCSTRING' should be a list of string which represent lines of
+text, and it will be split into sublists bounded by blank lines."
+  (--split-when (string-blank-p it) docstring))
+
+
+(defun pardef-util-indent-of (string)
+  "Returns number of space prefixed in `STRING'."
+  (if (not (string-match "^\\s-*" string)) 0
+    (match-end 0)))
+
+
+(defun pardef-util-current-line ()
+  "Return line at cursor in current buffer."
+  (buffer-substring-no-properties
+   (line-beginning-position)
+   (line-end-position)))
 
 
 (defun pardef-load-python-line ()
@@ -405,8 +433,7 @@ when concat lines into single."
                                         openers closers)))
                          (null stack))))
       (while continue
-        (let ((curl (buffer-substring-no-properties
-                        (line-beginning-position) (line-end-position))))
+        (let ((curl (pardef-util-current-line)))
           (if (string-match "^\\([^#]*\\)\\(#.*\\)" curl)
               (let ((content (match-string-no-properties 1 curl))
                     (comment (match-string-no-properties 2 curl)))
@@ -466,19 +493,6 @@ returns nil."
           (cl-values lines begin (point)))))))
 
 
-(defun pardef-util-split-docstring-blocks (docstring)
-  "Split `DOCSTRING' by blank line.
-`DOCSTRING' should be a list of string which represent lines of
-text, and it will be split into sublists bounded by blank lines."
-  (--split-when (string-blank-p it) docstring))
-
-
-(defun pardef-util-indent-of (string)
-  "Returns number of space prefixed in `STRING'."
-  (if (not (string-match "^\\s-*" string)) 0
-    (match-end 0)))
-
-
 (defun pardef--detect-class-above ()
   "Detect method's class.
 Returns the line number that contains class keyword, or returns
@@ -488,17 +502,14 @@ otherwise nothing will be changed."
   (let ((curpos (point))
         (curind (current-indentation))
         (class-line-regexp "^\\s-*class\\(?:\\s-\\|\\\\\\)"))
-    (cl-do ((curln (buffer-substring-no-properties (line-beginning-position)
-                                                   (line-end-position))
-                   (buffer-substring-no-properties (line-beginning-position)
-                                                   (line-end-position))))
-        ((bobp) (progn (goto-char curpos) nil))
+    (cl-do ((offset 0 (forward-line -1))
+            (curln (pardef-util-current-line) (pardef-util-current-line)))
+        ((cl-minusp offset) (progn (goto-char curpos) nil))
       (when (string-match class-line-regexp curln)
         (let ((indent (current-indentation)))
           (when (< indent curind)
             (beginning-of-line)
-            (cl-return (line-number-at-pos)))))
-      (forward-line -1))))
+            (cl-return (line-number-at-pos))))))))
 
 
 (defun pardef--end-of-class-definition ()
