@@ -50,6 +50,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'subr-x)
 (require 'dash)
 
 (defgroup pardef nil
