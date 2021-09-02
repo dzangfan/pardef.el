@@ -140,14 +140,32 @@ Note that this clause WONT be updated if you change the default later, so you ne
 
 *** ~pardef-sphinx-ignore-*~: Boolean
 
-It means whether to ignore some parameter, and includes three variable:
+It means whether to ignore some parameter, and includes two variables:
 
-  - ~pardef-sphinx-ignore-self~
-    Whether to ignore ~self~, defaults to ~t~
   - ~pardef-sphinx-ignore-rest~
     Whether to ignore ~*args~, parameter can use arbitrary name, defaults to ~nil~
   - ~pardef-sphinx-ignore-keyword~
     Whether to ignore ~**args~, defaults to ~nil~
+
+Furthermore, you can ignore parameter has arbitrary name you want, see below.
+
+*** ~pardef-sphinx-ignored-parameters~: List of String
+
+All parameter has name exactly matched any one in this list will be ignored.  Its default value is ~self~ and ~cls~, but you can customize it to anything you like.
+
+#+begin_src python
+class C:
+  def __init__(self, p, q): ...
+#              ^
+#              ignore
+
+  @classmethod
+  def M(cls, t, s): ...
+#       ^
+#       ignore
+#+end_src
+
+However, if you provided a type annotation or a default value or both to parameter, then we consider that it may have some special feature and generate document for it even it's in ~pardef-sphinx-ignored-parameters~.
 
 *** ~pardef-sphinx-default-*~: String
 
@@ -169,7 +187,7 @@ They correspond with
 
 You may modify them carefully, since they are connecting with placeholder ~[TAG]~. See next section.
 
-*** ~pardef-do-jumpable-tags~: List of string
+*** ~pardef-do-jumpable-tags~: List of String
 
 Tags that can be searched by function ~pardef-do-jump-*[-and-kill]~, where \* is ~forward~ or ~backward~, You needn't to care them if you use default key binding mentioned in install section.  It defaults to ~ParamDescription~, ~ReturnDescription~ and ~Summary~, so when you invoke ~pardef-do-jump-forward-and-kill~ (or ~M-d M-f~), character sequence ~[ParamDescription]~ may be going to suffer, but ~List[str]~ wont.  You can define your own jump-tag by push new string into it, then ~[YourTag]~ will be significant as a placeholder for ~M-d M-f~.
 
