@@ -209,7 +209,7 @@ where ~DefunSpecifier~ is a [[https://www.gnu.org/software/emacs/manual/html_nod
 - *params* Parameter list (~list~)
 - *return* Return type (~string~)
 
-All keys (i.e. *name*, *params*) are symbol.  Furthermore, *params* corresponds to parameter list, which is a list of list and each elements has form
+All keys (e.g. *name*, *params*) are symbol.  Furthermore, *params* corresponds to parameter list, which is a list of list and each elements has form
 
 #+begin_src emacs-lisp
   (list "parameter_name" 
