@@ -1,10 +1,10 @@
-;;; pardef.el --- A Python docstring generator      -*- lexical-binding: t; -*-
+;;; pardef.el --- Python docstring generator which uses Sphinx format   -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2021  Lifoz
 
 ;; Author: Lifoz <li-fn@outlook.com>
 ;; Maintainer: Lifoz <li-fn@outlook.com>
-;; Package-Version: 1.3
+;; Version: 1.3
 ;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((emacs "24.4") (dash "2.19.0"))
@@ -672,7 +672,7 @@ line like
 
 and indent it correctly by `pardef-sphinx-list-indent'."
   (concat (make-string pardef-sphinx-list-indent ?\ )
-          (apply 'format string objects)))
+          (apply #'format string objects)))
 
 
 (defun pardef--rsph-create-params (param-alist doc-alist type-alist)
@@ -796,7 +796,7 @@ name and rest may be empty in this case:
 If failed to parse, NIL will be returned.
 See `pardef--rsph-group-lines' for more details about
 GROUPED-LINE"
-  (unless (null grouped-line)
+  (when grouped-line
     (let ((first-line (cl-first grouped-line)))
       (when (string-match pardef--rsph-destructing-regexp first-line)
         (cl-multiple-value-bind (type-spec name-spec rest-spec)
@@ -842,7 +842,7 @@ See `pardef--rsph-destruct-line' for more detail."
   (let ((doc-alist nil)
         (type-alist nil))
     (dolist (destructed compiled (cl-values doc-alist type-alist))
-      (unless (null destructed)
+      (when destructed
         (cl-multiple-value-bind (type name rest) destructed
           (cond ((string= "param" type) (push (cons name rest) doc-alist))
                 ((string= "return" type) (push (cons "return" rest) doc-alist))
