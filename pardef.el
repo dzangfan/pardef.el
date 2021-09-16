@@ -386,7 +386,7 @@ reason of failure will be returned."
               (cons 'return (pardef--trim-python-defun-retype ret)))))))
 
 
-(defun pardef-util-split-docstring-blocks (docstring)
+(defun pardef--util-split-docstring-blocks (docstring)
   "Split DOCSTRING by blank line.
 
 DOCSTRING should be a list of string which represent lines of
@@ -394,20 +394,20 @@ text, and it will be split into sublists bounded by blank lines."
   (--split-when (string-blank-p it) docstring))
 
 
-(defun pardef-util-indent-of (string)
+(defun pardef--util-indent-of (string)
   "Return number of space prefixed in STRING."
   (if (not (string-match "^\\s-*" string)) 0
     (match-end 0)))
 
 
-(defun pardef-util-current-line ()
+(defun pardef--util-current-line ()
   "Return line at cursor in current buffer."
   (buffer-substring-no-properties
    (line-beginning-position)
    (line-end-position)))
 
 
-(defun pardef-load-python-line ()
+(defun pardef--load-python-line ()
   "Get line at point in current buffer as a string.
 
 This function read a python-style line at point.  In detail, all
@@ -454,7 +454,7 @@ when concat lines into single."
                                         openers closers)))
                          (null stack))))
       (while continue
-        (let ((curl (pardef-util-current-line)))
+        (let ((curl (pardef--util-current-line)))
           (if (string-match "^\\([^#]*\\)\\(#.*\\)" curl)
               (let ((content (match-string-no-properties 1 curl))
                     (comment (match-string-no-properties 2 curl)))
@@ -526,7 +526,7 @@ otherwise nothing will be changed."
         (curind (current-indentation))
         (class-line-regexp "^\\s-*class\\(?:\\s-\\|\\\\\\)"))
     (cl-do ((offset 0 (forward-line -1))
-            (curln (pardef-util-current-line) (pardef-util-current-line)))
+            (curln (pardef--util-current-line) (pardef--util-current-line)))
         ((cl-minusp offset) (progn (goto-char curpos) nil))
       (when (string-match class-line-regexp curln)
         (let ((indent (current-indentation)))
@@ -568,7 +568,7 @@ method.
 See also `pardef--detect-class-above'."
   (-if-let (lino (pardef--detect-class-above))
       (cl-multiple-value-bind (line _fst-lino _lst-lino ignored-count)
-          (pardef-load-python-line)
+          (pardef--load-python-line)
         (-if-let (end (pardef--find-next-outside-par line ?\: 0))
             (forward-char (+ 1 end ignored-count))
           (pardef--user-error "Unable to parse class definition in line %d"
@@ -599,7 +599,7 @@ as parameter, and return a 3 tuple (i.e. `list') that
 `https://github.com/FloatingLion/pardef.el' for more complete
 document."
   (cl-multiple-value-bind (line _first-lino _last-lino ignored-count)
-      (pardef-load-python-line)
+      (pardef--load-python-line)
     (if (not (string-match "^\\s-*\\(def\\)" line)) ; def must in current line
         (pardef--user-error "Unable to parse Current line as a python defun")
       (let* ((defi-begin (match-beginning 1))
@@ -766,7 +766,7 @@ directly, will not do any other modify."
          (dump (lambda ()
                  (when prev-lines (push (nreverse prev-lines) result)))))
     (dolist (line param-block)
-      (let ((ind (pardef-util-indent-of line)))
+      (let ((ind (pardef--util-indent-of line)))
         (cond ((<= ind prev-ind)
                (funcall dump)
                (setq prev-ind ind
@@ -880,7 +880,7 @@ See `pardef--rsph-destruct-line' for more detail."
                                                line)))
             result))
     (setq docstring (nreverse result)))
-  (let ((blocks (pardef-util-split-docstring-blocks docstring)))
+  (let ((blocks (pardef--util-split-docstring-blocks docstring)))
     (cl-case (length blocks)
       (0 (pardef--rsph-create alist))
       (1 (let* ((first (caar blocks))
@@ -911,7 +911,7 @@ See `pardef--rsph-destruct-line' for more detail."
                     (append it (list pardef-docstring-style))))))))))
 
 
-(defun pardef-renderer-sphinx (alist docstring)
+(defun pardef--renderer-sphinx (alist docstring)
   "Simple renderer base on Sphinx document format.
 
 See `pardef-gen' for more information about renderer.
@@ -1009,12 +1009,12 @@ python-mode-map:
   (with-eval-after-load 'python
     (define-key python-mode-map (kbd \"M-d M-d\") #'pardef-sphinx))
 
-See `pardef-gen' and `pardef-renderer-sphinx' for more
+See `pardef-gen' and `pardef--renderer-sphinx' for more
 information about the operation mechanism, and see URL
 `https://github.com/FloatingLion/pardef.el' for more detail about
 customization."
   (interactive)
-  (pardef-gen #'pardef-renderer-sphinx))
+  (pardef-gen #'pardef--renderer-sphinx))
 
 (provide 'pardef)
 ;;; pardef.el ends here
