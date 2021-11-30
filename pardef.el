@@ -1,9 +1,9 @@
 ;;; pardef.el --- Python docstring generator         -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Lifoz
+;; Copyright (C) 2021  Zhangfan Li
 
-;; Author: Lifoz <li-fn@outlook.com>
-;; Maintainer: Lifoz <li-fn@outlook.com>
+;; Author: Lifoz <lizfn@qq.com>
+;; Maintainer: Lifoz <lizfn@qq.com>
 ;; Version: 1.3
 ;; Homepage: https://github.com/FloatingLion/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
