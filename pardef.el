@@ -204,7 +204,6 @@ Tags that are able to jump by `pardef-do-jump-forward' and
 
 See `pardef--parse-python-parameter'.")
 
-
 (defmacro pardef--user-error (format &rest args)
   "Raise a `user-error' with [PARDEF] prefix.
 
@@ -515,24 +514,30 @@ returns nil."
           (cl-values lines begin (point)))))))
 
 
-(defun pardef--detect-class-above ()
+(defun pardef--detect-declare-above (regexp check-current-line)
   "Detect method's class.
 
 Returns the line number that contains class keyword, or returns
 nil if no class is found.  Current point will be changed to the
-beginning of line just mentioned if that class is found,
-otherwise nothing will be changed."
-  (let ((curpos (point))
-        (curind (current-indentation))
-        (class-line-regexp "^\\s-*class\\(?:\\s-\\|\\\\\\)"))
-    (cl-do ((offset 0 (forward-line -1))
-            (curln (pardef--util-current-line) (pardef--util-current-line)))
-        ((cl-minusp offset) (progn (goto-char curpos) nil))
-      (when (string-match class-line-regexp curln)
-        (let ((indent (current-indentation)))
-          (when (< indent curind)
-            (beginning-of-line)
-            (cl-return (line-number-at-pos))))))))
+beginning of line just mentioned if target is found, otherwise
+nothing will be changed."
+  (if check-current-line
+      (let ((current-line (pardef--util-current-line)))
+        (if (string-match-p regexp current-line)
+            (progn (beginning-of-line)
+                   (line-number-at-pos))
+          (pardef--detect-declare-above regexp nil)))
+    (let ((curpos (point))
+          (curind (current-indentation)))
+      (cl-do ((offset 0 (forward-line -1))
+              (curln (pardef--util-current-line)
+                     (pardef--util-current-line)))
+          ((cl-minusp offset) (progn (goto-char curpos) nil))
+        (when (string-match-p regexp curln)
+          (let ((indent (current-indentation)))
+            (when (< indent curind)
+              (beginning-of-line)
+              (cl-return (line-number-at-pos)))))))))
 
 
 (defun pardef--end-of-class-definition ()
@@ -565,15 +570,16 @@ class C(B):
 It ignores any class inner C and works intuitively.  A
 `pardef--user-error' will be raised if cannot find class of the
 method.
-See also `pardef--detect-class-above'."
-  (-if-let (lino (pardef--detect-class-above))
-      (cl-multiple-value-bind (line _fst-lino _lst-lino ignored-count)
-          (pardef--load-python-line)
-        (-if-let (end (pardef--find-next-outside-par line ?\: 0))
-            (forward-char (+ 1 end ignored-count))
-          (pardef--user-error "Unable to parse class definition in line %d"
-                              lino)))
-    (pardef--user-error "Cannot detect this method's class.? ")))
+See also `pardef--detect-declare-above'."
+  (let ((class-declare "^\\s-*class\\(?:\\s-\\|\\\\\\)"))
+    (-if-let (lino (pardef--detect-declare-above class-declare nil))
+        (cl-multiple-value-bind (line _fst-lino _lst-lino ignored-count)
+            (pardef--load-python-line)
+          (-if-let (end (pardef--find-next-outside-par line ?\: 0))
+              (forward-char (+ 1 end ignored-count))
+            (pardef--user-error "Unable to parse class definition in line %d"
+                                lino)))
+      (pardef--user-error "Cannot detect this method's class.? "))))
 
 
 ;; FIXME
@@ -598,6 +604,8 @@ as parameter, and return a 3 tuple (i.e. `list') that
 `pardef-gen' can use to generate a docstring.  See URL
 `https://github.com/FloatingLion/pardef.el' for more complete
 document."
+  (let ((defun-declare "^\\s-*def\\(?:\\s-\\|\\\\\\)"))
+    (pardef--detect-declare-above defun-declare t))
   (cl-multiple-value-bind (line _first-lino _last-lino ignored-count)
       (pardef--load-python-line)
     (if (not (string-match "^\\s-*\\(def\\)" line)) ; def must in current line
