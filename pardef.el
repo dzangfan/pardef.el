@@ -513,7 +513,6 @@ returns nil."
                (lines (split-string docstring indent-regexp)))
           (cl-values lines begin (point)))))))
 
-
 (defun pardef--detect-declare-above (regexp check-current-line)
   "Detect method's class.
 
@@ -524,20 +523,18 @@ nothing will be changed."
   (if check-current-line
       (let ((current-line (pardef--util-current-line)))
         (if (string-match-p regexp current-line)
-            (progn (beginning-of-line)
-                   (line-number-at-pos))
+            (progn (beginning-of-line) (line-number-at-pos))
           (pardef--detect-declare-above regexp nil)))
-    (let ((curpos (point))
-          (curind (current-indentation)))
-      (cl-do ((offset 0 (forward-line -1))
-              (curln (pardef--util-current-line)
-                     (pardef--util-current-line)))
-          ((cl-minusp offset) (progn (goto-char curpos) nil))
-        (when (string-match-p regexp curln)
-          (let ((indent (current-indentation)))
-            (when (< indent curind)
-              (beginning-of-line)
-              (cl-return (line-number-at-pos)))))))))
+    (let ((origin-pos (point)))
+      (cl-do ((prev-ind (current-indentation) cur-ind)
+              (offset (forward-line -1) (forward-line -1))
+              (cur-ind (current-indentation)
+                       (min cur-ind (current-indentation))))
+          ((cl-minusp offset) (goto-char origin-pos) nil)
+        (when (and (< cur-ind prev-ind)
+                   (string-match-p regexp (pardef--util-current-line)))
+          (beginning-of-line)
+          (cl-return (line-number-at-pos)))))))
 
 
 (defun pardef--end-of-class-definition ()
