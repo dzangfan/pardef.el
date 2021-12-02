@@ -2,10 +2,10 @@
 
 ;; Copyright (C) 2021  Zhangfan Li
 
-;; Author: Lifoz <lizfn@qq.com>
-;; Maintainer: Lifoz <lizfn@qq.com>
+;; Author: Zhangfan Li <lizfn@qq.com>
+;; Maintainer: Zhangfan Li <lizfn@qq.com>
 ;; Version: 1.3
-;; Homepage: https://github.com/FloatingLion/pardef.el
+;; Homepage: https://gitlab.com/lizfn/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((emacs "24.4") (dash "2.19.0"))
 
@@ -42,8 +42,7 @@
 ;; See URL `https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html'
 ;; for more information about Sphinx docstring format.
 ;;
-;; See URL `https://github.com/FloatingLion/pardef.el' for a complete
-;; manual.
+;; See URL `https://gitlab.com/lizfn/pardef.el' for a complete manual.
 
 
 
@@ -519,7 +518,8 @@ returns nil."
 Returns the line number that contains class keyword, or returns
 nil if no class is found.  Current point will be changed to the
 beginning of line just mentioned if target is found, otherwise
-nothing will be changed."
+nothing will be changed.  REGEXP is pattern of target line, and
+only check line of current position when CHECK-CURRENT-LINE is t"
   (if check-current-line
       (let ((current-line (pardef--util-current-line)))
         (if (string-match-p regexp current-line)
@@ -599,8 +599,7 @@ a parsed function definition and a null-able present docstring.
 It should be a function takes a association list and simple list
 as parameter, and return a 3 tuple (i.e. `list') that
 `pardef-gen' can use to generate a docstring.  See URL
-`https://github.com/FloatingLion/pardef.el' for more complete
-document."
+`https://gitlab.com/lizfn/pardef.el' for more complete document."
   (let ((defun-declare "^\\s-*def\\(?:\\s-\\|\\\\\\)"))
     (pardef--detect-declare-above defun-declare t))
   (cl-multiple-value-bind (line _first-lino _last-lino ignored-count)
@@ -1016,7 +1015,7 @@ python-mode-map:
 
 See `pardef-gen' and `pardef--renderer-sphinx' for more
 information about the operation mechanism, and see URL
-`https://github.com/FloatingLion/pardef.el' for more detail about
+`https://gitlab.com/lizfn/pardef.el' for more detail about
 customization."
   (interactive)
   (pardef-gen #'pardef--renderer-sphinx))
