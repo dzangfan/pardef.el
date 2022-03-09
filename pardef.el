@@ -5,7 +5,7 @@
 ;; Author: Zhangfan Li <lizfn@qq.com>
 ;; Maintainer: Zhangfan Li <lizfn@qq.com>
 ;; Version: 1.3
-;; Homepage: https://gitlab.com/lizfn/pardef.el
+;; Homepage: https://github.com/ZFan-Li/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((emacs "24.4") (dash "2.19.0"))
 
