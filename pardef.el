@@ -5,7 +5,7 @@
 ;; Author: Zhangfan Li <lizfn@qq.com>
 ;; Maintainer: Zhangfan Li <lizfn@qq.com>
 ;; Version: 1.3
-;; Homepage: https://github.com/ZFan-Li/pardef.el
+;; Homepage: https://github.com/dzangfan/pardef.el
 ;; Keywords: convenience, generator, Python, docstring
 ;; Package-Requires: ((emacs "24.4") (dash "2.19.0"))
 
@@ -42,7 +42,7 @@
 ;; See URL `https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html'
 ;; for more information about Sphinx docstring format.
 ;;
-;; See URL `https://gitlab.com/lizfn/pardef.el' for a complete manual.
+;; See URL `https://github.com/dzangfan/pardef.el' for a complete manual.
 
 
 
